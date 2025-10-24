@@ -1,0 +1,34 @@
+# Application
+app/node_modules/
+app/dist/
+app/.env
+app/.env.local
+
+# Terraform
+terraform/**/.terraform/
+terraform/**/.terraform.lock.hcl
+terraform/**/*.tfstate
+terraform/**/*.tfstate.backup
+terraform/**/*.tfplan
+terraform/**/.terraform.tfstate.lock.info
+
+# Scripts temp files
+scripts/*.log
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Sensitive files
+*.pem
+*.key
+secrets/
