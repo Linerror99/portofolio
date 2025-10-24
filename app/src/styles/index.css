@@ -16,6 +16,10 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   @apply font-sans antialiased;
   background: linear-gradient(180deg, #0a0e27 0%, #1a1d3a 100%);
