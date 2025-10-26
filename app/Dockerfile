@@ -49,12 +49,12 @@ RUN addgroup -g 1001 -S nodejs && \
 # Passer à l'utilisateur non-root
 USER nodejs
 
-# Exposer le port 80
-EXPOSE 80
+# Exposer le port 8080 (port non-privilégié)
+EXPOSE 8080
 
 # Healthcheck pour vérifier que Nginx fonctionne
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
-    CMD wget --quiet --tries=1 --spider http://localhost/ || exit 1
+    CMD wget --quiet --tries=1 --spider http://localhost:8080/ || exit 1
 
 # Commande de démarrage
 CMD ["nginx", "-g", "daemon off;"]
