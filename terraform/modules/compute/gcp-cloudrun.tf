@@ -37,10 +37,7 @@ resource "google_cloud_run_v2_service" "app" {
         value = "production"
       }
       
-      env {
-        name  = "PORT"
-        value = tostring(var.container_port)
-      }
+      # Cloud Run gère automatiquement la variable PORT
 
       # Health check
       liveness_probe {
