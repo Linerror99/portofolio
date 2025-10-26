@@ -33,6 +33,16 @@ output "load_balancer_dns" {
 }
 
 # ----------------------------------------------------------------------------
+# OUTPUT: Load Balancer Zone ID (AWS uniquement, pour Route 53)
+# ----------------------------------------------------------------------------
+output "load_balancer_zone_id" {
+  description = "Zone ID du load balancer AWS pour les alias records Route 53 (null pour GCP)"
+  value       = var.cloud_provider == "aws" && length(aws_lb.main) > 0 ? aws_lb.main[0].zone_id : null
+  # AWS : Z368ELLRRE2KJ0 (exemple pour us-west-1)
+  # GCP : null
+}
+
+# ----------------------------------------------------------------------------
 # OUTPUT: Cloud Run URL (GCP uniquement)
 # ----------------------------------------------------------------------------
 output "cloud_run_url" {

@@ -35,3 +35,15 @@ variable "enable_https" {
   type        = bool
   default     = false
 }
+
+variable "domain_name" {
+  description = "Nom de domaine personnalisé (ex: ldjossou.dev)"
+  type        = string
+  default     = ""
+}
+
+variable "create_route53_zone" {
+  description = "Créer une zone Route 53 pour le domaine"
+  type        = bool
+  default     = false
+}

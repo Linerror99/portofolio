@@ -122,7 +122,7 @@ npm run preview  # Prévisualiser le build
 docker build -t portfolio:local ./app
 
 # Lancer le container
-docker run -p 8080:80 portfolio:local
+docker run -p 8080:8080 portfolio:local
 
 # Tester
 curl http://localhost:8080/health
@@ -157,42 +157,87 @@ curl http://localhost:8080/health
 
 ## 📦 **Phases de développement**
 
-### ✅ **Phase 0 : Setup Initial** (En cours)
+### ✅ **Phase 0 : Setup Initial** (Terminé)
 - [x] Structure de dossiers
 - [x] Application React+Vite fonctionnelle
-- [x] Dockerfile multi-stage
+- [x] Dockerfile multi-stage (port 8080)
 - [x] Configuration de base
-- [ ] Tests locaux
+- [x] Tests locaux
 
-### 🔜 **Phase 1 : Modules Terraform**
-- [ ] Module Container Registry
-- [ ] Module Compute
-- [ ] Module Backend State
+### ✅ **Phase 1 : Modules Terraform** (Terminé)
+- [x] Module Backend State (S3+DynamoDB, GCS)
+- [x] Module Container Registry (ECR, Artifact Registry)
+- [x] Module Compute (ECS Fargate, Cloud Run)
+- [x] Architecture multi-cloud provider-agnostique
 
-### 🔜 **Phase 2 : Environments AWS & GCP**
-- [ ] Configuration AWS
-- [ ] Configuration GCP
-- [ ] Backends distants
+### ✅ **Phase 2 : Environment AWS Complete** (Terminé)
+- [x] Backend State AWS déployé
+- [x] ECR Repository créé
+- [x] ECS Fargate + ALB en production
+- [x] VPC avec subnets publics/privés
+- [x] Security Groups configurés
+- [x] Portfolio accessible : `http://portfolio-prod-alb-858439454.us-west-1.elb.amazonaws.com`
 
-### 🔜 **Phase 3 : CI/CD**
+### � **Phase 3 : HTTPS & Domaine Personnalisé** (En cours)
+- [x] Module Route 53 pour gestion DNS
+- [x] Configuration certificat SSL (ACM)
+- [x] Variables pour domaine personnalisé
+- [ ] 🎯 **Achat du domaine** (prochaine étape)
+- [ ] Configuration nameservers
+- [ ] Tests HTTPS complets
+
+### 🔜 **Phase 4 : Environment GCP**
+- [ ] Configuration GCP avec modules existants
+- [ ] Déploiement Cloud Run
+- [ ] Tests multi-cloud
+
+### 🔜 **Phase 5 : CI/CD**
 - [ ] Workflow Docker build/push
 - [ ] Workflow Terraform plan/apply
 - [ ] Configuration OIDC
 
-### 🔜 **Phase 4 : Scripts & Automation**
-- [ ] Scripts d'initialisation
-- [ ] Scripts de validation
-- [ ] Scripts de déploiement
+### 🔜 **Phase 6 : Documentation & Finalisation**
+- [x] Guide HTTPS & domaine personnalisé
+- [ ] Documentation complète des modules
+- [ ] Diagrammes d'architecture actualisés
 
-### 🔜 **Phase 5 : Tests & Validation**
-- [ ] Tests end-to-end
-- [ ] Déploiement sur AWS
-- [ ] Déploiement sur GCP
+---
 
-### 🔜 **Phase 6 : Documentation**
-- [ ] Documentation technique
-- [ ] Guides de setup
-- [ ] Diagrammes d'architecture
+## 🌐 **Configuration Domaine Personnalisé & HTTPS**
+
+### **🎯 Prochaine étape : Achat du domaine**
+
+Votre infrastructure est prête pour un domaine personnalisé ! 
+
+**Domaines recommandés :**
+- `ldjossou.com` - Professional ✨
+- `ldjossou.dev` - Développeur 
+- `djossou.tech` - Tech-savvy
+
+### **Configuration rapide**
+
+1. **Acheter un domaine** ([Guide détaillé](docs/HTTPS_DOMAIN_SETUP.md))
+   - AWS Route 53 (recommandé)
+   - Namecheap (économique)
+   - Cloudflare (features avancées)
+
+2. **Configurer Terraform** (`terraform.tfvars`)
+   ```hcl
+   domain_name = "ldjossou.com"  # Votre domaine
+   create_route53_zone = true
+   enable_https = true
+   ```
+
+3. **Déployer**
+   ```bash
+   terraform apply
+   terraform output route53_name_servers  # Noter les nameservers
+   ```
+
+4. **Configurer DNS chez votre registraire**
+   - Utiliser les nameservers Route 53 fournis
+
+**Résultat final :** `https://ldjossou.com` avec certificat SSL automatique ! 🔒
 
 ---
 
@@ -206,19 +251,50 @@ cd app && npm run dev
 
 # Build Docker
 docker build -t portfolio:test ./app
-docker run -p 8080:80 portfolio:test
+docker run -p 8080:8080 portfolio:test
 
 # Healthcheck
 curl http://localhost:8080/health
 ```
 
-### **Validation Terraform** (à venir)
+### **Tests de l'infrastructure AWS déployée**
 
 ```bash
-cd terraform/environments/aws
+# Infrastructure en production
+curl -I http://portfolio-prod-alb-858439454.us-west-1.elb.amazonaws.com
+
+# Health check
+curl http://portfolio-prod-alb-858439454.us-west-1.elb.amazonaws.com/health
+
+# Après configuration domaine (exemple avec ldjossou.com)
+curl -I https://ldjossou.com
+```
+
+### **Validation Terraform**
+
+```bash
+# Environment AWS Complete
+cd terraform/environments/aws-complete
 terraform init
 terraform validate
 terraform plan
+terraform apply
+
+# Voir les outputs
+terraform output
+terraform output load_balancer_url
+
+# Avec domaine personnalisé (exemple)
+# 1. Ajouter dans terraform.tfvars :
+# domain_name = "ldjossou.com"
+# create_route53_zone = true  
+# enable_https = true
+
+# 2. Appliquer
+terraform apply
+
+# 3. Configurer nameservers chez registraire
+terraform output route53_name_servers
 ```
 
 ---

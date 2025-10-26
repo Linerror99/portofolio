@@ -83,11 +83,60 @@ module "compute" {
   min_capacity      = 1
   max_capacity      = 3
   
-  # Domaine (optionnel - on configurera plus tard)
-  # custom_domain = "portfolio.ldjossou.dev"
-  # enable_https = false  # Pas de SSL pour l'instant
+  # Configuration HTTPS et domaine personnalisé
+  domain_name         = var.domain_name
+  enable_https        = var.enable_https
+  create_certificate  = var.enable_https
+  route53_zone_id     = var.create_route53_zone && var.domain_name != "" ? aws_route53_zone.main[0].zone_id : ""
   
   tags = var.tags
+}
+
+# ============================================================================
+# MODULE 4: DNS (ROUTE 53) - Optionnel
+# ============================================================================
+resource "aws_route53_zone" "main" {
+  count = var.create_route53_zone && var.domain_name != "" ? 1 : 0
+
+  name = var.domain_name
+
+  tags = merge(
+    var.tags,
+    {
+      Name = "${var.project_name}-${var.environment}-dns-zone"
+      Type = "DNSZone"
+    }
+  )
+}
+
+# Enregistrement A pour le domaine principal
+resource "aws_route53_record" "main" {
+  count = var.create_route53_zone && var.domain_name != "" ? 1 : 0
+
+  zone_id = aws_route53_zone.main[0].zone_id
+  name    = var.domain_name
+  type    = "A"
+
+  alias {
+    name                   = module.compute.load_balancer_dns
+    zone_id                = module.compute.load_balancer_zone_id
+    evaluate_target_health = true
+  }
+}
+
+# Enregistrement A pour le sous-domaine www
+resource "aws_route53_record" "www" {
+  count = var.create_route53_zone && var.domain_name != "" ? 1 : 0
+
+  zone_id = aws_route53_zone.main[0].zone_id
+  name    = "www.${var.domain_name}"
+  type    = "A"
+
+  alias {
+    name                   = module.compute.load_balancer_dns
+    zone_id                = module.compute.load_balancer_zone_id
+    evaluate_target_health = true
+  }
 }
 
 # ============================================================================
@@ -116,53 +165,6 @@ output "docker_commands" {
   value       = module.container_registry.docker_commands
 }
 
-# Compute
-output "app_url" {
-  description = "🎯 URL PUBLIC de ton portfolio"
-  value       = module.compute.app_url
-}
-
-output "load_balancer_dns" {
-  description = "DNS du load balancer AWS"
-  value       = module.compute.load_balancer_dns
-}
-
-output "service_name" {
-  description = "Nom du service déployé"
-  value       = module.compute.service_name
-}
-
-output "container_image" {
-  description = "Image Docker utilisée"
-  value       = module.compute.container_image
-}
-
-# 🚀 Instructions de déploiement
-output "deployment_instructions" {
-  description = "Instructions pour déployer ton app"
-  value = <<-EOF
-    
-    🎉 INFRASTRUCTURE AWS CRÉÉE !
-    
-    📋 PROCHAINES ÉTAPES :
-    
-    1️⃣  BUILDER ET POUSSER L'IMAGE DOCKER :
-       ${module.container_registry.docker_commands.login}
-       cd ../../../app
-       ${module.container_registry.docker_commands.build}
-       ${module.container_registry.docker_commands.push}
-    
-    2️⃣  TON PORTFOLIO SERA ACCESSIBLE À :
-       ${module.compute.app_url}
-    
-    3️⃣  POUR UN DOMAINE CUSTOM :
-       - Achète un domaine (ex: ldjossou.dev)
-       - Configure Route 53 
-       - Ajoute custom_domain dans les variables
-    
-    📊 MONITORING :
-       - ECS Console : https://console.aws.amazon.com/ecs/
-       - CloudWatch Logs : Service ${module.compute.service_name}
-    
-  EOF
-}
+# ============================================================================
+# OUTPUTS - Voir outputs.tf pour les outputs détaillés
+# ============================================================================

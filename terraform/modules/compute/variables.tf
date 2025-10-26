@@ -234,3 +234,12 @@ variable "enable_https" {
   type        = bool
   default     = false  # HTTP seulement par défaut
 }
+
+# ----------------------------------------------------------------------------
+# VARIABLE: route53_zone_id (optionnel)
+# ----------------------------------------------------------------------------
+variable "route53_zone_id" {
+  description = "ID de la zone Route 53 (si zone gérée séparément)"
+  type        = string
+  default     = ""
+}
