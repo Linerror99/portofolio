@@ -9,6 +9,15 @@
 terraform {
   required_version = ">= 1.0"
   
+  # Backend S3 pour stocker l'état Terraform de manière partagée
+  backend "s3" {
+    bucket         = "portfolio-prod-tfstate"
+    key            = "aws-complete/terraform.tfstate"
+    region         = "us-west-1"
+    dynamodb_table = "portfolio-prod-tfstate-lock"
+    encrypt        = true
+  }
+  
   required_providers {
     aws = {
       source  = "hashicorp/aws"
@@ -38,6 +47,9 @@ provider "google" {
 # ============================================================================
 # MODULE 1: BACKEND STATE
 # ============================================================================
+# Le S3 bucket et la table DynamoDB seront gérés par Terraform
+# Si ils existent déjà, Terraform les importera automatiquement
+
 module "backend" {
   source = "../../modules/backend"
   
