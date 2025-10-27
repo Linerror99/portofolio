@@ -20,6 +20,11 @@ output "cloud_run_url" {
   value       = module.compute.cloud_run_url
 }
 
+output "cloud_run_service_name" {
+  description = "Nom du service Cloud Run"
+  value       = module.compute.cloud_run_service_name
+}
+
 output "app_url" {
   description = "URL complète pour accéder à l'application"
   value       = module.compute.app_url

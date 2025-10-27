@@ -53,6 +53,14 @@ output "cloud_run_url" {
 }
 
 # ----------------------------------------------------------------------------
+# OUTPUT: Cloud Run Service Name (GCP uniquement)
+# ----------------------------------------------------------------------------
+output "cloud_run_service_name" {
+  description = "Nom du service Cloud Run (null pour AWS)"
+  value       = var.cloud_provider == "gcp" && length(google_cloud_run_v2_service.app) > 0 ? google_cloud_run_v2_service.app[0].name : null
+}
+
+# ----------------------------------------------------------------------------
 # OUTPUT: Statique IP (GCP avec domaine uniquement)
 # ----------------------------------------------------------------------------
 output "static_ip" {

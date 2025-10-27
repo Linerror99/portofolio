@@ -175,27 +175,47 @@ jobs:
           # Get outputs
           echo "🌐 Cloud Run URL: $(terraform output -raw cloud_run_url)"
 
-      - name: 🔍 Health check
+      - name: � Force Cloud Run service deployment
+        run: |
+          cd terraform/environments/gcp-complete
+          
+          # Get service name from Terraform outputs
+          SERVICE_NAME=$(terraform output -raw cloud_run_service_name)
+          
+          echo "🔄 Forcing Cloud Run service to pull new image..."
+          gcloud run services update $SERVICE_NAME \
+            --region ${{ env.GCP_REGION }} \
+            --platform managed
+          
+          echo "✅ New deployment triggered!"
+
+      - name: �🔍 Health check
         run: |
           cd terraform/environments/gcp-complete
           
           # Get Cloud Run URL
           CLOUD_RUN_URL=$(terraform output -raw cloud_run_url)
           
-          # Wait for deployment
-          echo "⏳ Waiting for deployment..."
-          sleep 30
+          # Wait for deployment to stabilize
+          echo "⏳ Waiting for new revision to be ready (1 minute)..."
+          sleep 60
           
-          # Health check
-          for i in {1..5}; do
-            echo "🔍 Health check attempt $i/5"
+          # Health check with retries
+          echo "🔍 Running health checks..."
+          for i in {1..10}; do
+            echo "🔍 Health check attempt $i/10"
             if curl -f -s "$CLOUD_RUN_URL/health" > /dev/null; then
               echo "✅ Health check passed!"
+              echo "📄 Response headers:"
               curl -I "$CLOUD_RUN_URL"
-              break
+              exit 0
             fi
-            sleep 10
+            echo "⏳ Waiting 15s before retry..."
+            sleep 15
           done
+          
+          echo "❌ Health check failed after 10 attempts"
+          exit 1
 
   # ============================================================================
   # NOTIFICATION
