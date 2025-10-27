@@ -30,6 +30,16 @@ output "load_balancer_url" {
   value       = "http://${module.compute.load_balancer_dns}"
 }
 
+output "ecs_cluster_name" {
+  description = "Nom du cluster ECS"
+  value       = module.compute.cluster_name
+}
+
+output "ecs_service_name" {
+  description = "Nom du service ECS"
+  value       = module.compute.service_name
+}
+
 # Route 53 DNS
 output "route53_zone_id" {
   description = "ID de la zone Route 53"

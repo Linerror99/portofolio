@@ -35,3 +35,5 @@ secrets/
 /terraform/environments/aws-complete/terraform.tfstate.1761506322.backup
 /SECRETS_CONFIG.md
 portfolio-cicd-key.json
+/Portofolio_V5-main
+/old

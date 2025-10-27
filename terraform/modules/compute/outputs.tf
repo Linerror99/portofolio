@@ -53,6 +53,14 @@ output "cloud_run_url" {
 }
 
 # ----------------------------------------------------------------------------
+# OUTPUT: Cloud Run Service Name (GCP uniquement)
+# ----------------------------------------------------------------------------
+output "cloud_run_service_name" {
+  description = "Nom du service Cloud Run (null pour AWS)"
+  value       = var.cloud_provider == "gcp" && length(google_cloud_run_v2_service.app) > 0 ? google_cloud_run_v2_service.app[0].name : null
+}
+
+# ----------------------------------------------------------------------------
 # OUTPUT: Statique IP (GCP avec domaine uniquement)
 # ----------------------------------------------------------------------------
 output "static_ip" {
@@ -78,6 +86,16 @@ output "service_name" {
   ) : (
     length(google_cloud_run_v2_service.app) > 0 ? google_cloud_run_v2_service.app[0].name : ""
   )
+}
+
+# ----------------------------------------------------------------------------
+# OUTPUT: Cluster Name (AWS uniquement)
+# ----------------------------------------------------------------------------
+output "cluster_name" {
+  description = "Nom du cluster ECS (null pour GCP)"
+  value = var.cloud_provider == "aws" && length(aws_ecs_cluster.main) > 0 ? (
+    aws_ecs_cluster.main[0].name
+  ) : null
 }
 
 # ----------------------------------------------------------------------------
