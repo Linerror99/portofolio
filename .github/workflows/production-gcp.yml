@@ -135,11 +135,11 @@ jobs:
         with:
           terraform_version: ~1.6
 
-      - name: � Import existing GCP resources
+      - name: 📦 Import existing GCP resources
         run: |
           cd terraform/environments/gcp-complete
-          chmod +x ../../scripts/import-existing-gcp.sh
-          ../../scripts/import-existing-gcp.sh
+          chmod +x ../../../scripts/import-existing-gcp.sh
+          ../../../scripts/import-existing-gcp.sh
 
       - name: �🚀 Deploy infrastructure
         env:
