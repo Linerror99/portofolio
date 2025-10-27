@@ -93,6 +93,14 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ env.AWS_REGION }}
 
+      - name: 🔐 Setup GCP credentials (for provider initialization)
+        env:
+          GOOGLE_CREDENTIALS: ${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}
+        run: |
+          echo "Setting up GCP credentials for Terraform provider initialization"
+          echo "$GOOGLE_CREDENTIALS" > /tmp/gcp-key.json
+          export GOOGLE_APPLICATION_CREDENTIALS=/tmp/gcp-key.json
+
       - name: 🏗️ Setup Terraform
         uses: hashicorp/setup-terraform@v3
         with:
@@ -101,13 +109,18 @@ jobs:
       - name: 🚀 Deploy infrastructure
         env:
           TF_VAR_container_image: ${{ needs.build-and-push.outputs.image-uri }}
+          GOOGLE_APPLICATION_CREDENTIALS: /tmp/gcp-key.json
+          GOOGLE_PROJECT: ${{ secrets.GCP_PROJECT_ID }}
         run: |
           cd terraform/environments/aws-complete
           
-          # Initialize Terraform
+          # Setup GCP credentials file
+          echo "${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}" > /tmp/gcp-key.json
+          
+          # Initialize Terraform (will initialize all providers)
           terraform init
           
-          # Plan deployment
+          # Plan deployment (AWS resources only)
           terraform plan -out=tfplan
           
           # Apply deployment
