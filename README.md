@@ -1,50 +1,80 @@
-# 🚀 Portfolio DevOps & Multi-Cloud
+# 🚀 Portfolio DevOps & Multi-Cloud - V2
 
-> Infrastructure as Code avec Terraform • Déploiement multi-cloud (AWS & GCP) • CI/CD avec GitHub Actions • Containerisation Docker
+> Infrastructure as Code avec Terraform • CI/CD Multi-Cloud Intelligent • AWS + GCP • Économie automatique de ressources
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Terraform](https://img.shields.io/badge/Terraform-1.6+-purple.svg)](https://www.terraform.io/)
 [![Docker](https://img.shields.io/badge/Docker-Ready-blue.svg)](https://www.docker.com/)
 [![React](https://img.shields.io/badge/React-18.3-61DAFB.svg)](https://react.dev/)
+[![AWS](https://img.shields.io/badge/AWS-ECS%20Fargate-FF9900.svg)](https://aws.amazon.com/)
+[![GCP](https://img.shields.io/badge/GCP-Cloud%20Run-4285F4.svg)](https://cloud.google.com/)
 
 ---
 
 ## 📖 **À propos du projet**
 
-Ce projet démontre mes compétences en **DevOps**, **Cloud Computing** et **Infrastructure as Code** en déployant un portfolio web moderne sur **AWS** et **GCP** avec une infrastructure entièrement automatisée.
+Portfolio personnel moderne avec une infrastructure DevOps multi-cloud **intelligente et économique**. Ce projet démontre l'utilisation avancée de Terraform, Docker et GitHub Actions pour un déploiement automatisé sur AWS et GCP avec **gestion automatique des ressources** pour minimiser les coûts.
 
-### **Objectifs pédagogiques**
-- ✅ Maîtriser **Terraform** pour l'infrastructure multi-cloud
-- ✅ Créer des **modules réutilisables** provider-agnostiques
-- ✅ Implémenter un **CI/CD robuste** avec GitHub Actions
-- ✅ Utiliser **OIDC** pour l'authentification sécurisée (zero secrets)
-- ✅ Containeriser avec **Docker** (build multi-stage)
-- ✅ Gérer le **state Terraform** distant (S3, GCS)
+### **🎯 Fonctionnalités principales**
+- 🚀 **CI/CD Intelligent** : Déploiement automatique selon la branche
+  - `develop` → AWS ECS Fargate (Staging)
+  - `main` → GCP Cloud Run (Production) + Arrêt automatique AWS
+- 💰 **Économie de ressources** : ~45-50€/mois économisés grâce au système d'arrêt automatique
+- 🔄 **Import automatique** : Évite les erreurs "resource already exists"
+- 🏗️ **Modules Terraform réutilisables** : Provider-agnostiques (AWS/GCP)
+- 🐳 **Docker optimisé** : Build multi-stage avec Nginx
+- 📊 **Backend state distant** : S3 pour AWS, GCS pour GCP
+
+### **💡 Innovation technique**
+Le système de CI/CD détecte automatiquement la branche et :
+- ✅ Active l'environnement correspondant (AWS staging OU GCP production)
+- ✅ Arrête l'environnement précédent (économie de ressources)
+- ✅ Importe les ressources existantes (zéro conflit Terraform)
+- ✅ Déploie et valide via health checks
 
 ---
 
-## 🏗️ **Architecture**
+## 🏗️ **Architecture Multi-Cloud Intelligente**
 
 ```
-┌─────────────────────────────────────────────────────────┐
-│                    GitHub Repository                     │
-│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐  │
-│  │   React App  │  │  Terraform   │  │   CI/CD      │  │
-│  │   (Vite)     │  │   Modules    │  │   Workflows  │  │
-│  └──────────────┘  └──────────────┘  └──────────────┘  │
-└─────────────────────────────────────────────────────────┘
+┌─────────────────────────────────────────────────────────────────┐
+│                        GitHub Repository                         │
+│  ┌─────────┐  ┌──────────────┐  ┌─────────────────────────┐   │
+│  │ React   │  │  Terraform   │  │    GitHub Actions       │   │
+│  │ App     │  │  Modules     │  │  ├─ staging-aws.yml     │   │
+│  │ (Vite)  │  │  (Reusable)  │  │  └─ production-gcp.yml  │   │
+│  └─────────┘  └──────────────┘  └─────────────────────────┘   │
+└─────────────────────────────────────────────────────────────────┘
                             │
-                ┌───────────┴───────────┐
-                │                       │
-        ┌───────▼──────┐        ┌──────▼───────┐
-        │     AWS      │        │     GCP      │
-        │              │        │              │
-        │  • ECR       │        │  • Artifact  │
-        │  • ECS       │        │    Registry  │
-        │  • Fargate   │        │  • Cloud Run │
-        │  • ALB       │        │  • VPC       │
-        └──────────────┘        └──────────────┘
+        ┌───────────────────┴────────────────────┐
+        │                                        │
+        │ develop branch                         │ main branch
+        ▼                                        ▼
+┌──────────────────────┐              ┌──────────────────────┐
+│   AWS (Staging)      │              │   GCP (Production)   │
+│   💰 ~65€/mois       │              │   💰 ~15€/mois       │
+├──────────────────────┤              ├──────────────────────┤
+│ • ECR (registry)     │              │ • Artifact Registry  │
+│ • ECS Fargate        │              │ • Cloud Run          │
+│ • ALB (load balancer)│              │ • VPC Connector      │
+│ • VPC (networking)   │              │ • IAM (security)     │
+│ • Route 53 (DNS)     │              │ • Cloud Logging      │
+│ • CloudWatch (logs)  │              │                      │
+│                      │              │                      │
+│ State: S3 + DynamoDB │              │ State: GCS bucket    │
+└──────────────────────┘              └──────────────────────┘
+        ▲                                        │
+        │                                        │
+        └────────────────┬───────────────────────┘
+                         │
+                    Auto-stop AWS
+                 (économie ~45-50€/mois)
 ```
+
+### **🔄 Flux de déploiement**
+1. **Push sur `develop`** → Deploy AWS staging (ECS actif)
+2. **Push sur `main`** → Stop AWS + Deploy GCP production (Cloud Run actif)
+3. **Résultat** : Un seul environnement actif à la fois = **économie maximale**
 
 ---
 
@@ -52,39 +82,56 @@ Ce projet démontre mes compétences en **DevOps**, **Cloud Computing** et **Inf
 
 ```
 portofolio/
-├── app/                          # Application React+Vite
+├── app/                                    # Application React+Vite
 │   ├── src/
-│   │   ├── components/          # Composants réutilisables
-│   │   ├── pages/               # Pages (Home, About, Portfolio, Contact)
-│   │   └── styles/              # Styles Tailwind CSS
-│   ├── Dockerfile               # Build multi-stage
-│   ├── nginx.conf               # Configuration Nginx
+│   │   ├── components/                    # Composants réutilisables
+│   │   ├── pages/                         # Pages (Home, About, Portfolio, Contact)
+│   │   └── styles/                        # Styles Tailwind CSS
+│   ├── Dockerfile                         # Build multi-stage (Node + Nginx)
+│   ├── nginx.conf                         # Configuration Nginx optimisée
 │   └── package.json
 │
-├── terraform/                    # Infrastructure as Code
-│   ├── modules/                 # Modules réutilisables
-│   │   ├── container-registry/  # ECR + Artifact Registry
-│   │   ├── compute/             # ECS Fargate + Cloud Run
-│   │   └── backend/             # State management
-│   └── environments/            # Configs par cloud
-│       ├── aws/
-│       └── gcp/
+├── terraform/                              # Infrastructure as Code
+│   ├── modules/                           # Modules réutilisables (provider-agnostic)
+│   │   ├── backend/                       # State management (S3/GCS)
+│   │   ├── container-registry/            # ECR + Artifact Registry
+│   │   └── compute/                       # ECS Fargate + Cloud Run
+│   │       ├── main.tf                    # Logique principale
+│   │       ├── variables.tf               # Variables avec validation
+│   │       ├── outputs.tf                 # Outputs essentiels
+│   │       ├── aws-ecs.tf                # Ressources AWS spécifiques
+│   │       └── gcp-cloudrun.tf           # Ressources GCP spécifiques
+│   │
+│   ├── environments/                      # Configurations par environnement
+│   │   ├── aws-complete/                 # AWS Staging (develop)
+│   │   │   ├── main.tf                   # Config AWS + modules
+│   │   │   ├── backend.tf                # S3 + DynamoDB state
+│   │   │   ├── variables.tf              # Variables AWS (desired_count, etc.)
+│   │   │   └── terraform.tfvars          # Valeurs concrètes
+│   │   │
+│   │   └── gcp-complete/                 # GCP Production (main)
+│   │       ├── main.tf                   # Config GCP + modules
+│   │       ├── backend.tf                # GCS state
+│   │       ├── variables.tf              # Variables GCP
+│   │       └── terraform.tfvars          # Valeurs concrètes
+│   │
+│   └── scripts/                          # Scripts d'automatisation
+│       ├── import-existing-aws.sh        # Import ressources AWS existantes
+│       └── import-existing-gcp.sh        # Import ressources GCP existantes
 │
-├── .github/                      # CI/CD
+├── .github/                               # CI/CD GitHub Actions
 │   └── workflows/
-│       ├── docker-build-push.yml
-│       ├── terraform-aws.yml
-│       └── terraform-gcp.yml
+│       ├── staging-aws.yml               # Deploy AWS staging (develop)
+│       └── production-gcp.yml            # Deploy GCP prod + stop AWS (main)
 │
-├── scripts/                      # Scripts d'automation
-│   ├── init-backend-aws.sh
-│   ├── init-backend-gcp.sh
-│   └── deploy-local.sh
+├── scripts/                               # Scripts utilitaires
+│   ├── import-existing-aws.sh            # (copie pour exécution locale)
+│   └── import-existing-gcp.sh            # (copie pour exécution locale)
 │
-└── docs/                         # Documentation
-    ├── architecture.md
-    ├── setup-aws.md
-    └── setup-gcp.md
+└── docs/                                  # Documentation (à venir)
+    ├── ARCHITECTURE.md
+    ├── CICD_PIPELINE.md
+    └── COST_OPTIMIZATION.md
 ```
 
 ---
@@ -203,41 +250,51 @@ curl http://localhost:8080/health
 
 ---
 
-## 🌐 **Configuration Domaine Personnalisé & HTTPS**
+## 🌐 **URLs de déploiement**
 
-### **🎯 Prochaine étape : Achat du domaine**
+### **🔴 AWS Staging (develop branch)**
+- **ALB URL** : `http://portfolio-prod-alb-858439454.us-west-1.elb.amazonaws.com`
+- **État** : Actif quand develop reçoit des commits
+- **Coût** : ~65€/mois (automatiquement arrêté lors du merge vers main)
 
-Votre infrastructure est prête pour un domaine personnalisé ! 
+### **🟢 GCP Production (main branch)**
+- **Cloud Run URL** : Accessible après déploiement
+- **État** : Actif en production
+- **Coût** : ~15€/mois
 
-**Domaines recommandés :**
-- `ldjossou.com` - Professional ✨
-- `ldjossou.dev` - Développeur 
-- `djossou.tech` - Tech-savvy
+### **🔒 Domaine personnalisé (V4 - À venir)**
+- **Domaine** : `ldjossou.com` (en attente de propagation DNS)
+- **HTTPS** : Certificats SSL automatiques (ACM + GCP managed)
+- **CDN** : CloudFront / Cloud CDN pour performance globale
 
-### **Configuration rapide**
+---
 
-1. **Acheter un domaine** ([Guide détaillé](docs/HTTPS_DOMAIN_SETUP.md))
-   - AWS Route 53 (recommandé)
-   - Namecheap (économique)
-   - Cloudflare (features avancées)
+## 💰 **Optimisation des coûts**
 
-2. **Configurer Terraform** (`terraform.tfvars`)
-   ```hcl
-   domain_name = "ldjossou.com"  # Votre domaine
-   create_route53_zone = true
-   enable_https = true
-   ```
+### **💡 Système intelligent d'économie**
 
-3. **Déployer**
-   ```bash
-   terraform apply
-   terraform output route53_name_servers  # Noter les nameservers
-   ```
+L'infrastructure utilise un système de **gestion automatique des ressources** :
 
-4. **Configurer DNS chez votre registraire**
-   - Utiliser les nameservers Route 53 fournis
+| Événement | AWS Staging | GCP Production | Économie |
+|-----------|-------------|----------------|----------|
+| **Push sur `develop`** | ✅ Actif (1 instance) | ⚫ Inactif | - |
+| **Push sur `main`** | 🛑 Arrêté (0 instance) | ✅ Actif | ~45-50€/mois |
 
-**Résultat final :** `https://ldjossou.com` avec certificat SSL automatique ! 🔒
+### **📊 Détails des coûts**
+
+**AWS ECS Fargate (Staging)** :
+- ECS Task : 0.5 vCPU, 1GB RAM
+- ALB : Load balancer
+- VPC : NAT Gateway, Elastic IP
+- **Total** : ~65€/mois
+
+**GCP Cloud Run (Production)** :
+- CPU : 1 vCPU, 1GB RAM
+- Scale to zero : Facturation à l'usage
+- Networking : Minimal
+- **Total** : ~15€/mois
+
+**Économie réalisée** : ~45-50€/mois grâce au système d'arrêt automatique ! �
 
 ---
 
@@ -299,16 +356,6 @@ terraform output route53_name_servers
 
 ---
 
-## 📝 **Branches Git**
-
-- `main` - Code stable, déploiement automatique
-- `develop` - Intégration continue
-- `feature/*` - Features individuelles
-- `infra/aws` - Infrastructure AWS
-- `infra/gcp` - Infrastructure GCP
-
----
-
 ## 🤝 **Contribution**
 
 Ce projet est à vocation pédagogique. Les suggestions sont bienvenues !
@@ -329,8 +376,10 @@ Ce projet est sous licence MIT. Voir le fichier [LICENSE](LICENSE) pour plus de 
 
 ## 👨‍💻 **Auteur**
 
-**Votre Nom**  
-🔗 [GitHub](https://github.com/Linerror99) • [LinkedIn](#) • [Portfolio](#)
+**Luc Djossou**  
+DevOps Engineer | Cloud Architecture | Infrastructure as Code
+
+🔗 [GitHub](https://github.com/Linerror99) • [LinkedIn](https://linkedin.com/in/ldjossou) • [Portfolio](https://ldjossou.com)
 
 ---
 
