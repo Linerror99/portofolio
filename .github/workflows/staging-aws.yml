@@ -105,6 +105,17 @@ jobs:
         with:
           terraform_version: ~1.6
 
+      - name: � Import existing AWS resources
+        run: |
+          cd terraform/environments/aws-complete
+          
+          # Initialize Terraform with backend first
+          terraform init
+          
+          # Run smart import script
+          chmod +x ../../../scripts/import-existing-aws.sh
+          ../../../scripts/import-existing-aws.sh
+
       - name: 🚀 Deploy infrastructure
         env:
           TF_VAR_container_image: ${{ needs.build-and-push.outputs.image-uri }}
@@ -112,16 +123,7 @@ jobs:
         run: |
           cd terraform/environments/aws-complete
           
-          # Initialize Terraform with backend
-          terraform init
-          
-          # Import existing resources if they exist (ignore errors if already imported)
-          terraform import -input=false module.backend.aws_s3_bucket.tfstate[0] portfolio-prod-tfstate 2>/dev/null || true
-          terraform import -input=false module.backend.aws_dynamodb_table.tfstate_lock[0] portfolio-prod-tfstate-lock 2>/dev/null || true
-          terraform import -input=false module.container_registry.aws_ecr_repository.main[0] portfolio-prod-app 2>/dev/null || true
-          terraform import -input=false aws_route53_zone.main[0] Z0437325SCSNDOHKU5L3 2>/dev/null || true
-          
-          # Plan deployment (will show no changes if resources exist)
+          # Plan deployment (should show minimal or no changes)
           terraform plan -out=tfplan
           
           # Apply deployment
