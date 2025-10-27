@@ -10,8 +10,9 @@ WORKDIR /app
 COPY package.json package-lock.json* ./
 
 # Installer les dépendances
+# Utilise npm ci si package-lock.json existe, sinon npm install
 # --legacy-peer-deps pour éviter les conflits de dépendances
-RUN npm ci --legacy-peer-deps
+RUN if [ -f package-lock.json ]; then npm ci --legacy-peer-deps; else npm install --legacy-peer-deps; fi
 
 # Copier tout le code source
 COPY . .
@@ -49,12 +50,12 @@ RUN addgroup -g 1001 -S nodejs && \
 # Passer à l'utilisateur non-root
 USER nodejs
 
-# Exposer le port 80
-EXPOSE 80
+# Exposer le port 8080 (port non-privilégié)
+EXPOSE 8080
 
 # Healthcheck pour vérifier que Nginx fonctionne
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
-    CMD wget --quiet --tries=1 --spider http://localhost/ || exit 1
+    CMD wget --quiet --tries=1 --spider http://localhost:8080/ || exit 1
 
 # Commande de démarrage
 CMD ["nginx", "-g", "daemon off;"]
