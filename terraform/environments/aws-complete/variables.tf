@@ -47,3 +47,13 @@ variable "create_route53_zone" {
   type        = bool
   default     = false
 }
+
+# ----------------------------------------------------------------------------
+# GCP CREDENTIALS (pour provider compatibility)
+# ----------------------------------------------------------------------------
+variable "gcp_credentials" {
+  type        = string
+  description = "GCP service account credentials JSON (for provider initialization only)"
+  default     = ""
+  sensitive   = true
+}

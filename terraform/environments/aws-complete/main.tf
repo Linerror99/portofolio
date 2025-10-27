@@ -30,7 +30,9 @@ provider "aws" {
 provider "google" {
   project = "portfolio-test-476200"
   region  = "us-west1"
-  # Pas de credentials - utilisera les defaults ou variables d'environnement
+  
+  # Utiliser les credentials du service account si disponibles
+  credentials = var.gcp_credentials != "" ? var.gcp_credentials : null
 }
 
 # ============================================================================
