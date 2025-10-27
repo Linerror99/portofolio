@@ -33,3 +33,4 @@ Thumbs.db
 *.key
 secrets/
 /terraform/environments/aws-complete/terraform.tfstate.1761506322.backup
+/SECRETS_CONFIG.md
