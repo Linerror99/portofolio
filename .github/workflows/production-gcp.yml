@@ -55,17 +55,17 @@ jobs:
         with:
           terraform_version: ~1.6
 
-      - name: 🛑 Scale down AWS ECS
+      - name: 🛑 Scale down AWS ECS to 0
         run: |
           cd terraform/environments/aws-complete
           
-          # Initialize Terraform
+          # Initialize with backend
           terraform init
           
-          # Scale to 0 (modify desired_count)
+          # Scale ECS to 0 (save money)
           terraform apply -var="desired_count=0" -auto-approve
           
-          echo "💰 AWS ECS scaled to 0 - Resources saved!"
+          echo "💰 AWS ECS scaled to 0 - Saving ~65€/month!"
 
   # ============================================================================
   # BUILD & PUSH TO ARTIFACT REGISTRY
@@ -135,20 +135,26 @@ jobs:
         with:
           terraform_version: ~1.6
 
-      - name: 🚀 Deploy infrastructure
+      - name: � Import existing GCP resources
+        run: |
+          cd terraform/environments/gcp-complete
+          chmod +x ../../scripts/import-existing-gcp.sh
+          ../../scripts/import-existing-gcp.sh
+
+      - name: �🚀 Deploy infrastructure
         env:
           TF_VAR_container_image: ${{ needs.build-and-push.outputs.image-uri }}
         run: |
           cd terraform/environments/gcp-complete
           
-          # Initialize Terraform
+          # Initialize Terraform with backend
           terraform init
           
           # Plan deployment
           terraform plan -out=tfplan
           
           # Apply deployment
-          terraform apply tfplan
+          terraform apply -auto-approve tfplan
           
           # Get outputs
           echo "🌐 Cloud Run URL: $(terraform output -raw cloud_run_url)"
