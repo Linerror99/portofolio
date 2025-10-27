@@ -14,6 +14,16 @@ terraform {
       source  = "hashicorp/google"
       version = "~> 5.0"
     }
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.0"
+    }
+  }
+  
+  # Backend GCS configuration
+  backend "gcs" {
+    bucket = "portfolio-prod-tfstate"
+    prefix = "gcp-complete/terraform.tfstate"
   }
 }
 
@@ -24,6 +34,12 @@ terraform {
 provider "google" {
   region  = var.gcp_region
   project = var.gcp_project_id
+}
+
+# Provider AWS (requis pour l'initialisation des modules, même si non utilisé ici)
+provider "aws" {
+  region = "us-west-1"
+  # Les credentials AWS seront fournis par les variables d'environnement du workflow
 }
 
 # ============================================================================
