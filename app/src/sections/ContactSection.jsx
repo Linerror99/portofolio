@@ -140,8 +140,8 @@ function ContactSection() {
                 <div className="space-y-3">
                   <div>
                     <p className="text-sm text-gray-400 mb-1">Email</p>
-                    <a href="mailto:contact@example.com" className="text-white hover:text-primary-500 transition-colors">
-                      contact@example.com
+                    <a href="mailto:djossou628@gmail.com" className="text-white hover:text-primary-500 transition-colors">
+                      djossou628@gmail.com
                     </a>
                   </div>
                 </div>

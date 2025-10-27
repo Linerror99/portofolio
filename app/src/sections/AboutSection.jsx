@@ -61,7 +61,7 @@ function AboutSection() {
             <h3 className="text-3xl font-bold mb-6">
               Bonjour, je suis
               <br />
-              <span className="gradient-text text-4xl">Votre Nom</span>
+              <span className="gradient-text text-4xl">Laurent DJOSSOU</span>
             </h3>
             <p className="text-gray-400 mb-4 leading-relaxed">
               Ingénieur DevOps passionné par les technologies cloud et l'automatisation.
@@ -80,14 +80,21 @@ function AboutSection() {
             </blockquote>
 
             <div className="flex gap-4">
-              <button className="btn-primary inline-flex items-center gap-2">
+              <a 
+                href="/cv/CV_Laurent_DJOSSOU.pdf" 
+                download="CV_Laurent_DJOSSOU.pdf"
+                className="btn-primary inline-flex items-center gap-2"
+              >
                 <Download className="w-5 h-5" />
                 Télécharger CV
-              </button>
-              <button className="btn-secondary inline-flex items-center gap-2">
+              </a>
+              <a 
+                href="#portfolio" 
+                className="btn-secondary inline-flex items-center gap-2"
+              >
                 <ExternalLink className="w-5 h-5" />
                 Voir mes projets
-              </button>
+              </a>
             </div>
           </motion.div>
 

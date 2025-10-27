@@ -4,9 +4,9 @@ function Footer() {
   const currentYear = new Date().getFullYear()
 
   const socialLinks = [
-    { icon: Github, href: 'https://github.com', label: 'GitHub' },
-    { icon: Linkedin, href: 'https://linkedin.com', label: 'LinkedIn' },
-    { icon: Mail, href: 'mailto:contact@example.com', label: 'Email' },
+    { icon: Github, href: 'https://github.com/Linerror99', label: 'GitHub' },
+    { icon: Linkedin, href: 'https://www.linkedin.com/in/laurent-djossou-ab2493240', label: 'LinkedIn' },
+    { icon: Mail, href: 'mailto:djossou628@gmail.com', label: 'Email' },
   ]
 
   return (
@@ -15,7 +15,7 @@ function Footer() {
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           {/* Copyright */}
           <p className="text-sm text-gray-400">
-            © {currentYear} DevOps Portfolio. Propulsé par AWS, GCP & Terraform.
+            © {currentYear} Laurent DJOSSOU - Portfolio DevOps. Propulsé par AWS, GCP & Terraform.
           </p>
 
           {/* Social Links */}
