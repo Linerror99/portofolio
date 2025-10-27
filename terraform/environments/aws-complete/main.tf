@@ -14,11 +14,23 @@ terraform {
       source  = "hashicorp/aws"
       version = "~> 5.0"
     }
+    google = {
+      source  = "hashicorp/google"
+      version = "~> 5.0"
+    }
   }
 }
 
 provider "aws" {
   region = var.region
+}
+
+# Provider Google vide pour satisfaire les modules multi-cloud
+# Ce provider n'est pas utilisé dans l'environnement AWS mais requis par les modules
+provider "google" {
+  project = "portfolio-test-476200"
+  region  = "us-west1"
+  # Pas de credentials - utilisera les defaults ou variables d'environnement
 }
 
 # ============================================================================
