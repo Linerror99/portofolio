@@ -102,7 +102,7 @@ module "compute" {
   container_port = 8080
   cpu            = 512    # 0.5 vCPU
   memory         = 1024   # 1 GB RAM
-  desired_count  = 1
+  desired_count  = var.desired_count  # Variable pour contrôler le scaling (0 = stop, 1+ = actif)
   
   # Scaling (optionnel)
   enable_autoscaling = false  # Pas besoin pour un portfolio
