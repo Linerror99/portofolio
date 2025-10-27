@@ -178,7 +178,7 @@ const Home = () => {
                 <p className="text-base md:text-lg text-gray-400 max-w-xl leading-relaxed font-light"
                   data-aos="fade-up"
                   data-aos-delay="1000">
-                  Création d'infrastructures cloud innovantes, fiables et automatisées pour des solutions digitales performantes.
+                  Création d'infrastructures cloud innovantes, fiables et automatisées pour des solutions digitales performantes....
                 </p>
 
                 {/* Tech Stack */}

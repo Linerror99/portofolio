@@ -81,6 +81,16 @@ output "service_name" {
 }
 
 # ----------------------------------------------------------------------------
+# OUTPUT: Cluster Name (AWS uniquement)
+# ----------------------------------------------------------------------------
+output "cluster_name" {
+  description = "Nom du cluster ECS (null pour GCP)"
+  value = var.cloud_provider == "aws" && length(aws_ecs_cluster.main) > 0 ? (
+    aws_ecs_cluster.main[0].name
+  ) : null
+}
+
+# ----------------------------------------------------------------------------
 # OUTPUT: Container Image utilisée
 # ----------------------------------------------------------------------------
 output "container_image" {

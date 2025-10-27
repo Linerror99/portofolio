@@ -133,27 +133,50 @@ jobs:
           # Get outputs
           echo "🌐 Load Balancer URL: $(terraform output -raw load_balancer_url)"
 
-      - name: 🔍 Health check
+      - name: � Force ECS service deployment
+        run: |
+          cd terraform/environments/aws-complete
+          
+          # Get cluster and service names from Terraform outputs
+          CLUSTER_NAME=$(terraform output -raw ecs_cluster_name)
+          SERVICE_NAME=$(terraform output -raw ecs_service_name)
+          
+          echo "🔄 Forcing ECS service to pull new image..."
+          aws ecs update-service \
+            --cluster $CLUSTER_NAME \
+            --service $SERVICE_NAME \
+            --force-new-deployment \
+            --region ${{ env.AWS_REGION }}
+          
+          echo "✅ New deployment triggered!"
+
+      - name: �🔍 Health check
         run: |
           cd terraform/environments/aws-complete
           
           # Get ALB URL
           ALB_URL=$(terraform output -raw load_balancer_url)
           
-          # Wait for deployment
-          echo "⏳ Waiting for deployment..."
-          sleep 30
+          # Wait for deployment to stabilize
+          echo "⏳ Waiting for new tasks to start (2 minutes)..."
+          sleep 120
           
-          # Health check
-          for i in {1..5}; do
-            echo "🔍 Health check attempt $i/5"
+          # Health check with retries
+          echo "🔍 Running health checks..."
+          for i in {1..10}; do
+            echo "🔍 Health check attempt $i/10"
             if curl -f -s "$ALB_URL/health" > /dev/null; then
               echo "✅ Health check passed!"
+              echo "📄 Response headers:"
               curl -I "$ALB_URL"
-              break
+              exit 0
             fi
-            sleep 10
+            echo "⏳ Waiting 15s before retry..."
+            sleep 15
           done
+          
+          echo "❌ Health check failed after 10 attempts"
+          exit 1
 
   # ============================================================================
   # NOTIFICATION
