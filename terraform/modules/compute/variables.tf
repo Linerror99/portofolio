@@ -112,13 +112,13 @@ variable "memory" {
 # VARIABLE: desired_count
 # ----------------------------------------------------------------------------
 variable "desired_count" {
-  description = "Nombre d'instances du service à maintenir"
+  description = "Nombre d'instances du service à maintenir (0 = arrêt complet pour économie)"
   type        = number
   default     = 1  # 1 instance par défaut (suffisant pour un portfolio)
   
   validation {
-    condition     = var.desired_count >= 1 && var.desired_count <= 10
-    error_message = "desired_count doit être entre 1 et 10"
+    condition     = var.desired_count >= 0 && var.desired_count <= 10
+    error_message = "desired_count doit être entre 0 et 10 (0 = arrêt complet)"
   }
 }
 
