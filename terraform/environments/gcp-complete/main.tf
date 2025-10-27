@@ -19,12 +19,6 @@ terraform {
       version = "~> 5.0"
     }
   }
-  
-  # Backend GCS configuration
-  backend "gcs" {
-    bucket = "portfolio-prod-tfstate"
-    prefix = "gcp-complete/terraform.tfstate"
-  }
 }
 
 # ============================================================================
