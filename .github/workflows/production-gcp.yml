@@ -1,0 +1,198 @@
+# ============================================================================
+# CI/CD PRODUCTION - GCP CLOUD RUN + STOP AWS
+# ============================================================================  
+# Workflow pour la branche 'main'
+# 1. Arrête AWS ECS (économie de ressources)
+# 2. Déploie sur GCP Cloud Run (production)
+
+name: 🌟 Deploy Production (GCP) + Stop AWS
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'app/**'
+      - 'terraform/environments/gcp-complete/**'
+      - 'terraform/modules/**'
+      - '.github/workflows/production-gcp.yml'
+
+  # Déploiement manuel optionnel
+  workflow_dispatch:
+    inputs:
+      skip_aws_stop:
+        description: 'Skip stopping AWS (keep both running)'
+        required: false
+        default: false
+        type: boolean
+
+env:
+  GCP_REGION: us-west1
+  GCP_PROJECT_ID: portfolio-test-476200
+  AWS_REGION: us-west-1
+  
+jobs:
+  # ============================================================================
+  # STOP AWS ECS (ÉCONOMIE DE RESSOURCES)
+  # ============================================================================
+  stop-aws:
+    name: 🛑 Stop AWS ECS (Save Resources)
+    runs-on: ubuntu-latest
+    if: ${{ !inputs.skip_aws_stop }}
+    
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+
+      - name: ⚙️ Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: 🏗️ Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: ~1.6
+
+      - name: 🛑 Scale down AWS ECS
+        run: |
+          cd terraform/environments/aws-complete
+          
+          # Initialize Terraform
+          terraform init
+          
+          # Scale to 0 (modify desired_count)
+          terraform apply -var="desired_count=0" -auto-approve
+          
+          echo "💰 AWS ECS scaled to 0 - Resources saved!"
+
+  # ============================================================================
+  # BUILD & PUSH TO ARTIFACT REGISTRY
+  # ============================================================================
+  build-and-push:
+    name: 🔨 Build & Push to Artifact Registry
+    runs-on: ubuntu-latest
+    outputs:
+      image-uri: ${{ steps.build.outputs.image }}
+      
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+
+      - name: 🔐 Authenticate to Google Cloud
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}
+
+      - name: ⚙️ Setup Cloud SDK
+        uses: google-github-actions/setup-gcloud@v2
+
+      - name: 🔐 Configure Docker for Artifact Registry
+        run: gcloud auth configure-docker us-west1-docker.pkg.dev
+
+      - name: 🏗️ Build and push Docker image
+        id: build
+        env:
+          IMAGE_TAG: ${{ github.sha }}
+          ARTIFACT_REGISTRY: us-west1-docker.pkg.dev/${{ env.GCP_PROJECT_ID }}/portfolio-prod-app
+        run: |
+          cd app
+          
+          # Build image
+          docker build -t $ARTIFACT_REGISTRY/portfolio-app:$IMAGE_TAG .
+          docker build -t $ARTIFACT_REGISTRY/portfolio-app:latest .
+          
+          # Push images
+          docker push $ARTIFACT_REGISTRY/portfolio-app:$IMAGE_TAG
+          docker push $ARTIFACT_REGISTRY/portfolio-app:latest
+          
+          # Output image URI
+          echo "image=$ARTIFACT_REGISTRY/portfolio-app:$IMAGE_TAG" >> $GITHUB_OUTPUT
+
+  # ============================================================================
+  # DEPLOY TO GCP CLOUD RUN
+  # ============================================================================
+  deploy-gcp:
+    name: 🚀 Deploy to GCP Cloud Run
+    runs-on: ubuntu-latest
+    needs: [build-and-push]
+    
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+
+      - name: 🔐 Authenticate to Google Cloud
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}
+
+      - name: ⚙️ Setup Cloud SDK
+        uses: google-github-actions/setup-gcloud@v2
+
+      - name: 🏗️ Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: ~1.6
+
+      - name: 🚀 Deploy infrastructure
+        env:
+          TF_VAR_container_image: ${{ needs.build-and-push.outputs.image-uri }}
+        run: |
+          cd terraform/environments/gcp-complete
+          
+          # Initialize Terraform
+          terraform init
+          
+          # Plan deployment
+          terraform plan -out=tfplan
+          
+          # Apply deployment
+          terraform apply tfplan
+          
+          # Get outputs
+          echo "🌐 Cloud Run URL: $(terraform output -raw cloud_run_url)"
+
+      - name: 🔍 Health check
+        run: |
+          cd terraform/environments/gcp-complete
+          
+          # Get Cloud Run URL
+          CLOUD_RUN_URL=$(terraform output -raw cloud_run_url)
+          
+          # Wait for deployment
+          echo "⏳ Waiting for deployment..."
+          sleep 30
+          
+          # Health check
+          for i in {1..5}; do
+            echo "🔍 Health check attempt $i/5"
+            if curl -f -s "$CLOUD_RUN_URL/health" > /dev/null; then
+              echo "✅ Health check passed!"
+              curl -I "$CLOUD_RUN_URL"
+              break
+            fi
+            sleep 10
+          done
+
+  # ============================================================================
+  # NOTIFICATION
+  # ============================================================================
+  notify:
+    name: 📢 Notification  
+    runs-on: ubuntu-latest
+    needs: [stop-aws, build-and-push, deploy-gcp]
+    if: always()
+    
+    steps:
+      - name: 📢 Deployment status
+        run: |
+          if [ "${{ needs.deploy-gcp.result }}" == "success" ]; then
+            echo "✅ GCP Production deployment successful!"
+            echo "🌐 Environment: Production (GCP Cloud Run)"
+            echo "📦 Image: ${{ needs.build-and-push.outputs.image-uri }}"
+            echo "💰 AWS resources stopped - Cost optimized!"
+          else
+            echo "❌ GCP Production deployment failed!"
+            exit 1
+          fi

@@ -1,0 +1,160 @@
+# ============================================================================
+# CI/CD STAGING - AWS ECS FARGATE 
+# ============================================================================
+# Workflow pour la branche 'develop' 
+# Déploie automatiquement sur AWS ECS Fargate (environnement de staging)
+
+name: 🚀 Deploy Staging (AWS)
+
+on:
+  push:
+    branches: [develop]
+    paths:
+      - 'app/**'
+      - 'terraform/environments/aws-complete/**'
+      - 'terraform/modules/**'
+      - '.github/workflows/staging-aws.yml'
+
+  # Déploiement manuel optionnel
+  workflow_dispatch:
+    inputs:
+      force_deploy:
+        description: 'Force deployment even without changes'
+        required: false
+        default: 'false'
+        type: boolean
+
+env:
+  AWS_REGION: us-west-1
+  ECR_REPOSITORY: portfolio-prod-app
+  ECS_SERVICE: portfolio-prod-service
+  ECS_CLUSTER: portfolio-prod-cluster
+
+jobs:
+  # ============================================================================
+  # BUILD & PUSH TO ECR
+  # ============================================================================
+  build-and-push:
+    name: 🔨 Build & Push to ECR
+    runs-on: ubuntu-latest
+    outputs:
+      image-uri: ${{ steps.build.outputs.image }}
+      
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+
+      - name: ⚙️ Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: 🔐 Login to ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - name: 🏗️ Build and push Docker image
+        id: build
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          IMAGE_TAG: ${{ github.sha }}
+        run: |
+          cd app
+          
+          # Build image
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:latest .
+          
+          # Push images
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
+          
+          # Output image URI
+          echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
+
+  # ============================================================================
+  # DEPLOY TO AWS ECS FARGATE
+  # ============================================================================
+  deploy-aws:
+    name: 🚀 Deploy to AWS ECS
+    runs-on: ubuntu-latest
+    needs: build-and-push
+    
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+
+      - name: ⚙️ Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: 🏗️ Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: ~1.6
+
+      - name: 🚀 Deploy infrastructure
+        env:
+          TF_VAR_container_image: ${{ needs.build-and-push.outputs.image-uri }}
+        run: |
+          cd terraform/environments/aws-complete
+          
+          # Initialize Terraform
+          terraform init
+          
+          # Plan deployment
+          terraform plan -out=tfplan
+          
+          # Apply deployment
+          terraform apply tfplan
+          
+          # Get outputs
+          echo "🌐 Load Balancer URL: $(terraform output -raw load_balancer_url)"
+
+      - name: 🔍 Health check
+        run: |
+          cd terraform/environments/aws-complete
+          
+          # Get ALB URL
+          ALB_URL=$(terraform output -raw load_balancer_url)
+          
+          # Wait for deployment
+          echo "⏳ Waiting for deployment..."
+          sleep 30
+          
+          # Health check
+          for i in {1..5}; do
+            echo "🔍 Health check attempt $i/5"
+            if curl -f -s "$ALB_URL/health" > /dev/null; then
+              echo "✅ Health check passed!"
+              curl -I "$ALB_URL"
+              break
+            fi
+            sleep 10
+          done
+
+  # ============================================================================
+  # NOTIFICATION
+  # ============================================================================ 
+  notify:
+    name: 📢 Notification
+    runs-on: ubuntu-latest
+    needs: [build-and-push, deploy-aws]
+    if: always()
+    
+    steps:
+      - name: 📢 Deployment status
+        run: |
+          if [ "${{ needs.deploy-aws.result }}" == "success" ]; then
+            echo "✅ AWS Staging deployment successful!"
+            echo "🌐 Environment: Staging (AWS ECS Fargate)"
+            echo "📦 Image: ${{ needs.build-and-push.outputs.image-uri }}"
+          else
+            echo "❌ AWS Staging deployment failed!"
+            exit 1
+          fi
