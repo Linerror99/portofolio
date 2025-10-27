@@ -57,3 +57,17 @@ variable "gcp_credentials" {
   default     = ""
   sensitive   = true
 }
+
+# ----------------------------------------------------------------------------
+# ECS CONFIGURATION (pour scaling dynamique)
+# ----------------------------------------------------------------------------
+variable "desired_count" {
+  type        = number
+  description = "Nombre d'instances ECS désirées (0 pour arrêter, 1+ pour activer)"
+  default     = 1
+  
+  validation {
+    condition     = var.desired_count >= 0 && var.desired_count <= 10
+    error_message = "desired_count doit être entre 0 et 10"
+  }
+}

@@ -120,6 +120,7 @@ jobs:
         env:
           TF_VAR_container_image: ${{ needs.build-and-push.outputs.image-uri }}
           TF_VAR_gcp_credentials: /tmp/gcp-key.json
+          TF_VAR_desired_count: 1
         run: |
           cd terraform/environments/aws-complete
           
