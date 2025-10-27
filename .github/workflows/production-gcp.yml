@@ -175,15 +175,19 @@ jobs:
           # Get outputs
           echo "🌐 Cloud Run URL: $(terraform output -raw cloud_run_url)"
 
-      - name: � Force Cloud Run service deployment
+      - name: 🔄 Force Cloud Run service deployment
         run: |
           cd terraform/environments/gcp-complete
           
-          # Get service name from Terraform outputs
+          # Get service name and image from Terraform/build outputs
           SERVICE_NAME=$(terraform output -raw cloud_run_service_name)
+          IMAGE_URI="${{ needs.build-and-push.outputs.image-uri }}"
           
           echo "🔄 Forcing Cloud Run service to pull new image..."
+          echo "📦 Image: $IMAGE_URI"
+          
           gcloud run services update $SERVICE_NAME \
+            --image $IMAGE_URI \
             --region ${{ env.GCP_REGION }} \
             --platform managed
           
