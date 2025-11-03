@@ -1,0 +1,45 @@
+# ================================
+# Dockerfile pour Développement
+# ================================
+# Usage : docker-compose up dev
+# Features : Hot Reload, Fast Refresh
+# ================================
+
+FROM node:20-alpine
+
+# Installer les dépendances système nécessaires
+RUN apk add --no-cache \
+    git \
+    wget
+
+# Définir le répertoire de travail
+WORKDIR /app
+
+# Copier les fichiers de dépendances
+COPY package.json package-lock.json* ./
+
+# Installer les dépendances
+# --legacy-peer-deps pour éviter les conflits
+RUN if [ -f package-lock.json ]; then \
+        npm ci --legacy-peer-deps; \
+    else \
+        npm install --legacy-peer-deps; \
+    fi
+
+# Copier le reste du code
+COPY . .
+
+# Exposer le port Vite (5173)
+EXPOSE 5173
+
+# Variables d'environnement pour Vite
+ENV NODE_ENV=development
+ENV HOST=0.0.0.0
+ENV PORT=5173
+
+# Healthcheck
+HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
+    CMD wget --quiet --tries=1 --spider http://localhost:5173/ || exit 1
+
+# Commande de démarrage en mode dev avec hot reload
+CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0"]
