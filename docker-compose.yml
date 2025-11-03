@@ -1,0 +1,93 @@
+# ============================================================================
+# Docker Compose - Portfolio Laurent DJOSSOU
+# ============================================================================
+# Usage :
+#   - Développement avec hot-reload : docker-compose up dev
+#   - Production (build + run)       : docker-compose up prod
+#   - Build seulement               : docker-compose build
+#   - Arrêter                       : docker-compose down
+# ============================================================================
+
+version: '3.9'
+
+services:
+  # ==========================================================================
+  # SERVICE DÉVELOPPEMENT (Hot Reload)
+  # ==========================================================================
+  dev:
+    container_name: portfolio-dev
+    build:
+      context: ./app
+      dockerfile: Dockerfile.dev
+    ports:
+      - "5173:5173"  # Vite dev server
+    volumes:
+      # Mount du code source pour hot-reload
+      - ./app/src:/app/src:cached
+      - ./app/public:/app/public:cached
+      - ./app/index.html:/app/index.html:cached
+      - ./app/vite.config.js:/app/vite.config.js:cached
+      - ./app/package.json:/app/package.json:cached
+      # Exclure node_modules (performance)
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+      - VITE_APP_NAME=Portfolio Dev
+    networks:
+      - portfolio-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:5173/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # ==========================================================================
+  # SERVICE PRODUCTION (Nginx)
+  # ==========================================================================
+  prod:
+    container_name: portfolio-prod
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+      args:
+        NODE_ENV: production
+    ports:
+      - "8080:8080"  # Nginx production
+    environment:
+      - NODE_ENV=production
+    networks:
+      - portfolio-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:8080/"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
+
+  # ==========================================================================
+  # SERVICE BUILD UNIQUEMENT (pour tester le build)
+  # ==========================================================================
+  build-test:
+    container_name: portfolio-build-test
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+      target: builder  # S'arrête au stage builder
+    volumes:
+      - ./app/dist:/app/dist
+    command: ["echo", "Build completed! Check ./app/dist"]
+
+networks:
+  portfolio-network:
+    driver: bridge
+    name: portfolio-network
+
+# ============================================================================
+# VOLUMES (optionnel, pour persister node_modules)
+# ============================================================================
+volumes:
+  node_modules:
+    name: portfolio-node-modules

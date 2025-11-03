@@ -178,7 +178,55 @@ export default function FullWidthTabs() {
       Img: "/projects/project-portfolio.jpg",
       Title: "Infrastructure Multi-Cloud Portfolio",
       Description: "Portfolio déployé sur AWS ECS et GCP Cloud Run avec Terraform pour l'IaC",
-      Link: "https://ldjossou.com"
+      Link: "https://ldjossou.com",
+      Github: "https://github.com/Linerror99/portofolio",
+      Features: [
+        "Déploiement multi-cloud (AWS ECS Fargate + GCP Cloud Run)",
+        "Infrastructure as Code avec Terraform (modules réutilisables)",
+        "CI/CD automatisé avec GitHub Actions",
+        "Container Registry (AWS ECR + GCP Artifact Registry)",
+        "Lifecycle policies pour optimisation des coûts (~$15/mois)",
+        "Architecture serverless avec scale-to-zero"
+      ],
+      TechStack: [
+        "React + Vite",
+        "Tailwind CSS",
+        "Terraform",
+        "Docker",
+        "AWS ECS Fargate",
+        "GCP Cloud Run",
+        "GitHub Actions",
+        "Nginx"
+      ]
+    },
+    {
+      id: 2,
+      Img: "/projects/project-tiktok-pipeline.jpg",
+      Title: "Pipeline Vidéo IA TikTok - Génération Automatisée",
+      Description: "Pipeline complète de génération automatique de vidéos TikTok/Shorts virales à partir d'un simple thème. Utilise Gemini 2.5 Pro, Veo 3.0, Google TTS Premium, et Whisper.",
+      Link: "https://pipeline-frontend-354616212471.us-central1.run.app/",
+      Github: "https://github.com/Linerror99Su/pipeline-video-tiktok",
+      Features: [
+        "Génération de script IA avec Gemini 2.5 Pro",
+        "Voix off premium (voix Gemini naturelle via Google TTS)",
+        "Clips vidéo créatifs générés par Veo 3.0 (meilleur modèle vidéo IA)",
+        "Sous-titres style TikTok synchronisés (Whisper + ASS)",
+        "Format optimisé 9:16, durée 64-80 secondes",
+        "Pipeline entièrement automatisée : 1 thème → vidéo complète en 6-10 min",
+        "4 Cloud Functions déclenchées en cascade via Cloud Storage Events",
+        "Génération parallèle de 8 clips vidéo pour optimisation"
+      ],
+      TechStack: [
+        "Gemini 2.5 Pro",
+        "Veo 3.0",
+        "Google TTS Premium",
+        "OpenAI Whisper",
+        "FFmpeg",
+        "Python 3.12",
+        "Google Cloud Functions Gen2",
+        "Cloud Storage",
+        "Vertex AI"
+      ]
     }
   ];
 
@@ -189,6 +237,17 @@ export default function FullWidthTabs() {
   ];
 
   useEffect(() => {
+    // Version du portfolio pour forcer le refresh si les données changent
+    const PORTFOLIO_VERSION = "2.0"; // Incrémenter pour forcer un refresh
+    const cachedVersion = localStorage.getItem('portfolioVersion');
+    
+    // Si la version a changé, vider le cache
+    if (cachedVersion !== PORTFOLIO_VERSION) {
+      localStorage.removeItem('projects');
+      localStorage.removeItem('certificates');
+      localStorage.setItem('portfolioVersion', PORTFOLIO_VERSION);
+    }
+    
     // Charger depuis localStorage ou utiliser les données initiales
     const cachedProjects = localStorage.getItem('projects');
     const cachedCertificates = localStorage.getItem('certificates');
