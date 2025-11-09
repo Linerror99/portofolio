@@ -320,7 +320,7 @@ const ContactPage = () => {
                     </div>
                     <div>
                       <p className="text-gray-400 text-xs uppercase tracking-wider">Localisation</p>
-                      <p className="text-white font-medium">Paris, France</p>
+                      <p className="text-white font-medium">France</p>
                     </div>
                   </div>
                 </div>
@@ -336,12 +336,12 @@ const ContactPage = () => {
                     </div>
                     <div>
                       <p className="text-white font-semibold text-sm">Disponible</p>
-                      <p className="text-gray-400 text-xs">Réponse rapide garantie</p>
+                      <p className="text-gray-400 text-xs">Réponse rapide </p>
                     </div>
                   </div>
                   <div className="text-right">
                     <p className="text-xs text-gray-400">Temps de réponse</p>
-                    <p className="text-white font-semibold text-sm">{"< 24h"}</p>
+                    <p className="text-white font-semibold text-sm">{"< 48h"}</p>
                   </div>
                 </div>
               </div>
