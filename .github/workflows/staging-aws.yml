@@ -1,22 +1,21 @@
 # ============================================================================
-# CI/CD STAGING - AWS ECS FARGATE (DÉSACTIVÉ)
+# CI/CD STAGING - AWS ECS FARGATE 
 # ============================================================================
-# Workflow DÉSACTIVÉ - AWS n'est plus utilisé pour le moment
-# Pour réactiver : décommenter les branches dans 'on.push.branches'
+# Workflow pour la branche 'develop' 
+# Déploie automatiquement sur AWS ECS Fargate (environnement de staging)
 
-name: 🚀 Deploy Staging (AWS) - DISABLED
+name: 🚀 Deploy Staging (AWS)
 
 on:
-  # DÉSACTIVÉ - Ne se déclenche plus automatiquement sur develop
-  # push:
-  #   branches: [develop]
-  #   paths:
-  #     - 'app/**'
-  #     - 'terraform/environments/aws-complete/**'
-  #     - 'terraform/modules/**'
-  #     - '.github/workflows/staging-aws.yml'
+  push:
+    branches: [develop]
+    paths:
+      - 'app/**'
+      - 'terraform/environments/aws-complete/**'
+      - 'terraform/modules/**'
+      - '.github/workflows/staging-aws.yml'
 
-  # Déploiement manuel uniquement (si besoin de réactiver AWS)
+  # Déploiement manuel optionnel
   workflow_dispatch:
     inputs:
       force_deploy:
