@@ -78,7 +78,7 @@ const TYPING_SPEED = 100;
 const ERASING_SPEED = 50;
 const PAUSE_DURATION = 2000;
 const WORDS = ["Cloud Engineer", "DevOps Engineer"];
-const TECH_STACK = ["React", "Python", "AWS", "Terraform"];
+const TECH_STACK = ["Docker", "Python", "AWS", "GCP", "Terraform"];
 const SOCIAL_LINKS = [
   { icon: Github, link: "https://github.com/Linerror99" },
   { icon: Linkedin, link: "https://www.linkedin.com/in/laurent-djossou-ab2493240" },

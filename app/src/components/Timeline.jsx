@@ -3,39 +3,52 @@ import { GraduationCap, BookOpen, Briefcase, Award, Sparkles } from 'lucide-reac
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
-const TimelineItem = ({ icon: Icon, year, title, subtitle, description }) => {
+const TimelineItem = ({ icon: Icon, year, title, subtitle, description, items = [] }) => {
   return (
-    <div className="flex-shrink-0 w-full px-4">
+    <div className="flex-shrink-0 w-full px-4 h-full">
       <div 
-        className="bg-gradient-to-br from-slate-900/90 to-slate-800/90 backdrop-blur-lg border border-white/10 rounded-2xl p-8 shadow-2xl hover:shadow-purple-500/20 transition-all duration-300 hover:scale-105 h-full"
+        className="bg-gradient-to-br from-slate-900/90 to-slate-800/90 backdrop-blur-lg border border-white/10 rounded-2xl p-6 shadow-2xl hover:shadow-purple-500/20 transition-all duration-300 hover:scale-105 h-full flex flex-col"
         data-aos="fade-up"
         data-aos-duration="800"
       >
-        <div className="space-y-4">
+        <div className="space-y-4 flex flex-col h-full">
           {/* Icon */}
           <div className="flex justify-center">
             <div className="relative">
               <div className="absolute -inset-2 bg-gradient-to-r from-[#6366f1] to-[#a855f7] rounded-full blur opacity-50 animate-pulse" />
-              <div className="relative w-20 h-20 rounded-full bg-gradient-to-br from-slate-900 to-slate-800 border-4 border-[#6366f1] flex items-center justify-center shadow-2xl">
-                <Icon className="w-10 h-10 text-white" />
+              <div className="relative w-16 h-16 rounded-full bg-gradient-to-br from-slate-900 to-slate-800 border-4 border-[#6366f1] flex items-center justify-center shadow-2xl">
+                <Icon className="w-8 h-8 text-white" />
               </div>
             </div>
           </div>
 
           {/* Content */}
-          <div className="text-center space-y-3">
-            <span className="text-base font-semibold text-transparent bg-clip-text bg-gradient-to-r from-[#6366f1] to-[#a855f7]">
+          <div className="text-center space-y-3 flex-grow flex flex-col">
+            <span className="inline-block self-center px-3 py-1 text-xs font-semibold text-transparent bg-clip-text bg-gradient-to-r from-[#6366f1] to-[#a855f7] bg-white/5 rounded-full border border-white/10">
               {year}
             </span>
-            <h3 className="text-2xl font-bold text-white">
+            <h3 className="text-lg font-bold text-white leading-tight">
               {title}
             </h3>
-            <p className="text-lg text-gray-300 font-medium">
+            <p className="text-sm text-gray-300 font-medium leading-relaxed">
               {subtitle}
             </p>
-            <p className="text-base text-gray-400 leading-relaxed">
-              {description}
-            </p>
+            
+            {/* Liste à puces si items fournis, sinon description normale */}
+            {items && items.length > 0 ? (
+              <ul className="text-xs text-gray-400 leading-relaxed text-left space-y-1.5 px-4">
+                {items.map((item, idx) => (
+                  <li key={idx} className="flex items-start">
+                    <span className="text-[#6366f1] mr-2 flex-shrink-0 mt-1">•</span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p className="text-xs text-gray-400 leading-relaxed text-justify px-2">
+                {description}
+              </p>
+            )}
           </div>
         </div>
       </div>
@@ -55,38 +68,70 @@ const Timeline = () => {
   const timelineData = [
     {
       icon: GraduationCap,
-      year: "2017-2018",
+      year: "2021",
       title: "Baccalauréat Scientifique",
-      subtitle: "Lycée - Bénin",
-      description: "Obtention du Baccalauréat série C avec mention, première étape vers une carrière d'ingénieur."
+      subtitle: "Série C - Mention Bien | Bénin",
+      items: [
+        "Diplôme obtenu avec mention Bien",
+        "Spécialisation en sciences exactes",
+        "Fondations solides en mathématiques et physique",
+        "Première étape vers l'ingénierie"
+      ]
     },
     {
       icon: BookOpen,
-      year: "2018-2020",
-      title: "Classes Préparatoires",
-      subtitle: "CPGE - 2 ans",
-      description: "Deux années intensives de classes préparatoires scientifiques pour préparer les concours d'écoles d'ingénieurs."
+      year: "2021-2023",
+      title: "Cycle Préparatoire Intégré",
+      subtitle: "ESIGELEC | Poitiers, France",
+      items: [
+        "Mathématiques appliquées et analyse",
+        "Physique et électronique",
+        "Sciences de l'Ingénieur",
+        "Architecture des ordinateurs",
+        "Programmation (Python, C, Java)",
+        "Algorithmique et structures de données"
+      ]
     },
     {
       icon: Briefcase,
-      year: "2020",
-      title: "Stage Technique",
-      subtitle: "Première expérience professionnelle",
-      description: "Découverte du monde professionnel et mise en pratique des connaissances acquises."
+      year: "Juin 2022",
+      title: "Stage Académique",
+      subtitle: "SBIN - Société Béninoise des Infrastructures Numériques",
+      items: [
+        "Programmation orientée objet en Java",
+        "Maintenance informatique et debugging",
+        "Installation et configuration de systèmes d'exploitation",
+        "Support technique et documentation",
+        "Gestion de parc informatique"
+      ]
     },
     {
       icon: Award,
-      year: "2020-2021",
-      title: "Cycle Ingénieur - 1ère année",
-      subtitle: "Formation Classique",
-      description: "Première année du cycle ingénieur en formation initiale, spécialisation progressive vers le Cloud & DevOps."
+      year: "2023-2026",
+      title: "Cycle Ingénieur Généraliste",
+      subtitle: "ESIGELEC | Option: Développement Logiciel Test & Qualité",
+      items: [
+        "Infrastructure as Code (IaC) et automatisation",
+        "Conteneurisation et orchestration (Docker, Kubernetes)",
+        "CI/CD et DevOps (Jenkins, GitLab CI, GitHub Actions)",
+        "Cloud Computing (AWS, GCP, Azure)",
+        "Architecture microservices et monitoring (Prometheus, Grafana)",
+        "Sécurité des applications et DevSecOps"
+      ]
     },
     {
       icon: Sparkles,
-      year: "2021-2023",
-      title: "Cycle Ingénieur - 2ème & 3ème années",
-      subtitle: "Formation en Alternance",
-      description: "Deux années en alternance permettant d'allier théorie et pratique professionnelle en Cloud Computing et DevOps."
+      year: "2024-2026",
+      title: "Alternance - Dev Fullstack",
+      subtitle: "Capgemini Engineering | France",
+      items: [
+        "Développement d'applications web Java/Spring Boot",
+        "Déploiement sur serveurs Tomcat et automatisation",
+        "Scripting Bash et maîtrise des commandes Linux",
+        "CI/CD avec Git, Jenkins et GitLab",
+        "Méthodologie Agile/Scrum en équipe",
+        "Tests et qualité logicielle"
+      ]
     }
   ];
 
@@ -133,15 +178,15 @@ const Timeline = () => {
         <div className="absolute right-0 top-0 bottom-0 w-10 bg-gradient-to-l from-[#030014] to-transparent z-10 pointer-events-none" />
         
         {/* Timeline Items - Défilement continu */}
-        <div className="overflow-hidden">
+        <div className="overflow-hidden" style={{ height: '480px' }}>
           <div 
-            className="flex transition-transform duration-1000 ease-in-out"
+            className="flex h-full transition-transform duration-1000 ease-in-out"
             style={{
               transform: `translateX(-${(currentIndex % timelineData.length) * (100 / 3)}%)`
             }}
           >
             {extendedData.map((item, index) => (
-              <div key={`timeline-${index}`} className="w-full md:w-1/3 flex-shrink-0">
+              <div key={`timeline-${index}`} className="w-full md:w-1/3 flex-shrink-0 h-full">
                 <TimelineItem {...item} />
               </div>
             ))}

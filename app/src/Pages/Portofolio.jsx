@@ -105,9 +105,9 @@ const techStackCategories = [
   {
     title: "Langages de Programmation",
     items: [
-      { icon: "/icons/javascript.svg", language: "JavaScript", level: 85 },
-      { icon: "/icons/python.svg", language: "Python", level: 90 },
-      { icon: "/icons/java.svg", language: "Java", level: 75 },
+      { icon: "/icons/javascript.svg", language: "JavaScript", level: 65 },
+      { icon: "/icons/python.svg", language: "Python", level: 80 },
+      { icon: "/icons/java.svg", language: "Java", level: 85 },
       { icon: "/icons/C.svg", language: "C", level: 70 },
       { icon: "/icons/sql.svg", language: "SQL", level: 80 },
     ]
@@ -115,30 +115,30 @@ const techStackCategories = [
   {
     title: "Frameworks & Technologies Web",
     items: [
-      { icon: "/icons/reactjs.svg", language: "React", level: 85 },
-      { icon: "/icons/nodejs.svg", language: "Node.js", level: 80 },
+      { icon: "/icons/reactjs.svg", language: "React", level: 60 },
+      { icon: "/icons/nodejs.svg", language: "Node.js", level: 60 },
       { icon: "/icons/spring.svg", language: "Spring", level: 70 },
-      { icon: "/icons/html.svg", language: "HTML", level: 90 },
-      { icon: "/icons/css.svg", language: "CSS", level: 85 },
+      { icon: "/icons/html.svg", language: "HTML", level: 80 },
+      { icon: "/icons/css.svg", language: "CSS", level: 80 },
     ]
   },
   {
     title: "Cloud & DevOps",
     items: [
       { icon: "/icons/aws.svg", language: "AWS", level: 85 },
-      { icon: "/icons/gcp.svg", language: "GCP", level: 80 },
+      { icon: "/icons/gcp.svg", language: "GCP", level: 85 },
       { icon: "/icons/docker.svg", language: "Docker", level: 90 },
       { icon: "/icons/terraform.svg", language: "Terraform", level: 85 },
-      { icon: "/icons/kubernetes.svg", language: "Kubernetes", level: 75 },
-      { icon: "/icons/nginx.svg", language: "Nginx", level: 80 },
+      { icon: "/icons/kubernetes.svg", language: "Kubernetes", level: 70 },
+      { icon: "/icons/nginx.svg", language: "Nginx", level: 55 },
     ]
   },
   {
     title: "Outils & Quality Assurance",
     items: [
-      { icon: "/icons/sonarqube.svg", language: "SonarQube", level: 75 },
-      { icon: "/icons/maven.svg", language: "Maven", level: 70 },
-      { icon: "/icons/selenium.svg", language: "Selenium", level: 65 },
+      { icon: "/icons/sonarqube.svg", language: "SonarQube", level: 70 },
+      { icon: "/icons/maven.svg", language: "Maven", level: 85 },
+      { icon: "/icons/selenium.svg", language: "Selenium", level: 50 },
     ]
   },
   {
@@ -146,7 +146,7 @@ const techStackCategories = [
     items: [
       { icon: "/icons/vscode.svg", language: "VS Code", level: 95 },
       { icon: "/icons/eclipse.svg", language: "Eclipse", level: 75 },
-      { icon: "/icons/pycharm.svg", language: "PyCharm", level: 80 },
+      { icon: "/icons/pycharm.svg", language: "PyCharm", level: 50 },
     ]
   }
 ];
