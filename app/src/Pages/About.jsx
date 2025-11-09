@@ -237,7 +237,7 @@ const AboutPage = () => {
         </div>
         
         <blockquote className="text-gray-300 text-center lg:text-left italic font-medium text-sm relative z-10 pl-6">
-          "Building reliable cloud infrastructure through code and automation."
+          "Construire des infrastructures cloud fiables par le code et l'automatisation."
         </blockquote>
       </div>
 
@@ -266,13 +266,62 @@ const AboutPage = () => {
           <ProfileImage />
         </div>
 
-        <a href="#Portofolio">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16 cursor-pointer">
-            {statsData.map((stat) => (
-              <StatCard key={stat.label} {...stat} />
-            ))}
-          </div>
-        </a>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16">
+          <a 
+            href="#Portofolio" 
+            className="cursor-pointer"
+            onClick={(e) => {
+              e.preventDefault();
+              // Changer l'onglet
+              window.location.hash = 'Portofolio?tab=projects';
+              // Scroll vers la section
+              setTimeout(() => {
+                const section = document.getElementById('Portofolio');
+                if (section) {
+                  section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+              }, 100);
+            }}
+          >
+            <StatCard key={statsData[0].label} {...statsData[0]} />
+          </a>
+          <a 
+            href="#Portofolio" 
+            className="cursor-pointer"
+            onClick={(e) => {
+              e.preventDefault();
+              // Changer l'onglet
+              window.location.hash = 'Portofolio?tab=certifications';
+              // Scroll vers la section
+              setTimeout(() => {
+                const section = document.getElementById('Portofolio');
+                if (section) {
+                  section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+              }, 100);
+            }}
+          >
+            <StatCard key={statsData[1].label} {...statsData[1]} />
+          </a>
+          <a 
+            href="#Portofolio" 
+            className="cursor-pointer"
+            onClick={(e) => {
+              e.preventDefault();
+              // Changer l'onglet vers Stack Technique
+              window.location.hash = 'Portofolio?tab=techstack';
+              // Scroll vers la section
+              setTimeout(() => {
+                const section = document.getElementById('Portofolio');
+                if (section) {
+                  section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+              }, 100);
+            }}
+          >
+            <StatCard key={statsData[2].label} {...statsData[2]} />
+          </a>
+        </div>
       </div>
 
       <style>{`
