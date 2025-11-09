@@ -77,7 +77,7 @@ const SocialLink = memo(({ icon: Icon, link }) => (
 const TYPING_SPEED = 100;
 const ERASING_SPEED = 50;
 const PAUSE_DURATION = 2000;
-const WORDS = ["DevOps Engineer", "Cloud Architect", "Infrastructure Specialist"];
+const WORDS = ["Cloud Engineer", "DevOps Engineer"];
 const TECH_STACK = ["React", "Python", "AWS", "Terraform"];
 const SOCIAL_LINKS = [
   { icon: Github, link: "https://github.com/Linerror99" },

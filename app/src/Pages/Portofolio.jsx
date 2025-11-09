@@ -105,47 +105,48 @@ const techStackCategories = [
   {
     title: "Langages de Programmation",
     items: [
-      { icon: "/icons/javascript.svg", language: "JavaScript" },
-      { icon: "/icons/python.svg", language: "Python" },
-      { icon: "/icons/java.svg", language: "Java" },
-      { icon: "/icons/C.svg", language: "C" },
-      { icon: "/icons/sql.svg", language: "SQL" },
+      { icon: "/icons/javascript.svg", language: "JavaScript", level: 85 },
+      { icon: "/icons/python.svg", language: "Python", level: 90 },
+      { icon: "/icons/java.svg", language: "Java", level: 75 },
+      { icon: "/icons/C.svg", language: "C", level: 70 },
+      { icon: "/icons/sql.svg", language: "SQL", level: 80 },
     ]
   },
   {
     title: "Frameworks & Technologies Web",
     items: [
-      { icon: "/icons/reactjs.svg", language: "React" },
-      { icon: "/icons/nodejs.svg", language: "Node.js" },
-      { icon: "/icons/spring.svg", language: "Spring" },
-      { icon: "/icons/html.svg", language: "HTML" },
-      { icon: "/icons/css.svg", language: "CSS" },
-      { icon: "/icons/tailwind.svg", language: "Tailwind" },
+      { icon: "/icons/reactjs.svg", language: "React", level: 85 },
+      { icon: "/icons/nodejs.svg", language: "Node.js", level: 80 },
+      { icon: "/icons/spring.svg", language: "Spring", level: 70 },
+      { icon: "/icons/html.svg", language: "HTML", level: 90 },
+      { icon: "/icons/css.svg", language: "CSS", level: 85 },
     ]
   },
   {
     title: "Cloud & DevOps",
     items: [
-      { icon: "/icons/aws.svg", language: "AWS" },
-      { icon: "/icons/gcp.svg", language: "GCP" },
-      { icon: "/icons/docker.svg", language: "Docker" },
-      { icon: "/icons/terraform.svg", language: "Terraform" },
+      { icon: "/icons/aws.svg", language: "AWS", level: 85 },
+      { icon: "/icons/gcp.svg", language: "GCP", level: 80 },
+      { icon: "/icons/docker.svg", language: "Docker", level: 90 },
+      { icon: "/icons/terraform.svg", language: "Terraform", level: 85 },
+      { icon: "/icons/kubernetes.svg", language: "Kubernetes", level: 75 },
+      { icon: "/icons/nginx.svg", language: "Nginx", level: 80 },
     ]
   },
   {
     title: "Outils & Quality Assurance",
     items: [
-      { icon: "/icons/sonarqube.svg", language: "SonarQube" },
-      { icon: "/icons/maven.svg", language: "Maven" },
-      { icon: "/icons/selenium.svg", language: "Selenium" },
+      { icon: "/icons/sonarqube.svg", language: "SonarQube", level: 75 },
+      { icon: "/icons/maven.svg", language: "Maven", level: 70 },
+      { icon: "/icons/selenium.svg", language: "Selenium", level: 65 },
     ]
   },
   {
     title: "Environnements de Développement",
     items: [
-      { icon: "/icons/vscode.svg", language: "VS Code" },
-      { icon: "/icons/eclipse.svg", language: "Eclipse" },
-      { icon: "/icons/pycharm.svg", language: "PyCharm" },
+      { icon: "/icons/vscode.svg", language: "VS Code", level: 95 },
+      { icon: "/icons/eclipse.svg", language: "Eclipse", level: 75 },
+      { icon: "/icons/pycharm.svg", language: "PyCharm", level: 80 },
     ]
   }
 ];
@@ -169,6 +170,30 @@ export default function FullWidthTabs() {
     AOS.init({
       once: false,
     });
+  }, []);
+
+  // Gérer la navigation par URL params
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash;
+      if (hash.includes('?tab=')) {
+        const tab = hash.split('?tab=')[1];
+        if (tab === 'projects') {
+          setValue(0);
+        } else if (tab === 'certifications') {
+          setValue(1);
+        } else if (tab === 'techstack') {
+          setValue(2);
+        }
+      }
+    };
+
+    // Vérifier au montage
+    handleHashChange();
+
+    // Écouter les changements
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
 
   // Données initiales (tu les remplaceras avec tes vraies données)
@@ -469,7 +494,11 @@ export default function FullWidthTabs() {
                           data-aos-duration={index % 3 === 0 ? "1000" : index % 3 === 1 ? "1200" : "1000"}
                           data-aos-delay={categoryIndex * 200 + index * 100}
                         >
-                          <TechStackIcon TechStackIcon={stack.icon} Language={stack.language} />
+                          <TechStackIcon 
+                            TechStackIcon={stack.icon} 
+                            Language={stack.language}
+                            level={stack.level}
+                          />
                         </div>
                       ))}
                     </div>
