@@ -200,6 +200,38 @@ export default function FullWidthTabs() {
   const initialProjects = [
     {
       id: 1,
+      Img: "/projects/project-mimo-finance.jpg",
+      Title: "Mimo Finance - Application de Gestion Financière Collaborative",
+      Description: "Application web moderne de gestion financière pour individus et couples avec timeline unifiée, projections automatiques et mode couple. Déployée sur GCP Cloud Run avec infrastructure Terraform complète.",
+      Link: "https://mimo-frontend-301595415100.europe-west1.run.app",
+      Github: "https://github.com/Linerror99/Mimo-core",
+      Features: [
+        "Timeline financière continue (passé → présent → futur sur 12 mois)",
+        "Mode couple avec 3 portefeuilles tracés + fusion/dissolution",
+        "Projections automatiques des transactions récurrentes",
+        "Validation quotidienne automatique via Cloud Scheduler",
+        "Infrastructure GCP complète (Cloud Run, Cloud SQL, Redis, VPC)",
+        "CI/CD avec GitHub Actions (tests, SonarCloud, déploiement automatique)",
+        "Terraform IaC pour reproductibilité totale",
+        "Tests unitaires + intégration avec 85%+ coverage"
+      ],
+      TechStack: [
+        "React 18",
+        "FastAPI + Python 3.12",
+        "PostgreSQL 15",
+        "Redis 7",
+        "GCP Cloud Run",
+        "Cloud SQL",
+        "Artifact Registry",
+        "Terraform",
+        "GitHub Actions",
+        "SonarCloud",
+        "Docker",
+        "Shadcn/ui"
+      ]
+    },
+    {
+      id: 2,
       Img: "/projects/project-portfolio.jpg",
       Title: "Infrastructure Multi-Cloud Portfolio",
       Description: "Portfolio déployé sur AWS ECS et GCP Cloud Run avec Terraform pour l'IaC",
@@ -225,7 +257,7 @@ export default function FullWidthTabs() {
       ]
     },
     {
-      id: 2,
+      id: 3,
       Img: "/projects/project-tiktok-pipeline.jpg",
       Title: "Pipeline Vidéo IA TikTok - Génération Automatisée",
       Description: "Pipeline complète de génération automatique de vidéos TikTok/Shorts virales à partir d'un simple thème. Utilise Gemini 2.5 Pro, Veo 3.0, Google TTS Premium, et Whisper.",
@@ -258,12 +290,13 @@ export default function FullWidthTabs() {
   const initialCertificates = [
     { id: 1, Img: "/certificates/cert1.jpg" },
     { id: 2, Img: "/certificates/cert2.jpg" },
-    { id: 3, Img: "/certificates/cert3.jpg" }
+    { id: 3, Img: "/certificates/cert3.jpg" },
+    { id: 4, Img: "/certificates/cert4.jpg" }
   ];
 
   useEffect(() => {
     // Version du portfolio pour forcer le refresh si les données changent
-    const PORTFOLIO_VERSION = "2.0"; // Incrémenter pour forcer un refresh
+    const PORTFOLIO_VERSION = "2.3"; // Incrémenter pour forcer un refresh
     const cachedVersion = localStorage.getItem('portfolioVersion');
     
     // Si la version a changé, vider le cache
