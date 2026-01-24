@@ -203,7 +203,7 @@ export default function FullWidthTabs() {
       Img: "/projects/project-mimo-finance.jpg",
       Title: "Mimo Finance - Application de Gestion Financière Collaborative",
       Description: "Application web moderne de gestion financière pour individus et couples avec timeline unifiée, projections automatiques et mode couple. Déployée sur GCP Cloud Run avec infrastructure Terraform complète.",
-      Link: "https://mimo-frontend-301595415100.europe-west1.run.app",
+      Link: "https://mimo-frontend-7ivz6pjoba-ew.a.run.app/",
       Github: "https://github.com/Linerror99/Mimo-core",
       Features: [
         "Timeline financière continue (passé → présent → futur sur 12 mois)",
