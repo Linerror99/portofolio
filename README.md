@@ -376,10 +376,10 @@ Ce projet est sous licence MIT. Voir le fichier [LICENSE](LICENSE) pour plus de 
 
 ## 👨‍💻 **Auteur**
 
-**Luc Djossou**  
+**Laurent Djossou**  
 DevOps Engineer | Cloud Architecture | Infrastructure as Code
 
-🔗 [GitHub](https://github.com/Linerror99) • [LinkedIn](https://linkedin.com/in/ldjossou) • [Portfolio](https://ldjossou.com)
+🔗 [GitHub](https://github.com/Linerror99) • [LinkedIn]([https://linkedin.com/in/ldjossou](https://www.linkedin.com/in/laurent-djossou-ab2493240) • [Portfolio](https://ldjossou.com)
 
 ---
 
