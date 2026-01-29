@@ -103,6 +103,18 @@ function a11yProps(index) {
 // Organisation du stack technique par catégories
 const techStackCategories = [
   {
+    title: "Cloud & DevOps",
+    items: [
+      { icon: "/icons/aws.svg", language: "AWS", level: 85 },
+      { icon: "/icons/gcp.svg", language: "GCP", level: 85 },
+      { icon: "/icons/azure.svg", language: "Azure", level: 50 },
+      { icon: "/icons/docker.svg", language: "Docker", level: 90 },
+      { icon: "/icons/terraform.svg", language: "Terraform", level: 85 },
+      { icon: "/icons/kubernetes.svg", language: "Kubernetes", level: 70 },
+      { icon: "/icons/nginx.svg", language: "Nginx", level: 55 },
+    ]
+  },
+  {
     title: "Langages de Programmation",
     items: [
       { icon: "/icons/javascript.svg", language: "JavaScript", level: 65 },
@@ -123,14 +135,13 @@ const techStackCategories = [
     ]
   },
   {
-    title: "Cloud & DevOps",
+    title: "Intelligence Artificielle & Outils IA",
     items: [
-      { icon: "/icons/aws.svg", language: "AWS", level: 85 },
-      { icon: "/icons/gcp.svg", language: "GCP", level: 85 },
-      { icon: "/icons/docker.svg", language: "Docker", level: 90 },
-      { icon: "/icons/terraform.svg", language: "Terraform", level: 85 },
-      { icon: "/icons/kubernetes.svg", language: "Kubernetes", level: 70 },
-      { icon: "/icons/nginx.svg", language: "Nginx", level: 55 },
+      { icon: "/icons/github-copilot.svg", language: "GitHub Copilot", level: 90 },
+      { icon: "/icons/gemini.svg", language: "Gemini", level: 85 },
+      { icon: "/icons/claude.svg", language: "Claude", level: 80 },
+      { icon: "/icons/vertex-ai.svg", language: "Vertex AI", level: 75 },
+      { icon: "/icons/mcp.svg", language: "MCP", level: 70 },
     ]
   },
   {
@@ -138,6 +149,8 @@ const techStackCategories = [
     items: [
       { icon: "/icons/sonarqube.svg", language: "SonarQube", level: 70 },
       { icon: "/icons/maven.svg", language: "Maven", level: 85 },
+      { icon: "/icons/jenkins.svg", language: "Jenkins", level: 60 },
+      { icon: "/icons/grafana.svg", language: "Grafana", level: 60 },
       { icon: "/icons/selenium.svg", language: "Selenium", level: 50 },
     ]
   },
