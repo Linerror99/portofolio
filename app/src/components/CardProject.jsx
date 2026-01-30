@@ -1,14 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ExternalLink, ArrowRight } from 'lucide-react';
+import { ExternalLink, ArrowRight, Clock } from 'lucide-react';
 
-const CardProject = ({ Img, Title, Description, Link: ProjectLink, id }) => {
+const CardProject = ({ Img, Title, Description, Link: ProjectLink, id, comingSoon }) => {
   // Handle kasus ketika ProjectLink kosong
   const handleLiveDemo = (e) => {
-    if (!ProjectLink) {
-      console.log("ProjectLink kosong");
+    if (!ProjectLink || comingSoon) {
+      console.log("ProjectLink kosong ou coming soon");
       e.preventDefault();
-      alert("Live demo link is not available");
+      alert(comingSoon ? "Ce projet sera bientôt disponible !" : "Live demo link is not available");
     }
   };
   
