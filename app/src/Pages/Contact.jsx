@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Share2, User, Mail, MessageSquare, Send, Linkedin, Github, MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useTranslation } from 'react-i18next';
 import SocialLinks from "../components/SocialLinks";
 import Swal from "sweetalert2";
 import AOS from "aos";
@@ -8,6 +9,7 @@ import "aos/dist/aos.css";
 import axios from "axios";
 
 const ContactPage = () => {
+  const { t } = useTranslation('contact');
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -24,8 +26,8 @@ const ContactPage = () => {
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.get('sent') === 'true') {
       Swal.fire({
-        title: 'Succès !',
-        text: 'Votre message a été envoyé avec succès !',
+        title: t('alerts.success.title'),
+        text: t('alerts.success.text'),
         icon: 'success',
         confirmButtonColor: '#6366f1',
         timer: 3000,
@@ -50,8 +52,8 @@ const ContactPage = () => {
     // Validation des champs
     if (!formData.name || !formData.email || !formData.message) {
       Swal.fire({
-        title: 'Attention !',
-        text: 'Veuillez remplir tous les champs',
+        title: t('alerts.warning.title'),
+        text: t('alerts.warning.text'),
         icon: 'warning',
         confirmButtonColor: '#6366f1'
       });
@@ -61,8 +63,8 @@ const ContactPage = () => {
     setIsSubmitting(true);
 
     Swal.fire({
-      title: 'Envoi en cours...',
-      html: 'Veuillez patienter pendant l\'envoi de votre message',
+      title: t('alerts.sending.title'),
+      html: t('alerts.sending.text'),
       allowOutsideClick: false,
       didOpen: () => {
         Swal.showLoading();
@@ -133,7 +135,7 @@ const ContactPage = () => {
               WebkitTextFillColor: "transparent",
             }}
           >
-            Contactez-moi
+            {t('pageTitle')}
           </span>
         </h2>
         <p
@@ -141,7 +143,7 @@ const ContactPage = () => {
           data-aos-duration="1100"
           className="text-slate-400 max-w-2xl mx-auto text-sm md:text-base mt-2"
         >
-          Une question ? Envoyez-moi un message et je vous répondrai rapidement.
+          {t('pageSubtitle')}
         </p>
       </div>
 
@@ -157,10 +159,10 @@ const ContactPage = () => {
             <div className="flex justify-between items-start mb-8">
               <div>
                 <h2 className="text-4xl font-bold mb-3 text-transparent bg-clip-text bg-gradient-to-r from-[#6366f1] to-[#a855f7]">
-                  Contact
+                  {t('title')}
                 </h2>
                 <p className="text-gray-400">
-                  Envie d'échanger ? Envoyez-moi un message et discutons ensemble.
+                  {t('subtitle')}
                 </p>
               </div>
               <Share2 className="w-10 h-10 text-[#6366f1] opacity-50" />
@@ -179,7 +181,7 @@ const ContactPage = () => {
                 <input
                   type="text"
                   name="name"
-                  placeholder="Votre nom"
+                  placeholder={t('form.name')}
                   value={formData.name}
                   onChange={handleChange}
                   disabled={isSubmitting}
@@ -196,7 +198,7 @@ const ContactPage = () => {
                 <input
                   type="email"
                   name="email"
-                  placeholder="Votre email"
+                  placeholder={t('form.email')}
                   value={formData.email}
                   onChange={handleChange}
                   disabled={isSubmitting}
@@ -212,7 +214,7 @@ const ContactPage = () => {
                 <MessageSquare className="absolute left-4 top-4 w-5 h-5 text-gray-400 group-focus-within:text-[#6366f1] transition-colors" />
                 <textarea
                   name="message"
-                  placeholder="Votre message"
+                  placeholder={t('form.message')}
                   value={formData.message}
                   onChange={handleChange}
                   disabled={isSubmitting}
@@ -228,7 +230,7 @@ const ContactPage = () => {
                 className="w-full bg-gradient-to-r from-[#6366f1] to-[#a855f7] text-white py-4 rounded-xl font-semibold transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-[#6366f1]/20 active:scale-[0.98] flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
               >
                 <Send className="w-5 h-5" />
-                {isSubmitting ? 'Envoi...' : 'Envoyer'}
+                {isSubmitting ? t('form.submitting') : t('form.submit')}
               </button>
             </form>
 

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { GraduationCap, BookOpen, Briefcase, Award, Sparkles, ChevronLeft, ChevronRight } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
@@ -61,6 +62,7 @@ const TimelineItem = ({ icon: Icon, image, year, title, subtitle, description, i
 };
 
 const Timeline = () => {
+  const { t } = useTranslation('timeline');
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
@@ -69,63 +71,11 @@ const Timeline = () => {
     });
   }, []);
 
-  const timelineData = [
-    {
-      image: "/timeline/capgemini.jpg",
-      year: "2024-2026",
-      title: "Alternance - Dev Fullstack",
-      subtitle: "Capgemini Engineering | France",
-      items: [
-        "Développement d'applications web Java/Spring Boot",
-        "Déploiement sur serveurs Tomcat et automatisation",
-        "Scripting Bash et maîtrise des commandes Linux",
-        "CI/CD avec Git, Jenkins et GitLab",
-        "Méthodologie Agile/Scrum en équipe",
-        "Tests et qualité logicielle"
-      ]
-    },
-    {
-      image: "/timeline/cycle-ingenieur.jpg",
-      year: "2023-2026",
-      title: "Cycle Ingénieur Généraliste",
-      subtitle: "ESIGELEC | Option: Développement Logiciel Test & Qualité",
-      items: [
-        "Infrastructure as Code (IaC) et automatisation",
-        "Conteneurisation et orchestration (Docker, Kubernetes)",
-        "CI/CD et DevOps (Jenkins, GitLab CI, GitHub Actions)",
-        "Cloud Computing (AWS, GCP, Azure)",
-        "Architecture microservices et monitoring (Prometheus, Grafana)",
-        "Sécurité des applications et DevSecOps"
-      ]
-    },
-    {
-      image: "/timeline/stage-sbin.jpg",
-      year: "Juin 2022",
-      title: "Stage Académique",
-      subtitle: "SBIN - Société Béninoise des Infrastructures Numériques",
-      items: [
-        "Programmation orientée objet en Java",
-        "Maintenance informatique et debugging",
-        "Installation et configuration de systèmes d'exploitation",
-        "Support technique et documentation",
-        "Gestion de parc informatique"
-      ]
-    },
-    {
-      image: "/timeline/esigelec-prepa.jpg",
-      year: "2021-2023",
-      title: "Cycle Préparatoire Intégré",
-      subtitle: "ESIGELEC | Poitiers, France",
-      items: [
-        "Mathématiques appliquées et analyse",
-        "Physique et électronique",
-        "Sciences de l'Ingénieur",
-        "Architecture des ordinateurs",
-        "Programmation (Python, C, Java)",
-        "Algorithmique et structures de données"
-      ]
-    }
-  ];
+  const translatedItems = t('items', { returnObjects: true });
+  const timelineData = translatedItems.map((item, index) => ({
+    ...item,
+    image: ["/timeline/capgemini.jpg", "/timeline/cycle-ingenieur.jpg", "/timeline/stage-sbin.jpg", "/timeline/esigelec-prepa.jpg"][index]
+  }));
 
   // Fonctions de navigation
   const goToPrevious = () => {
@@ -146,7 +96,7 @@ const Timeline = () => {
             data-aos="zoom-in-up"
             data-aos-duration="600"
           >
-            Parcours de Formation
+            {t('title')}
           </h2>
         </div>
         <p 
@@ -155,7 +105,7 @@ const Timeline = () => {
           data-aos-duration="800"
         >
           <Sparkles className="w-5 h-5 text-purple-400" />
-          Mon chemin vers l'excellence en Cloud & DevOps
+          {t('subtitle')}
           <Sparkles className="w-5 h-5 text-purple-400" />
         </p>
       </div>
@@ -166,7 +116,7 @@ const Timeline = () => {
         <button
           onClick={goToPrevious}
           className="absolute left-0 top-1/2 -translate-y-1/2 z-20 bg-gradient-to-r from-[#6366f1] to-[#a855f7] p-3 rounded-full shadow-lg hover:scale-110 transition-all duration-300 hover:shadow-purple-500/50"
-          aria-label="Précédent"
+          aria-label={t('navigation.previous')}
         >
           <ChevronLeft className="w-6 h-6 text-white" />
         </button>
@@ -175,7 +125,7 @@ const Timeline = () => {
         <button
           onClick={goToNext}
           className="absolute right-0 top-1/2 -translate-y-1/2 z-20 bg-gradient-to-r from-[#6366f1] to-[#a855f7] p-3 rounded-full shadow-lg hover:scale-110 transition-all duration-300 hover:shadow-purple-500/50"
-          aria-label="Suivant"
+          aria-label={t('navigation.next')}
         >
           <ChevronRight className="w-6 h-6 text-white" />
         </button>

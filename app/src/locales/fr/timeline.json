@@ -1,0 +1,61 @@
+{
+  "title": "Parcours de Formation",
+  "subtitle": "Mon chemin vers l'excellence en Cloud & DevOps",
+  "navigation": {
+    "previous": "Précédent",
+    "next": "Suivant"
+  },
+  "items": [
+    {
+      "year": "2024-2026",
+      "title": "Alternance - Dev Fullstack",
+      "subtitle": "Capgemini Engineering | France",
+      "items": [
+        "Développement d'applications web Java/Spring Boot",
+        "Déploiement sur serveurs Tomcat et automatisation",
+        "Scripting Bash et maîtrise des commandes Linux",
+        "CI/CD avec Git, Jenkins et GitLab",
+        "Méthodologie Agile/Scrum en équipe",
+        "Tests et qualité logicielle"
+      ]
+    },
+    {
+      "year": "2023-2026",
+      "title": "Cycle Ingénieur Généraliste",
+      "subtitle": "ESIGELEC | Option: Développement Logiciel Test & Qualité",
+      "items": [
+        "Infrastructure as Code (IaC) et automatisation",
+        "Conteneurisation et orchestration (Docker, Kubernetes)",
+        "CI/CD et DevOps (Jenkins, GitLab CI, GitHub Actions)",
+        "Cloud Computing (AWS, GCP, Azure)",
+        "Architecture microservices et monitoring (Prometheus, Grafana)",
+        "Sécurité des applications et DevSecOps"
+      ]
+    },
+    {
+      "year": "Juin 2022",
+      "title": "Stage Académique",
+      "subtitle": "SBIN - Société Béninoise des Infrastructures Numériques",
+      "items": [
+        "Programmation orientée objet en Java",
+        "Maintenance informatique et debugging",
+        "Installation et configuration de systèmes d'exploitation",
+        "Support technique et documentation",
+        "Gestion de parc informatique"
+      ]
+    },
+    {
+      "year": "2021-2023",
+      "title": "Cycle Préparatoire Intégré",
+      "subtitle": "ESIGELEC | Poitiers, France",
+      "items": [
+        "Mathématiques appliquées et analyse",
+        "Physique et électronique",
+        "Sciences de l'Ingénieur",
+        "Architecture des ordinateurs",
+        "Programmation (Python, C, Java)",
+        "Algorithmique et structures de données"
+      ]
+    }
+  ]
+}

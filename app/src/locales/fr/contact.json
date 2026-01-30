@@ -1,0 +1,37 @@
+{
+  "pageTitle": "Contactez-moi",
+  "pageSubtitle": "Une question ? Envoyez-moi un message et je vous répondrai rapidement.",
+  "title": "Travaillons Ensemble",
+  "subtitle": "Envie d'échanger ? Envoyez-moi un message et discutons ensemble.",
+  "form": {
+    "name": "Votre nom",
+    "email": "Votre email",
+    "message": "Votre message",
+    "submit": "Envoyer",
+    "submitting": "Envoi..."
+  },
+  "info": {
+    "title": "Travaillons Ensemble",
+    "description": "Je suis disponible pour des opportunités freelance, collaborations sur des projets innovants, ou simplement pour échanger sur le Cloud et DevOps.",
+    "email": "laurent.djossou@groupe-esigelec.org",
+    "location": "Rouen, France",
+    "availability": "Disponible pour de nouveaux projets"
+  },
+  "social": {
+    "title": "Retrouvez-moi sur"
+  },
+  "alerts": {
+    "success": {
+      "title": "Succès !",
+      "text": "Votre message a été envoyé avec succès !"
+    },
+    "warning": {
+      "title": "Attention !",
+      "text": "Veuillez remplir tous les champs"
+    },
+    "sending": {
+      "title": "Envoi en cours...",
+      "text": "Veuillez patienter pendant l'envoi de votre message"
+    }
+  }
+}

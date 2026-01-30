@@ -1,10 +1,11 @@
 import React, { useEffect, memo, useMemo } from "react"
 import { FileText, Code, Award, Globe, ArrowUpRight, Sparkles, UserCheck } from "lucide-react"
+import { useTranslation } from 'react-i18next'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 
 // Memoized Components
-const Header = memo(() => (
+const Header = memo(({ title, subtitle }) => (
   <div className="text-center lg:mb-8 mb-2 px-[5%]">
     <div className="inline-block relative group">
       <h2 
@@ -12,7 +13,7 @@ const Header = memo(() => (
         data-aos="zoom-in-up"
         data-aos-duration="600"
       >
-        À Propos
+        {title}
       </h2>
     </div>
     <p 
@@ -21,7 +22,7 @@ const Header = memo(() => (
       data-aos-duration="800"
     >
       <Sparkles className="w-5 h-5 text-purple-400" />
-      Transformer les idées en expériences cloud
+      {subtitle}
       <Sparkles className="w-5 h-5 text-purple-400" />
     </p>
   </div>
@@ -113,6 +114,8 @@ const StatCard = memo(({ icon: Icon, color, value, label, description, animation
 ));
 
 const AboutPage = () => {
+  const { t } = useTranslation('about');
+  
   // Memoized calculations
   const { totalProjects, totalCertificates, YearExperience } = useMemo(() => {
     const storedProjects = JSON.parse(localStorage.getItem("projects") || "[]");
@@ -159,35 +162,35 @@ const AboutPage = () => {
     {
       icon: Code,
       color: "from-[#6366f1] to-[#a855f7]",
-      value: totalProjects,
-      label: "PROJETS TOTAUX",
-      description: "Solutions cloud innovantes créées",
+      value: `${totalProjects}+`,
+      label: t('stats.projects.label').toUpperCase(),
+      description: t('stats.projects.description'),
       animation: "fade-right",
     },
     {
       icon: Award,
       color: "from-[#a855f7] to-[#6366f1]",
-      value: totalCertificates,
-      label: "CERTIFICATIONS",
-      description: "Compétences professionnelles validées",
+      value: `${totalCertificates}+`,
+      label: t('stats.certifications.label').toUpperCase(),
+      description: t('stats.certifications.description'),
       animation: "fade-up",
     },
     {
       icon: Globe,
       color: "from-[#6366f1] to-[#a855f7]",
-      value: YearExperience,
-      label: "ANNÉES D'EXPÉRIENCE",
-      description: "Parcours d'apprentissage continu",
+      value: `${YearExperience}+`,
+      label: t('stats.experience.label').toUpperCase(),
+      description: t('stats.experience.description'),
       animation: "fade-left",
     },
-  ], [totalProjects, totalCertificates, YearExperience]);
+  ], [totalProjects, totalCertificates, YearExperience, t]);
 
   return (
     <div
       className="h-auto pb-[10%] text-white overflow-hidden px-[5%] sm:px-[5%] lg:px-[10%] mt-10 sm-mt-0" 
       id="About"
     >
-      <Header />
+      <Header title={t('title')} subtitle={t('subtitle')} />
 
       <div className="w-full mx-auto pt-8 sm:pt-12 relative">
         <div className="flex flex-col-reverse lg:grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
@@ -198,14 +201,14 @@ const AboutPage = () => {
               data-aos-duration="1000"
             >
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#6366f1] to-[#a855f7]">
-                Bonjour, je suis
+                {t('greeting')}
               </span>
               <span 
                 className="block mt-2 text-gray-200"
                 data-aos="fade-right"
                 data-aos-duration="1300"
               >
-                Laurent DJOSSOU
+                {t('name')}
               </span>
             </h2>
             
@@ -214,10 +217,7 @@ const AboutPage = () => {
               data-aos="fade-right"
               data-aos-duration="1500"
             >
-             Ingénieur Cloud & DevOps full-stack : de l'infrastructure Terraform multi-cloud 
-             (AWS, Azure, GCP) aux interfaces modernes. J'automatise les déploiements, 
-             orchestre des pipelines CI/CD end-to-end, optimise les coûts d'infrastructure, 
-             et garantis la livraison continue d'applications en production.
+             {t('description')}
             </p>
 
                {/* Quote Section */}
@@ -238,7 +238,7 @@ const AboutPage = () => {
         </div>
         
         <blockquote className="text-gray-300 text-center lg:text-left italic font-medium text-sm relative z-10 pl-6">
-          "Construire des infrastructures cloud fiables par le code et l'automatisation."
+          "{t('quote')}"
         </blockquote>
       </div>
 
@@ -249,7 +249,7 @@ const AboutPage = () => {
                 data-aos-duration="800"
                 className="w-full lg:w-auto sm:px-6 py-2 sm:py-3 rounded-lg bg-gradient-to-r from-[#6366f1] to-[#a855f7] text-white font-medium transition-all duration-300 hover:scale-105 flex items-center justify-center lg:justify-start gap-2 shadow-lg hover:shadow-xl "
               >
-                <FileText className="w-4 h-4 sm:w-5 sm:h-5" /> Télécharger CV
+                <FileText className="w-4 h-4 sm:w-5 sm:h-5" /> {t('buttons.downloadCV')}
               </button>
               </a>
               <a href="#Portofolio" className="w-full lg:w-auto">
@@ -258,7 +258,7 @@ const AboutPage = () => {
                 data-aos-duration="1000"
                 className="w-full lg:w-auto sm:px-6 py-2 sm:py-3 rounded-lg border border-[#a855f7]/50 text-[#a855f7] font-medium transition-all duration-300 hover:scale-105 flex items-center justify-center lg:justify-start gap-2 hover:bg-[#a855f7]/10 "
               >
-                <Code className="w-4 h-4 sm:w-5 sm:h-5" /> Voir Projets
+                <Code className="w-4 h-4 sm:w-5 sm:h-5" /> {t('buttons.viewProjects')}
               </button>
               </a>
             </div>
