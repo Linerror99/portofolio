@@ -214,9 +214,10 @@ const AboutPage = () => {
               data-aos="fade-right"
               data-aos-duration="1500"
             >
-             Ingénieur Cloud & DevOps passionné par l'automatisation des infrastructures et le déploiement continu. 
-             Je me spécialise dans la conception et la mise en œuvre de solutions multi-cloud (AWS, GCP) avec Terraform, 
-             Docker et Kubernetes, tout en développant des interfaces web modernes avec React.
+             Ingénieur Cloud & DevOps full-stack : de l'infrastructure Terraform multi-cloud 
+             (AWS, Azure, GCP) aux interfaces modernes. J'automatise les déploiements, 
+             orchestre des pipelines CI/CD end-to-end, optimise les coûts d'infrastructure, 
+             et garantis la livraison continue d'applications en production.
             </p>
 
                {/* Quote Section */}

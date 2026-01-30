@@ -103,6 +103,18 @@ function a11yProps(index) {
 // Organisation du stack technique par catégories
 const techStackCategories = [
   {
+    title: "Cloud & DevOps",
+    items: [
+      { icon: "/icons/aws.svg", language: "AWS", level: 85 },
+      { icon: "/icons/gcp.svg", language: "GCP", level: 85 },
+      { icon: "/icons/azure.svg", language: "Azure", level: 50 },
+      { icon: "/icons/docker.svg", language: "Docker", level: 90 },
+      { icon: "/icons/terraform.svg", language: "Terraform", level: 85 },
+      { icon: "/icons/kubernetes.svg", language: "Kubernetes", level: 70 },
+      { icon: "/icons/nginx.svg", language: "Nginx", level: 55 },
+    ]
+  },
+  {
     title: "Langages de Programmation",
     items: [
       { icon: "/icons/javascript.svg", language: "JavaScript", level: 65 },
@@ -123,14 +135,13 @@ const techStackCategories = [
     ]
   },
   {
-    title: "Cloud & DevOps",
+    title: "Intelligence Artificielle & Outils IA",
     items: [
-      { icon: "/icons/aws.svg", language: "AWS", level: 85 },
-      { icon: "/icons/gcp.svg", language: "GCP", level: 85 },
-      { icon: "/icons/docker.svg", language: "Docker", level: 90 },
-      { icon: "/icons/terraform.svg", language: "Terraform", level: 85 },
-      { icon: "/icons/kubernetes.svg", language: "Kubernetes", level: 70 },
-      { icon: "/icons/nginx.svg", language: "Nginx", level: 55 },
+      { icon: "/icons/github-copilot.svg", language: "GitHub Copilot", level: 90 },
+      { icon: "/icons/gemini.svg", language: "Gemini", level: 85 },
+      { icon: "/icons/claude.svg", language: "Claude", level: 80 },
+      { icon: "/icons/vertex-ai.svg", language: "Vertex AI", level: 75 },
+      { icon: "/icons/mcp.svg", language: "MCP", level: 70 },
     ]
   },
   {
@@ -138,6 +149,8 @@ const techStackCategories = [
     items: [
       { icon: "/icons/sonarqube.svg", language: "SonarQube", level: 70 },
       { icon: "/icons/maven.svg", language: "Maven", level: 85 },
+      { icon: "/icons/jenkins.svg", language: "Jenkins", level: 60 },
+      { icon: "/icons/grafana.svg", language: "Grafana", level: 60 },
       { icon: "/icons/selenium.svg", language: "Selenium", level: 50 },
     ]
   },
@@ -200,6 +213,37 @@ export default function FullWidthTabs() {
   const initialProjects = [
     {
       id: 1,
+      Img: "/projects/Coming_soon.jpg",
+      Title: "AutoForge - Plateforme SaaS d'Automatisation par IA Multi-Agents",
+      Description: "De l'idée à l'application web en 2 heures. 4 agents IA spécialisés transforment votre description en application fullstack testée, déployée et prête à démarrer. Migration stratégique Vertex AI → Claude SDK : -55% coûts, -28% latence.",
+      Link: "#",
+      Github: "#",
+      comingSoon: true,
+      Features: [
+        "Pipeline automatisé 4 phases : PO Agent → Tech Lead → Executor → QA",
+        "Orchestration multi-agents via Claude SDK + MCP in-process (zero latency)",
+        "Migration technique Vertex AI → Claude : -55% coûts, -28% latence, -80% erreurs",
+        "VM isolées par projet (Spot VMs avec gestion préemption automatique)",
+        "Logs temps réel WebSocket + Live Preview iframe",
+        "Export complet : ZIP, GitHub push, ou déploiement Cloud Run",
+        "Time-to-Market : <2h de l'idée au MVP production-ready",
+        "Architecture serverless scalable (Cloud Run + Firestore)"
+      ],
+      TechStack: [
+        "Claude Sonnet 4",
+        "TypeScript + Fastify",
+        "GCP Cloud Run",
+        "Firestore",
+        "MCP SDK",
+        "Compute Engine (Spot VMs)",
+        "WebSocket",
+        "OAuth 2.0",
+        "Docker",
+        "Terraform"
+      ]
+    },
+    {
+      id: 2,
       Img: "/projects/project-mimo-finance.jpg",
       Title: "Mimo Finance - Application de Gestion Financière Collaborative",
       Description: "Application web moderne de gestion financière pour individus et couples avec timeline unifiée, projections automatiques et mode couple. Déployée sur GCP Cloud Run avec infrastructure Terraform complète.",
@@ -231,7 +275,7 @@ export default function FullWidthTabs() {
       ]
     },
     {
-      id: 2,
+      id: 3,
       Img: "/projects/project-portfolio.jpg",
       Title: "Infrastructure Multi-Cloud Portfolio",
       Description: "Portfolio déployé sur AWS ECS et GCP Cloud Run avec Terraform pour l'IaC",
@@ -257,7 +301,7 @@ export default function FullWidthTabs() {
       ]
     },
     {
-      id: 3,
+      id: 4,
       Img: "/projects/project-tiktok-pipeline.jpg",
       Title: "Pipeline Vidéo IA TikTok - Génération Automatisée",
       Description: "Pipeline complète de génération automatique de vidéos TikTok/Shorts virales à partir d'un simple thème. Utilise Gemini 2.5 Pro, Veo 3.0, Google TTS Premium, et Whisper.",
@@ -291,34 +335,39 @@ export default function FullWidthTabs() {
     { id: 1, Img: "/certificates/cert1.jpg" },
     { id: 2, Img: "/certificates/cert2.jpg" },
     { id: 3, Img: "/certificates/cert3.jpg" },
-    { id: 4, Img: "/certificates/cert4.jpg" }
+    { id: 4, Img: "/certificates/cert4.jpg" },
+    { id: 5, Img: "/certificates/cert5.jpg" }
   ];
 
   useEffect(() => {
     // Version du portfolio pour forcer le refresh si les données changent
-    const PORTFOLIO_VERSION = "2.3"; // Incrémenter pour forcer un refresh
+    const PORTFOLIO_VERSION = "3.3"; // Incrémenter pour forcer un refresh
     const cachedVersion = localStorage.getItem('portfolioVersion');
     
-    // Si la version a changé, vider le cache
+    // Si la version a changé, vider le cache et forcer le rechargement
     if (cachedVersion !== PORTFOLIO_VERSION) {
-      localStorage.removeItem('projects');
-      localStorage.removeItem('certificates');
+      localStorage.clear(); // Vider tout le cache
       localStorage.setItem('portfolioVersion', PORTFOLIO_VERSION);
-    }
-    
-    // Charger depuis localStorage ou utiliser les données initiales
-    const cachedProjects = localStorage.getItem('projects');
-    const cachedCertificates = localStorage.getItem('certificates');
-
-    if (cachedProjects && cachedCertificates) {
-      setProjects(JSON.parse(cachedProjects));
-      setCertificates(JSON.parse(cachedCertificates));
-    } else {
-      // Première visite - utiliser les données initiales
+      // Forcer l'utilisation des données initiales
       setProjects(initialProjects);
       setCertificates(initialCertificates);
       localStorage.setItem("projects", JSON.stringify(initialProjects));
       localStorage.setItem("certificates", JSON.stringify(initialCertificates));
+    } else {
+      // Charger depuis localStorage si disponible
+      const cachedProjects = localStorage.getItem('projects');
+      const cachedCertificates = localStorage.getItem('certificates');
+
+      if (cachedProjects && cachedCertificates) {
+        setProjects(JSON.parse(cachedProjects));
+        setCertificates(JSON.parse(cachedCertificates));
+      } else {
+        // Première visite - utiliser les données initiales
+        setProjects(initialProjects);
+        setCertificates(initialCertificates);
+        localStorage.setItem("projects", JSON.stringify(initialProjects));
+        localStorage.setItem("certificates", JSON.stringify(initialCertificates));
+      }
     }
   }, []);
 
