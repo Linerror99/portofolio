@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { useTranslation } from 'react-i18next';
+import i18n from '../i18n';
 import {
   ArrowLeft, ExternalLink, Github, Code2, Star,
   ChevronRight, Layers, Layout, Globe, Package, Cpu, Code,
@@ -47,7 +49,7 @@ const FeatureItem = ({ feature }) => {
   );
 };
 
-const ProjectStats = ({ project }) => {
+const ProjectStats = ({ project, t }) => {
   const techStackCount = project?.TechStack?.length || 0;
   const featuresCount = project?.Features?.length || 0;
 
@@ -61,7 +63,7 @@ const ProjectStats = ({ project }) => {
         </div>
         <div className="flex-grow">
           <div className="text-lg md:text-xl font-semibold text-blue-200">{techStackCount}</div>
-          <div className="text-[10px] md:text-xs text-gray-400">Technologies</div>
+          <div className="text-[10px] md:text-xs text-gray-400">{t('projectDetail.stats.technologies')}</div>
         </div>
       </div>
 
@@ -71,20 +73,20 @@ const ProjectStats = ({ project }) => {
         </div>
         <div className="flex-grow">
           <div className="text-lg md:text-xl font-semibold text-purple-200">{featuresCount}</div>
-          <div className="text-[10px] md:text-xs text-gray-400">Fonctionnalités</div>
+          <div className="text-[10px] md:text-xs text-gray-400">{t('projectDetail.stats.features')}</div>
         </div>
       </div>
     </div>
   );
 };
 
-const handleGithubClick = (githubLink) => {
+const handleGithubClick = (githubLink, t) => {
   if (githubLink === 'Private') {
     Swal.fire({
       icon: 'info',
-      title: 'Code Source Privé',
-      text: 'Désolé, le code source de ce projet est privé.',
-      confirmButtonText: 'Compris',
+      title: t('projectDetail.privateRepo.title'),
+      text: t('projectDetail.privateRepo.text'),
+      confirmButtonText: t('projectDetail.privateRepo.confirmButton'),
       confirmButtonColor: '#3085d6',
       background: '#030014',
       color: '#ffffff'
@@ -95,6 +97,7 @@ const handleGithubClick = (githubLink) => {
 };
 
 const ProjectDetails = () => {
+  const { t, i18n } = useTranslation('portfolio');
   const { id } = useParams();
   const navigate = useNavigate();
   const [project, setProject] = useState(null);
@@ -102,8 +105,27 @@ const ProjectDetails = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    const storedProjects = JSON.parse(localStorage.getItem("projects")) || [];
-    const selectedProject = storedProjects.find((p) => String(p.id) === id);
+    
+    // Charger depuis les traductions au lieu de localStorage
+    const projectsData = t('projects', { returnObjects: true });
+    const translatedProjects = projectsData.map((project, index) => ({
+      id: project.id,
+      Img: ["/projects/Coming_soon.jpg", "/projects/project-mimo-finance.jpg", "/projects/project-portfolio.jpg", "/projects/project-tiktok-pipeline.jpg"][index],
+      Title: project.title,
+      Description: project.description,
+      Link: ["#", "https://mimo-frontend-7ivz6pjoba-ew.a.run.app/", "https://ldjossou.com", "https://pipeline-frontend-354616212471.us-central1.run.app/"][index],
+      Github: ["#", "https://github.com/Linerror99/Mimo-core", "https://github.com/Linerror99/portofolio", "https://github.com/Linerror99Su/pipeline-video-tiktok"][index],
+      comingSoon: index === 0,
+      Features: project.features,
+      TechStack: [
+        ["Claude Sonnet 4", "TypeScript + Fastify", "GCP Cloud Run", "Firestore", "MCP SDK", "Compute Engine (Spot VMs)", "WebSocket", "OAuth 2.0", "Docker", "Terraform"],
+        ["React 18", "FastAPI + Python 3.12", "PostgreSQL 15", "Redis 7", "GCP Cloud Run", "Cloud SQL", "Artifact Registry", "Terraform", "GitHub Actions", "SonarCloud", "Docker", "Shadcn/ui"],
+        ["React + Vite", "Tailwind CSS", "Terraform", "Docker", "AWS ECS Fargate", "GCP Cloud Run", "GitHub Actions", "Nginx"],
+        ["Gemini 2.5 Pro", "Veo 3.0", "Google TTS Premium", "OpenAI Whisper", "FFmpeg", "Python 3.12", "Google Cloud Functions Gen2", "Cloud Storage", "Vertex AI"]
+      ][index]
+    }));
+    
+    const selectedProject = translatedProjects.find((p) => String(p.id) === id);
     
     if (selectedProject) {
       const enhancedProject = {
@@ -114,7 +136,7 @@ const ProjectDetails = () => {
       };
       setProject(enhancedProject);
     }
-  }, [id]);
+  }, [id, t, i18n.language]);
 
   if (!project) {
     return (
@@ -147,10 +169,10 @@ const ProjectDetails = () => {
               className="group inline-flex items-center space-x-1.5 md:space-x-2 px-3 md:px-5 py-2 md:py-2.5 bg-white/5 backdrop-blur-xl rounded-xl text-white/90 hover:bg-white/10 transition-all duration-300 border border-white/10 hover:border-white/20 text-sm md:text-base"
             >
               <ArrowLeft className="w-4 h-4 md:w-5 md:h-5 group-hover:-translate-x-1 transition-transform" />
-              <span>Back</span>
+              <span>{t('projectDetail.back')}</span>
             </button>
             <div className="flex items-center space-x-1 md:space-x-2 text-sm md:text-base text-white/50">
-              <span>Projects</span>
+              <span>{t('projectDetail.projects')}</span>
               <ChevronRight className="w-3 h-3 md:w-4 md:h-4" />
               <span className="text-white/90 truncate">{project.Title}</span>
             </div>
@@ -174,38 +196,44 @@ const ProjectDetails = () => {
                 </p>
               </div>
 
-              <ProjectStats project={project} />
+              <ProjectStats project={project} t={t} />
 
               <div className="flex flex-wrap gap-3 md:gap-4">
                 {/* Action buttons */}
-                <a
-                  href={project.Link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group relative inline-flex items-center space-x-1.5 md:space-x-2 px-4 md:px-8 py-2.5 md:py-4 bg-gradient-to-r from-blue-600/10 to-purple-600/10 hover:from-blue-600/20 hover:to-purple-600/20 text-blue-300 rounded-xl transition-all duration-300 border border-blue-500/20 hover:border-blue-500/40 backdrop-blur-xl overflow-hidden text-sm md:text-base"
-                >
-                  <div className="absolute inset-0 translate-y-[100%] bg-gradient-to-r from-blue-600/10 to-purple-600/10 transition-transform duration-300 group-hover:translate-y-[0%]" />
-                  <ExternalLink className="relative w-4 h-4 md:w-5 md:h-5 group-hover:rotate-12 transition-transform" />
-                  <span className="relative font-medium">Live Demo</span>
-                </a>
+                {project.comingSoon ? (
+                  <div className="inline-flex items-center space-x-1.5 md:space-x-2 px-4 md:px-8 py-2.5 md:py-4 bg-gradient-to-r from-yellow-600/10 to-orange-600/10 text-yellow-400 rounded-xl border border-yellow-500/20 backdrop-blur-xl text-sm md:text-base cursor-not-allowed">
+                    <span className="font-medium">{t('common:cardProject.comingSoonLabel')}</span>
+                  </div>
+                ) : (
+                  <a
+                    href={project.Link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group relative inline-flex items-center space-x-1.5 md:space-x-2 px-4 md:px-8 py-2.5 md:py-4 bg-gradient-to-r from-blue-600/10 to-purple-600/10 hover:from-blue-600/20 hover:to-purple-600/20 text-blue-300 rounded-xl transition-all duration-300 border border-blue-500/20 hover:border-blue-500/40 backdrop-blur-xl overflow-hidden text-sm md:text-base"
+                  >
+                    <div className="absolute inset-0 translate-y-[100%] bg-gradient-to-r from-blue-600/10 to-purple-600/10 transition-transform duration-300 group-hover:translate-y-[0%]" />
+                    <ExternalLink className="relative w-4 h-4 md:w-5 md:h-5 group-hover:rotate-12 transition-transform" />
+                    <span className="relative font-medium">{t('projectDetail.liveDemo')}</span>
+                  </a>
+                )}
 
                 <a
                   href={project.Github}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group relative inline-flex items-center space-x-1.5 md:space-x-2 px-4 md:px-8 py-2.5 md:py-4 bg-gradient-to-r from-purple-600/10 to-pink-600/10 hover:from-purple-600/20 hover:to-pink-600/20 text-purple-300 rounded-xl transition-all duration-300 border border-purple-500/20 hover:border-purple-500/40 backdrop-blur-xl overflow-hidden text-sm md:text-base"
-                  onClick={(e) => !handleGithubClick(project.Github) && e.preventDefault()}
+                  onClick={(e) => !handleGithubClick(project.Github, t) && e.preventDefault()}
                 >
                   <div className="absolute inset-0 translate-y-[100%] bg-gradient-to-r from-purple-600/10 to-pink-600/10 transition-transform duration-300 group-hover:translate-y-[0%]" />
                   <Github className="relative w-4 h-4 md:w-5 md:h-5 group-hover:rotate-12 transition-transform" />
-                  <span className="relative font-medium">Github</span>
+                  <span className="relative font-medium">{t('projectDetail.github')}</span>
                 </a>
               </div>
 
               <div className="space-y-4 md:space-y-6">
                 <h3 className="text-lg md:text-xl font-semibold text-white/90 mt-[3rem] md:mt-0 flex items-center gap-2 md:gap-3">
                   <Code2 className="w-4 h-4 md:w-5 md:h-5 text-blue-400" />
-                  Technologies Used
+                  {t('projectDetail.technologiesUsed')}
                 </h3>
                 {project.TechStack.length > 0 ? (
                   <div className="flex flex-wrap gap-2 md:gap-3">
@@ -214,7 +242,7 @@ const ProjectDetails = () => {
                     ))}
                   </div>
                 ) : (
-                  <p className="text-sm md:text-base text-gray-400 opacity-50">No technologies added.</p>
+                  <p className="text-sm md:text-base text-gray-400 opacity-50">{t('projectDetail.noTechnologies')}</p>
                 )}
               </div>
             </div>
@@ -236,7 +264,7 @@ const ProjectDetails = () => {
               <div className="bg-white/[0.02] backdrop-blur-xl rounded-2xl p-8 border border-white/10 space-y-6 hover:border-white/20 transition-colors duration-300 group">
                 <h3 className="text-xl font-semibold text-white/90 flex items-center gap-3">
                   <Star className="w-5 h-5 text-yellow-400 group-hover:rotate-[20deg] transition-transform duration-300" />
-                  Fonctionnalités Clés
+                  {t('projectDetail.keyFeatures')}
                 </h3>
                 {project.Features.length > 0 ? (
                   <ul className="list-none space-y-2">
@@ -245,7 +273,7 @@ const ProjectDetails = () => {
                     ))}
                   </ul>
                 ) : (
-                  <p className="text-gray-400 opacity-50">No features added.</p>
+                  <p className="text-gray-400 opacity-50">{t('projectDetail.noFeatures')}</p>
                 )}
               </div>
             </div>

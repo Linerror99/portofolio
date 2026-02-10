@@ -1,0 +1,18 @@
+{
+  "status": {
+    "ready": "Prêt à Innover"
+  },
+  "title": {
+    "cloud": "Cloud & DevOps",
+    "engineer": "Engineer"
+  },
+  "typing": {
+    "word1": "Cloud Engineer",
+    "word2": "DevOps Engineer"
+  },
+  "description": "Création d'infrastructures cloud innovantes, fiables et automatisées pour des solutions digitales performantes.",
+  "buttons": {
+    "projects": "Projets",
+    "contact": "Contact"
+  }
+}

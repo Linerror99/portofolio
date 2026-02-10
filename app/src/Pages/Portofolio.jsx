@@ -1,5 +1,6 @@
-import React, { useEffect, useState, useCallback } from "react";
-
+import React, { useEffect, useState, useCallback, useMemo } from "react";
+import { useTranslation } from 'react-i18next';
+import i18n from '../i18n';
 import PropTypes from "prop-types";
 import { useTheme } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
@@ -15,7 +16,7 @@ import Certificate from "../components/Certificate";
 import { Code, Award, Boxes } from "lucide-react";
 
 
-const ToggleButton = ({ onClick, isShowingMore }) => (
+const ToggleButton = ({ onClick, isShowingMore, t }) => (
   <button
     onClick={onClick}
     className="
@@ -43,7 +44,7 @@ const ToggleButton = ({ onClick, isShowingMore }) => (
     "
   >
     <span className="relative z-10 flex items-center gap-2">
-      {isShowingMore ? "Voir Moins" : "Voir Plus"}
+      {isShowingMore ? t('buttons.showLess') : t('buttons.showMore')}
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="16"
@@ -101,9 +102,9 @@ function a11yProps(index) {
 
 // Tech Stack - adapté à ton stack réel
 // Organisation du stack technique par catégories
-const techStackCategories = [
+const getTechStackCategories = (t) => [
   {
-    title: "Cloud & DevOps",
+    title: t('techStack.categories.cloudDevOps'),
     items: [
       { icon: "/icons/aws.svg", language: "AWS", level: 85 },
       { icon: "/icons/gcp.svg", language: "GCP", level: 85 },
@@ -115,7 +116,7 @@ const techStackCategories = [
     ]
   },
   {
-    title: "Langages de Programmation",
+    title: t('techStack.categories.programmingLanguages'),
     items: [
       { icon: "/icons/javascript.svg", language: "JavaScript", level: 65 },
       { icon: "/icons/python.svg", language: "Python", level: 80 },
@@ -125,7 +126,7 @@ const techStackCategories = [
     ]
   },
   {
-    title: "Frameworks & Technologies Web",
+    title: t('techStack.categories.webFrameworks'),
     items: [
       { icon: "/icons/reactjs.svg", language: "React", level: 60 },
       { icon: "/icons/nodejs.svg", language: "Node.js", level: 60 },
@@ -135,7 +136,7 @@ const techStackCategories = [
     ]
   },
   {
-    title: "Intelligence Artificielle & Outils IA",
+    title: t('techStack.categories.aiTools'),
     items: [
       { icon: "/icons/github-copilot.svg", language: "GitHub Copilot", level: 90 },
       { icon: "/icons/gemini.svg", language: "Gemini", level: 85 },
@@ -145,7 +146,7 @@ const techStackCategories = [
     ]
   },
   {
-    title: "Outils & Quality Assurance",
+    title: t('techStack.categories.toolsQA'),
     items: [
       { icon: "/icons/sonarqube.svg", language: "SonarQube", level: 70 },
       { icon: "/icons/maven.svg", language: "Maven", level: 85 },
@@ -155,7 +156,7 @@ const techStackCategories = [
     ]
   },
   {
-    title: "Environnements de Développement",
+    title: t('techStack.categories.devEnvironments'),
     items: [
       { icon: "/icons/vscode.svg", language: "VS Code", level: 95 },
       { icon: "/icons/eclipse.svg", language: "Eclipse", level: 75 },
@@ -164,10 +165,8 @@ const techStackCategories = [
   }
 ];
 
-// Tableau plat pour compatibilité
-const techStacks = techStackCategories.flatMap(category => category.items);
-
 export default function FullWidthTabs() {
+  const { t } = useTranslation('portfolio');
   const theme = useTheme();
   const [value, setValue] = useState(0);
   const [projects, setProjects] = useState([]);
@@ -178,6 +177,32 @@ export default function FullWidthTabs() {
   const isMobile = window.innerWidth < 768;
   const initialItems = isMobile ? 4 : 6;
   const techStackLimit = 3; // Montrer seulement les 3 premières catégories initialement
+  
+  // Générer les catégories traduites
+  const techStackCategories = getTechStackCategories(t);
+  // Tableau plat pour compatibilité
+  const techStacks = techStackCategories.flatMap(category => category.items);
+
+  // Recalculer les projets quand la langue change
+  const initialProjects = useMemo(() => {
+    const projectsData = t('projects', { returnObjects: true });
+    return projectsData.map((project, index) => ({
+      id: project.id,
+      Img: ["/projects/Coming_soon.jpg", "/projects/project-mimo-finance.jpg", "/projects/project-portfolio.jpg", "/projects/project-tiktok-pipeline.jpg"][index],
+      Title: project.title,
+      Description: project.description,
+      Link: ["#", "https://mimo-frontend-7ivz6pjoba-ew.a.run.app/", "https://ldjossou.com", "https://pipeline-frontend-354616212471.us-central1.run.app/"][index],
+      Github: ["#", "https://github.com/Linerror99/Mimo-core", "https://github.com/Linerror99/portofolio", "https://github.com/Linerror99Su/pipeline-video-tiktok"][index],
+      comingSoon: index === 0,
+      Features: project.features,
+      TechStack: [
+        ["Claude Sonnet 4", "TypeScript + Fastify", "GCP Cloud Run", "Firestore", "MCP SDK", "Compute Engine (Spot VMs)", "WebSocket", "OAuth 2.0", "Docker", "Terraform"],
+        ["React 18", "FastAPI + Python 3.12", "PostgreSQL 15", "Redis 7", "GCP Cloud Run", "Cloud SQL", "Artifact Registry", "Terraform", "GitHub Actions", "SonarCloud", "Docker", "Shadcn/ui"],
+        ["React + Vite", "Tailwind CSS", "Terraform", "Docker", "AWS ECS Fargate", "GCP Cloud Run", "GitHub Actions", "Nginx"],
+        ["Gemini 2.5 Pro", "Veo 3.0", "Google TTS Premium", "OpenAI Whisper", "FFmpeg", "Python 3.12", "Google Cloud Functions Gen2", "Cloud Storage", "Vertex AI"]
+      ][index]
+    }));
+  }, [t, i18n.language]);
 
   useEffect(() => {
     AOS.init({
@@ -209,128 +234,6 @@ export default function FullWidthTabs() {
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
 
-  // Données initiales (tu les remplaceras avec tes vraies données)
-  const initialProjects = [
-    {
-      id: 1,
-      Img: "/projects/Coming_soon.jpg",
-      Title: "AutoForge - Plateforme SaaS d'Automatisation par IA Multi-Agents",
-      Description: "De l'idée à l'application web en 2 heures. 4 agents IA spécialisés transforment votre description en application fullstack testée, déployée et prête à démarrer. Migration stratégique Vertex AI → Claude SDK : -55% coûts, -28% latence.",
-      Link: "#",
-      Github: "#",
-      comingSoon: true,
-      Features: [
-        "Pipeline automatisé 4 phases : PO Agent → Tech Lead → Executor → QA",
-        "Orchestration multi-agents via Claude SDK + MCP in-process (zero latency)",
-        "Migration technique Vertex AI → Claude : -55% coûts, -28% latence, -80% erreurs",
-        "VM isolées par projet (Spot VMs avec gestion préemption automatique)",
-        "Logs temps réel WebSocket + Live Preview iframe",
-        "Export complet : ZIP, GitHub push, ou déploiement Cloud Run",
-        "Time-to-Market : <2h de l'idée au MVP production-ready",
-        "Architecture serverless scalable (Cloud Run + Firestore)"
-      ],
-      TechStack: [
-        "Claude Sonnet 4",
-        "TypeScript + Fastify",
-        "GCP Cloud Run",
-        "Firestore",
-        "MCP SDK",
-        "Compute Engine (Spot VMs)",
-        "WebSocket",
-        "OAuth 2.0",
-        "Docker",
-        "Terraform"
-      ]
-    },
-    {
-      id: 2,
-      Img: "/projects/project-mimo-finance.jpg",
-      Title: "Mimo Finance - Application de Gestion Financière Collaborative",
-      Description: "Application web moderne de gestion financière pour individus et couples avec timeline unifiée, projections automatiques et mode couple. Déployée sur GCP Cloud Run avec infrastructure Terraform complète.",
-      Link: "https://mimo-frontend-7ivz6pjoba-ew.a.run.app/",
-      Github: "https://github.com/Linerror99/Mimo-core",
-      Features: [
-        "Timeline financière continue (passé → présent → futur sur 12 mois)",
-        "Mode couple avec 3 portefeuilles tracés + fusion/dissolution",
-        "Projections automatiques des transactions récurrentes",
-        "Validation quotidienne automatique via Cloud Scheduler",
-        "Infrastructure GCP complète (Cloud Run, Cloud SQL, Redis, VPC)",
-        "CI/CD avec GitHub Actions (tests, SonarCloud, déploiement automatique)",
-        "Terraform IaC pour reproductibilité totale",
-        "Tests unitaires + intégration avec 85%+ coverage"
-      ],
-      TechStack: [
-        "React 18",
-        "FastAPI + Python 3.12",
-        "PostgreSQL 15",
-        "Redis 7",
-        "GCP Cloud Run",
-        "Cloud SQL",
-        "Artifact Registry",
-        "Terraform",
-        "GitHub Actions",
-        "SonarCloud",
-        "Docker",
-        "Shadcn/ui"
-      ]
-    },
-    {
-      id: 3,
-      Img: "/projects/project-portfolio.jpg",
-      Title: "Infrastructure Multi-Cloud Portfolio",
-      Description: "Portfolio déployé sur AWS ECS et GCP Cloud Run avec Terraform pour l'IaC",
-      Link: "https://ldjossou.com",
-      Github: "https://github.com/Linerror99/portofolio",
-      Features: [
-        "Déploiement multi-cloud (AWS ECS Fargate + GCP Cloud Run)",
-        "Infrastructure as Code avec Terraform (modules réutilisables)",
-        "CI/CD automatisé avec GitHub Actions",
-        "Container Registry (AWS ECR + GCP Artifact Registry)",
-        "Lifecycle policies pour optimisation des coûts (~$15/mois)",
-        "Architecture serverless avec scale-to-zero"
-      ],
-      TechStack: [
-        "React + Vite",
-        "Tailwind CSS",
-        "Terraform",
-        "Docker",
-        "AWS ECS Fargate",
-        "GCP Cloud Run",
-        "GitHub Actions",
-        "Nginx"
-      ]
-    },
-    {
-      id: 4,
-      Img: "/projects/project-tiktok-pipeline.jpg",
-      Title: "Pipeline Vidéo IA TikTok - Génération Automatisée",
-      Description: "Pipeline complète de génération automatique de vidéos TikTok/Shorts virales à partir d'un simple thème. Utilise Gemini 2.5 Pro, Veo 3.0, Google TTS Premium, et Whisper.",
-      Link: "https://pipeline-frontend-354616212471.us-central1.run.app/",
-      Github: "https://github.com/Linerror99Su/pipeline-video-tiktok",
-      Features: [
-        "Génération de script IA avec Gemini 2.5 Pro",
-        "Voix off premium (voix Gemini naturelle via Google TTS)",
-        "Clips vidéo créatifs générés par Veo 3.0 (meilleur modèle vidéo IA)",
-        "Sous-titres style TikTok synchronisés (Whisper + ASS)",
-        "Format optimisé 9:16, durée 64-80 secondes",
-        "Pipeline entièrement automatisée : 1 thème → vidéo complète en 6-10 min",
-        "4 Cloud Functions déclenchées en cascade via Cloud Storage Events",
-        "Génération parallèle de 8 clips vidéo pour optimisation"
-      ],
-      TechStack: [
-        "Gemini 2.5 Pro",
-        "Veo 3.0",
-        "Google TTS Premium",
-        "OpenAI Whisper",
-        "FFmpeg",
-        "Python 3.12",
-        "Google Cloud Functions Gen2",
-        "Cloud Storage",
-        "Vertex AI"
-      ]
-    }
-  ];
-
   const initialCertificates = [
     { id: 1, Img: "/certificates/cert1.jpg" },
     { id: 2, Img: "/certificates/cert2.jpg" },
@@ -340,36 +243,10 @@ export default function FullWidthTabs() {
   ];
 
   useEffect(() => {
-    // Version du portfolio pour forcer le refresh si les données changent
-    const PORTFOLIO_VERSION = "3.3"; // Incrémenter pour forcer un refresh
-    const cachedVersion = localStorage.getItem('portfolioVersion');
-    
-    // Si la version a changé, vider le cache et forcer le rechargement
-    if (cachedVersion !== PORTFOLIO_VERSION) {
-      localStorage.clear(); // Vider tout le cache
-      localStorage.setItem('portfolioVersion', PORTFOLIO_VERSION);
-      // Forcer l'utilisation des données initiales
-      setProjects(initialProjects);
-      setCertificates(initialCertificates);
-      localStorage.setItem("projects", JSON.stringify(initialProjects));
-      localStorage.setItem("certificates", JSON.stringify(initialCertificates));
-    } else {
-      // Charger depuis localStorage si disponible
-      const cachedProjects = localStorage.getItem('projects');
-      const cachedCertificates = localStorage.getItem('certificates');
-
-      if (cachedProjects && cachedCertificates) {
-        setProjects(JSON.parse(cachedProjects));
-        setCertificates(JSON.parse(cachedCertificates));
-      } else {
-        // Première visite - utiliser les données initiales
-        setProjects(initialProjects);
-        setCertificates(initialCertificates);
-        localStorage.setItem("projects", JSON.stringify(initialProjects));
-        localStorage.setItem("certificates", JSON.stringify(initialCertificates));
-      }
-    }
-  }, []);
+    // Toujours utiliser les données traduites (pas de cache pour les projets)
+    setProjects(initialProjects);
+    setCertificates(initialCertificates);
+  }, [initialProjects, i18n.language]);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -402,12 +279,12 @@ export default function FullWidthTabs() {
             backgroundClip: 'text',
             WebkitTextFillColor: 'transparent'
           }}>
-            Vitrine Portfolio
+            {t('pageTitle')}
           </span>
         </h2>
         <p className="text-slate-400 max-w-2xl mx-auto text-sm md:text-base mt-2">
-          Découvrez mon parcours à travers mes projets, certifications et expertises techniques. 
-          Chaque section représente une étape de mon apprentissage continu.
+          {t('pageSubtitle')}{' '}
+          {t('pageDescription')}
         </p>
       </div>
 
@@ -482,17 +359,17 @@ export default function FullWidthTabs() {
           >
             <Tab
               icon={<Code className="mb-2 w-5 h-5 transition-all duration-300" />}
-              label="Projets"
+              label={t('tabs.projects')}
               {...a11yProps(0)}
             />
             <Tab
               icon={<Award className="mb-2 w-5 h-5 transition-all duration-300" />}
-              label="Certifications"
+              label={t('tabs.certifications')}
               {...a11yProps(1)}
             />
             <Tab
               icon={<Boxes className="mb-2 w-5 h-5 transition-all duration-300" />}
-              label="Stack Technique"
+              label={t('tabs.techStack')}
               {...a11yProps(2)}
             />
           </Tabs>
@@ -514,6 +391,7 @@ export default function FullWidthTabs() {
                     Description={project.Description}
                     Link={project.Link}
                     id={project.id}
+                    comingSoon={project.comingSoon}
                   />
                 </div>
               ))}
@@ -524,6 +402,7 @@ export default function FullWidthTabs() {
               <ToggleButton
                 onClick={() => toggleShowMore('projects')}
                 isShowingMore={showAllProjects}
+                t={t}
               />
             </div>
           )}
@@ -548,6 +427,7 @@ export default function FullWidthTabs() {
               <ToggleButton
                 onClick={() => toggleShowMore('certificates')}
                 isShowingMore={showAllCertificates}
+                t={t}
               />
             </div>
           )}
@@ -595,6 +475,7 @@ export default function FullWidthTabs() {
                 <ToggleButton
                   onClick={() => toggleShowMore('techstack')}
                   isShowingMore={showAllTechStack}
+                  t={t}
                 />
               </div>
             )}

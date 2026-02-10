@@ -1,17 +1,20 @@
 import React, { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Globe } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 const Navbar = () => {
+    const { t, i18n } = useTranslation('common');
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
     const [activeSection, setActiveSection] = useState("Home");
+    const [showLangMenu, setShowLangMenu] = useState(false);
     
     const navItems = [
-        { href: "#Home", label: "Accueil" },
-        { href: "#About", label: "À Propos" },
-        { href: "#Formation", label: "Formation" },
-        { href: "#Portofolio", label: "Portfolio" },
-        { href: "#Contact", label: "Contact" },
+        { href: "#Home", label: t('nav.home') },
+        { href: "#About", label: t('nav.about') },
+        { href: "#Formation", label: t('nav.formation') },
+        { href: "#Portofolio", label: t('nav.portfolio') },
+        { href: "#Contact", label: t('nav.contact') },
     ];
 
     useEffect(() => {
@@ -117,6 +120,48 @@ const Navbar = () => {
                                     />
                                 </a>
                             ))}
+                            
+                            {/* Language Switcher */}
+                            <div className="relative">
+                                <button
+                                    onClick={() => setShowLangMenu(!showLangMenu)}
+                                    className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-[#e2d3fd] hover:text-white transition-colors rounded-lg hover:bg-white/5"
+                                >
+                                    <Globe className="w-4 h-4" />
+                                    <span className="uppercase">{i18n.language}</span>
+                                </button>
+                                
+                                {showLangMenu && (
+                                    <div className="absolute right-0 mt-2 w-32 bg-[#0a0a1a] border border-white/10 rounded-lg shadow-xl overflow-hidden">
+                                        <button
+                                            onClick={() => {
+                                                i18n.changeLanguage('fr');
+                                                setShowLangMenu(false);
+                                            }}
+                                            className={`w-full px-4 py-2 text-left text-sm transition-colors ${
+                                                i18n.language === 'fr'
+                                                    ? 'bg-gradient-to-r from-[#6366f1]/20 to-[#a855f7]/20 text-white font-medium'
+                                                    : 'text-[#e2d3fd] hover:bg-white/5'
+                                            }`}
+                                        >
+                                            🇫🇷 Français
+                                        </button>
+                                        <button
+                                            onClick={() => {
+                                                i18n.changeLanguage('en');
+                                                setShowLangMenu(false);
+                                            }}
+                                            className={`w-full px-4 py-2 text-left text-sm transition-colors ${
+                                                i18n.language === 'en'
+                                                    ? 'bg-gradient-to-r from-[#6366f1]/20 to-[#a855f7]/20 text-white font-medium'
+                                                    : 'text-[#e2d3fd] hover:bg-white/5'
+                                            }`}
+                                        >
+                                            🇬🇧 English
+                                        </button>
+                                    </div>
+                                )}
+                            </div>
                         </div>
                     </div>
         
@@ -166,6 +211,36 @@ const Navbar = () => {
                             {item.label}
                         </a>
                     ))}
+                    
+                    {/* Mobile Language Switcher */}
+                    <div className="flex gap-2 px-4 pt-4 border-t border-white/10">
+                        <button
+                            onClick={() => {
+                                i18n.changeLanguage('fr');
+                                setIsOpen(false);
+                            }}
+                            className={`flex-1 px-3 py-2 text-sm font-medium rounded-lg transition-all ${
+                                i18n.language === 'fr'
+                                    ? 'bg-gradient-to-r from-[#6366f1] to-[#a855f7] text-white'
+                                    : 'bg-white/5 text-[#e2d3fd] hover:bg-white/10'
+                            }`}
+                        >
+                            🇫🇷 FR
+                        </button>
+                        <button
+                            onClick={() => {
+                                i18n.changeLanguage('en');
+                                setIsOpen(false);
+                            }}
+                            className={`flex-1 px-3 py-2 text-sm font-medium rounded-lg transition-all ${
+                                i18n.language === 'en'
+                                    ? 'bg-gradient-to-r from-[#6366f1] to-[#a855f7] text-white'
+                                    : 'bg-white/5 text-[#e2d3fd] hover:bg-white/10'
+                            }`}
+                        >
+                            🇬🇧 EN
+                        </button>
+                    </div>
                 </div>
             </div>
         </nav>

@@ -1,0 +1,34 @@
+{
+  "title": "À Propos",
+  "subtitle": "Transformer les idées en expériences cloud",
+  "greeting": "Bonjour, je suis",
+  "name": "Laurent DJOSSOU",
+  "description": "Ingénieur Cloud & DevOps full-stack : de l'infrastructure Terraform multi-cloud (AWS, Azure, GCP) aux interfaces modernes. J'automatise les déploiements, orchestre des pipelines CI/CD end-to-end, optimise les coûts d'infrastructure, et garantis la livraison continue d'applications en production.",
+  "quote": "Construire des infrastructures cloud fiables par le code et l'automatisation.",
+  "buttons": {
+    "downloadCV": "Télécharger CV",
+    "viewProjects": "Voir Mes Projets"
+  },
+  "stats": {
+    "projects": {
+      "value": "10+",
+      "label": "Projets",
+      "description": "Déployés en production"
+    },
+    "certifications": {
+      "value": "4+",
+      "label": "Certifications",
+      "description": "Cloud & DevOps"
+    },
+    "technologies": {
+      "value": "20+",
+      "label": "Technologies",
+      "description": "Maîtrisées"
+    },
+    "experience": {
+      "value": "3+",
+      "label": "Ans",
+      "description": "D'expérience"
+    }
+  }
+}

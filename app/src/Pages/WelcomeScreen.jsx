@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Code2, Github, Globe, User } from 'lucide-react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { useTranslation } from 'react-i18next';
 
 const TypewriterEffect = ({ text }) => {
   const [displayText, setDisplayText] = useState('');
@@ -47,6 +48,7 @@ const IconButton = ({ Icon }) => (
 
 const WelcomeScreen = ({ onLoadingComplete }) => {
   const [isLoading, setIsLoading] = useState(true);
+  const { t } = useTranslation('common');
 
   useEffect(() => {
     AOS.init({
@@ -123,22 +125,18 @@ const WelcomeScreen = ({ onLoadingComplete }) => {
               >
                 <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold space-y-2 sm:space-y-4">
                   <div className="mb-2 sm:mb-4">
-                    <span data-aos="fade-right" data-aos-delay="200" className="inline-block px-2 bg-gradient-to-r from-white via-blue-100 to-purple-200 bg-clip-text text-transparent">
-                      Bienvenue
-                    </span>{' '}
-                    <span data-aos="fade-right" data-aos-delay="400" className="inline-block px-2 bg-gradient-to-r from-white via-blue-100 to-purple-200 bg-clip-text text-transparent">
-                      sur
-                    </span>{' '}
-                    <span data-aos="fade-right" data-aos-delay="600" className="inline-block px-2 bg-gradient-to-r from-white via-blue-100 to-purple-200 bg-clip-text text-transparent">
-                      mon
+                    <span data-aos="fade-up" data-aos-delay="200" className="inline-block px-2 bg-gradient-to-r from-white via-blue-100 to-purple-200 bg-clip-text text-transparent">
+                      {t('welcome.greeting')}
                     </span>
                   </div>
                   <div>
-                    <span data-aos="fade-up" data-aos-delay="800" className="inline-block px-2 bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
-                      Portfolio
-                    </span>{' '}
+                    <span data-aos="fade-up" data-aos-delay="600" className="inline-block px-2 bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+                      {t('welcome.name')}
+                    </span>
+                  </div>
+                  <div>
                     <span data-aos="fade-up" data-aos-delay="1000" className="inline-block px-2 bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
-                      Website
+                      {t('welcome.role')}
                     </span>
                   </div>
                 </h1>

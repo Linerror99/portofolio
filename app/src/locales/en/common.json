@@ -1,0 +1,32 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "formation": "Education",
+    "portfolio": "Portfolio",
+    "contact": "Contact"
+  },
+  "language": {
+    "switch": "Language",
+    "french": "Français",
+    "english": "English"  },
+  "notFound": {
+    "title": "Oops! Page Not Found",
+    "description": "The page you are looking for might have been moved, removed, or does not exist.",
+    "back": "Go Back",
+    "home": "Home"
+  },
+  "cardProject": {
+    "comingSoon": "This project will be available soon!",
+    "comingSoonLabel": "Coming soon...",
+    "demoNotAvailable": "Demo not available",
+    "detailsNotAvailable": "Details not available",
+    "liveDemo": "Live Demo",
+    "details": "Details"
+  },
+  "welcome": {
+    "greeting": "Hello, I'm",
+    "name": "Laurent DJOSSOU",
+    "role": "Cloud & DevOps Engineer",
+    "cta": "Discover my portfolio"  }
+}

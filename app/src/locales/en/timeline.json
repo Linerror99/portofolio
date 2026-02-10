@@ -1,0 +1,61 @@
+{
+  "title": "Education Journey",
+  "subtitle": "My path to excellence in Cloud & DevOps",
+  "navigation": {
+    "previous": "Previous",
+    "next": "Next"
+  },
+  "items": [
+    {
+      "year": "2024-2026",
+      "title": "Work-Study Program - Fullstack Developer",
+      "subtitle": "Capgemini Engineering | France",
+      "items": [
+        "Java/Spring Boot web application development",
+        "Deployment on Tomcat servers and automation",
+        "Bash scripting and Linux command mastery",
+        "CI/CD with Git, Jenkins, and GitLab",
+        "Agile/Scrum methodology in team environment",
+        "Software testing and quality assurance"
+      ]
+    },
+    {
+      "year": "2023-2026",
+      "title": "General Engineering Program",
+      "subtitle": "ESIGELEC | Specialization: Software Development, Testing & Quality",
+      "items": [
+        "Infrastructure as Code (IaC) and automation",
+        "Containerization and orchestration (Docker, Kubernetes)",
+        "CI/CD and DevOps (Jenkins, GitLab CI, GitHub Actions)",
+        "Cloud Computing (AWS, GCP, Azure)",
+        "Microservices architecture and monitoring (Prometheus, Grafana)",
+        "Application security and DevSecOps"
+      ]
+    },
+    {
+      "year": "June 2022",
+      "title": "Academic Internship",
+      "subtitle": "SBIN - Benin Digital Infrastructure Company",
+      "items": [
+        "Object-oriented programming in Java",
+        "IT maintenance and debugging",
+        "Operating system installation and configuration",
+        "Technical support and documentation",
+        "IT asset management"
+      ]
+    },
+    {
+      "year": "2021-2023",
+      "title": "Integrated Preparatory Cycle",
+      "subtitle": "ESIGELEC | Poitiers, France",
+      "items": [
+        "Applied mathematics and analysis",
+        "Physics and electronics",
+        "Engineering sciences",
+        "Computer architecture",
+        "Programming (Python, C, Java)",
+        "Algorithms and data structures"
+      ]
+    }
+  ]
+}

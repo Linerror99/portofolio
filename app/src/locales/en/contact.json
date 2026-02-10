@@ -1,0 +1,37 @@
+{
+  "pageTitle": "Contact Me",
+  "pageSubtitle": "Have a question? Send me a message and I'll get back to you quickly.",
+  "title": "Let's Work Together",
+  "subtitle": "Want to connect? Send me a message and let's discuss together.",
+  "form": {
+    "name": "Your name",
+    "email": "Your email",
+    "message": "Your message",
+    "submit": "Send",
+    "submitting": "Sending..."
+  },
+  "info": {
+    "title": "Let's Work Together",
+    "description": "I'm available for freelance opportunities, collaborations on innovative projects, or simply to chat about Cloud and DevOps.",
+    "email": "laurent.djossou@groupe-esigelec.org",
+    "location": "Rouen, France",
+    "availability": "Available for new projects"
+  },
+  "social": {
+    "title": "Find me on"
+  },
+  "alerts": {
+    "success": {
+      "title": "Success!",
+      "text": "Your message has been sent successfully!"
+    },
+    "warning": {
+      "title": "Warning!",
+      "text": "Please fill in all fields"
+    },
+    "sending": {
+      "title": "Sending...",
+      "text": "Please wait while your message is being sent"
+    }
+  }
+}

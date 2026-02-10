@@ -1,0 +1,32 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "about": "À Propos",
+    "formation": "Formation",
+    "portfolio": "Portfolio",
+    "contact": "Contact"
+  },
+  "language": {
+    "switch": "Langue",
+    "french": "Français",
+    "english": "English"  },
+  "notFound": {
+    "title": "Oups ! Page Introuvable",
+    "description": "La page que vous recherchez a peut-être été déplacée, supprimée, ou n'existe pas.",
+    "back": "Retour",
+    "home": "Accueil"
+  },
+  "cardProject": {
+    "comingSoon": "Ce projet sera bientôt disponible !",
+    "comingSoonLabel": "Arrive bientôt...",
+    "demoNotAvailable": "Démo non disponible",
+    "detailsNotAvailable": "Détails non disponibles",
+    "liveDemo": "Live Demo",
+    "details": "Détails"
+  },
+  "welcome": {
+    "greeting": "Bonjour, je suis",
+    "name": "Laurent DJOSSOU",
+    "role": "Ingénieur Cloud & DevOps",
+    "cta": "Découvrir mon portfolio"  }
+}
