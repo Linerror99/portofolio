@@ -59,17 +59,19 @@
     },
     {
       "id": 4,
-      "title": "Pipeline Vidéo IA TikTok - Génération Automatisée",
-      "description": "Pipeline complète de génération automatique de vidéos TikTok/Shorts virales à partir d'un simple thème. Utilise Gemini 2.5 Pro, Veo 3.0, Google TTS Premium, et Whisper.",
+      "title": "Reetik - Générateur de Vidéos Virales IA",
+      "description": "Pipeline complète de génération automatique de vidéos TikTok/Shorts virales en ~6-10 minutes. Utilise Gemini 2.5 Pro, Veo 3.1 (qualité HD cinématique), Google TTS Premium, et Whisper. Interface React + Backend FastAPI sur Cloud Run.",
       "features": [
         "Génération de script IA avec Gemini 2.5 Pro",
-        "Voix off premium (voix Gemini naturelle via Google TTS)",
-        "Clips vidéo créatifs générés par Veo 3.0 (meilleur modèle vidéo IA)",
+        "Voix off premium (voix Gemini naturelle)",
+        "Clips vidéo créatifs générés par Veo 3.1 (qualité cinématique HD 1080p)",
         "Sous-titres style TikTok synchronisés (Whisper + ASS)",
-        "Format optimisé 9:16, durée 64-80 secondes",
-        "Pipeline entièrement automatisée : 1 thème → vidéo complète en 6-10 min",
-        "4 Cloud Functions déclenchées en cascade via Cloud Storage Events",
-        "Génération parallèle de 8 clips vidéo pour optimisation"
+        "Format optimisé : 9:16, 64-80 secondes, HD 1080p",
+        "Pipeline entièrement automatisée : 1 requête → vidéo complète en ~6-10 min",
+        "Frontend React + Backend FastAPI déployés sur Cloud Run",
+        "CI/CD avec GitHub Actions + Terraform IaC",
+        "Authentification JWT + système de quotas (2 vidéos/utilisateur)",
+        "WebSocket temps réel pour suivi de progression"
       ]
     }
   ],

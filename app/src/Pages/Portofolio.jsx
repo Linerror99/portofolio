@@ -191,7 +191,7 @@ export default function FullWidthTabs() {
       Img: ["/projects/Coming_soon.jpg", "/projects/project-mimo-finance.jpg", "/projects/project-portfolio.jpg", "/projects/project-tiktok-pipeline.jpg"][index],
       Title: project.title,
       Description: project.description,
-      Link: ["#", "https://mimo-frontend-7ivz6pjoba-ew.a.run.app/", "https://ldjossou.com", "https://pipeline-frontend-354616212471.us-central1.run.app/"][index],
+      Link: ["#", "https://mimo-frontend-7ivz6pjoba-ew.a.run.app/", "https://ldjossou.com", "https://tiktok-frontend-838433433731.us-central1.run.app/"][index],
       Github: ["#", "https://github.com/Linerror99/Mimo-core", "https://github.com/Linerror99/portofolio", "https://github.com/Linerror99Su/pipeline-video-tiktok"][index],
       comingSoon: index === 0,
       Features: project.features,
@@ -199,7 +199,7 @@ export default function FullWidthTabs() {
         ["Claude Sonnet 4", "TypeScript + Fastify", "GCP Cloud Run", "Firestore", "MCP SDK", "Compute Engine (Spot VMs)", "WebSocket", "OAuth 2.0", "Docker", "Terraform"],
         ["React 18", "FastAPI + Python 3.12", "PostgreSQL 15", "Redis 7", "GCP Cloud Run", "Cloud SQL", "Artifact Registry", "Terraform", "GitHub Actions", "SonarCloud", "Docker", "Shadcn/ui"],
         ["React + Vite", "Tailwind CSS", "Terraform", "Docker", "AWS ECS Fargate", "GCP Cloud Run", "GitHub Actions", "Nginx"],
-        ["Gemini 2.5 Pro", "Veo 3.0", "Google TTS Premium", "OpenAI Whisper", "FFmpeg", "Python 3.12", "Google Cloud Functions Gen2", "Cloud Storage", "Vertex AI"]
+        ["Gemini 2.5 Pro", "Veo 3.1", "Google TTS Premium", "OpenAI Whisper", "FFmpeg", "React 18 + TypeScript", "FastAPI + Python 3.12", "GCP Cloud Run", "Cloud Functions Gen2", "Firestore", "Cloud Storage", "Terraform", "GitHub Actions", "Docker"]
       ][index]
     }));
   }, [t, i18n.language]);
