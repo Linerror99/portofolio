@@ -113,7 +113,7 @@ const ProjectDetails = () => {
       Img: ["/projects/Coming_soon.jpg", "/projects/project-mimo-finance.jpg", "/projects/project-portfolio.jpg", "/projects/project-tiktok-pipeline.jpg"][index],
       Title: project.title,
       Description: project.description,
-      Link: ["#", "https://mimo-frontend-7ivz6pjoba-ew.a.run.app/", "https://ldjossou.com", "https://tiktok-frontend-838433433731.us-central1.run.app/"][index],
+      Link: ["#", "https://mimo.ldjossou.com", "https://ldjossou.com", "https://reetik.ldjossou.com"][index],
       Github: ["#", "https://github.com/Linerror99/Mimo-core", "https://github.com/Linerror99/portofolio", "https://github.com/Linerror99Su/pipeline-video-tiktok"][index],
       comingSoon: index === 0,
       Features: project.features,
