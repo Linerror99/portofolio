@@ -265,16 +265,16 @@ const ContactPage = () => {
                 <div className="space-y-5 mb-8">
                   {/* Email avec effet hover amélioré */}
                   <a 
-                    href="mailto:djossou628@gmail.com" 
+                    href="mailto:laurent.djossou@groupe-esigelec.org" 
                     className="flex items-center gap-4 group p-4 rounded-xl bg-gradient-to-r from-white/5 to-white/0 hover:from-[#6366f1]/10 hover:to-[#6366f1]/5 transition-all duration-300 border border-transparent hover:border-[#6366f1]/20"
                   >
                     <div className="w-12 h-12 rounded-xl bg-gradient-to-r from-[#6366f1]/20 to-[#6366f1]/10 flex items-center justify-center group-hover:scale-110 transition-transform">
                       <Mail className="w-6 h-6 text-[#6366f1]" />
                     </div>
                     <div>
-                      <p className="text-gray-400 text-xs uppercase tracking-wider">Email</p>
+                      <p className="text-gray-400 text-xs uppercase tracking-wider">{t('card.emailLabel')}</p>
                       <p className="text-white font-medium group-hover:text-[#6366f1] transition-colors">
-                        djossou628@gmail.com
+                        laurent.djossou@groupe-esigelec.org
                       </p>
                     </div>
                   </a>
@@ -290,7 +290,7 @@ const ContactPage = () => {
                       <Linkedin className="w-6 h-6 text-[#0077b5]" />
                     </div>
                     <div>
-                      <p className="text-gray-400 text-xs uppercase tracking-wider">LinkedIn</p>
+                      <p className="text-gray-400 text-xs uppercase tracking-wider">{t('card.linkedinLabel')}</p>
                       <p className="text-white font-medium group-hover:text-[#0077b5] transition-colors">
                         Laurent DJOSSOU
                       </p>
@@ -308,7 +308,7 @@ const ContactPage = () => {
                       <Github className="w-6 h-6 text-white" />
                     </div>
                     <div>
-                      <p className="text-gray-400 text-xs uppercase tracking-wider">GitHub</p>
+                      <p className="text-gray-400 text-xs uppercase tracking-wider">{t('card.githubLabel')}</p>
                       <p className="text-white font-medium group-hover:text-gray-300 transition-colors">
                         @Linerror99
                       </p>
@@ -321,8 +321,8 @@ const ContactPage = () => {
                       <MapPin className="w-6 h-6 text-[#a855f7]" />
                     </div>
                     <div>
-                      <p className="text-gray-400 text-xs uppercase tracking-wider">Localisation</p>
-                      <p className="text-white font-medium">France</p>
+                      <p className="text-gray-400 text-xs uppercase tracking-wider">{t('card.locationLabel')}</p>
+                      <p className="text-white font-medium">{t('card.locationValue')}</p>
                     </div>
                   </div>
                 </div>
@@ -337,12 +337,12 @@ const ContactPage = () => {
                       <div className="absolute inset-0 w-3 h-3 rounded-full bg-green-400 animate-ping opacity-75"></div>
                     </div>
                     <div>
-                      <p className="text-white font-semibold text-sm">Disponible</p>
-                      <p className="text-gray-400 text-xs">Réponse rapide </p>
+                      <p className="text-white font-semibold text-sm">{t('card.available')}</p>
+                      <p className="text-gray-400 text-xs">{t('card.fastResponse')}</p>
                     </div>
                   </div>
                   <div className="text-right">
-                    <p className="text-xs text-gray-400">Temps de réponse</p>
+                    <p className="text-xs text-gray-400">{t('card.responseTime')}</p>
                     <p className="text-white font-semibold text-sm">{"< 48h"}</p>
                   </div>
                 </div>
