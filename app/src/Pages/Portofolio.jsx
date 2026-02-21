@@ -78,11 +78,9 @@ function TabPanel({ children, value, index, ...other }) {
       aria-labelledby={`full-width-tab-${index}`}
       {...other}
     >
-      {value === index && (
-        <Box sx={{ p: { xs: 1, sm: 3 } }}>
-          <Typography component="div">{children}</Typography>
-        </Box>
-      )}
+      <Box sx={{ p: { xs: 1, sm: 3 }, display: value !== index ? 'none' : 'block' }}>
+        <Typography component="div">{children}</Typography>
+      </Box>
     </div>
   );
 }
@@ -191,7 +189,7 @@ export default function FullWidthTabs() {
       Img: ["/projects/Coming_soon.jpg", "/projects/project-mimo-finance.jpg", "/projects/project-portfolio.jpg", "/projects/project-tiktok-pipeline.jpg"][index],
       Title: project.title,
       Description: project.description,
-      Link: ["#", "https://mimo-frontend-7ivz6pjoba-ew.a.run.app/", "https://ldjossou.com", "https://tiktok-frontend-838433433731.us-central1.run.app/"][index],
+      Link: ["#", "https://mimo.ldjossou.com", "https://ldjossou.com", "https://reetik.ldjossou.com"][index],
       Github: ["#", "https://github.com/Linerror99/Mimo-core", "https://github.com/Linerror99/portofolio", "https://github.com/Linerror99Su/pipeline-video-tiktok"][index],
       comingSoon: index === 0,
       Features: project.features,
@@ -249,7 +247,18 @@ export default function FullWidthTabs() {
   }, [initialProjects, i18n.language]);
 
   const handleChange = (event, newValue) => {
+    // Réinitialiser les animations AOS sur l'onglet cible pour qu'elles rejouent
+    const targetPanel = document.getElementById(`full-width-tabpanel-${newValue}`);
+    if (targetPanel) {
+      targetPanel.querySelectorAll('.aos-animate').forEach(el => {
+        el.classList.remove('aos-animate');
+      });
+    }
     setValue(newValue);
+    // Rafraîchir AOS pour détecter et animer les éléments nouvellement visibles
+    setTimeout(() => {
+      AOS.refresh();
+    }, 50);
   };
 
   const toggleShowMore = useCallback((type) => {

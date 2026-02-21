@@ -118,8 +118,10 @@ const AboutPage = () => {
   
   // Memoized calculations
   const { totalProjects, totalCertificates, YearExperience } = useMemo(() => {
-    const storedProjects = JSON.parse(localStorage.getItem("projects") || "[]");
-    const storedCertificates = JSON.parse(localStorage.getItem("certificates") || "[]");
+    // Nombre de projets depuis les traductions
+    const projectsCount = 4; // AutoForge, Mimo Finance, Portfolio, Reetik
+    // Nombre de certifications (hardcodé car les images sont statiques)
+    const certificatesCount = 5; // cert1 à cert5
     
     const startDate = new Date("2022-01-01");
     const today = new Date();
@@ -127,8 +129,8 @@ const AboutPage = () => {
       (today < new Date(today.getFullYear(), startDate.getMonth(), startDate.getDate()) ? 1 : 0);
 
     return {
-      totalProjects: storedProjects.length,
-      totalCertificates: storedCertificates.length,
+      totalProjects: projectsCount,
+      totalCertificates: certificatesCount,
       YearExperience: experience
     };
   }, []);
