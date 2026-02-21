@@ -17,6 +17,16 @@
     "location": "Rouen, France",
     "availability": "Disponible pour de nouveaux projets"
   },
+  "card": {
+    "emailLabel": "EMAIL",
+    "linkedinLabel": "LINKEDIN",
+    "githubLabel": "GITHUB",
+    "locationLabel": "LOCALISATION",
+    "locationValue": "France",
+    "available": "Disponible",
+    "fastResponse": "Réponse rapide",
+    "responseTime": "Temps de réponse"
+  },
   "social": {
     "title": "Retrouvez-moi sur"
   },

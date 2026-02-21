@@ -17,6 +17,16 @@
     "location": "Rouen, France",
     "availability": "Available for new projects"
   },
+  "card": {
+    "emailLabel": "EMAIL",
+    "linkedinLabel": "LINKEDIN",
+    "githubLabel": "GITHUB",
+    "locationLabel": "LOCATION",
+    "locationValue": "France",
+    "available": "Available",
+    "fastResponse": "Fast response",
+    "responseTime": "Response time"
+  },
   "social": {
     "title": "Find me on"
   },
