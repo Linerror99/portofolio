@@ -233,11 +233,12 @@ export default function FullWidthTabs() {
   }, []);
 
   const initialCertificates = [
-    { id: 1, Img: "/certificates/cert1.jpg" },
-    { id: 2, Img: "/certificates/cert2.jpg" },
-    { id: 3, Img: "/certificates/cert3.jpg" },
-    { id: 4, Img: "/certificates/cert4.jpg" },
-    { id: 5, Img: "/certificates/cert5.jpg" }
+    { id: 1, Img: "/certificates/cert1.jpg", nameKey: "certNames.cert1" },
+    { id: 2, Img: "/certificates/cert2.jpg", nameKey: "certNames.cert2" },
+    { id: 3, Img: "/certificates/cert3.jpg", nameKey: "certNames.cert3" },
+    { id: 4, Img: "/certificates/cert4.jpg", nameKey: "certNames.cert4" },
+    { id: 5, Img: "/certificates/cert5.jpg", nameKey: "certNames.cert5" },
+    { id: 6, Img: "/certificates/cert6.jpg", nameKey: "certNames.cert6" }
   ];
 
   useEffect(() => {
@@ -426,7 +427,7 @@ export default function FullWidthTabs() {
                   data-aos={index % 3 === 0 ? "fade-up-right" : index % 3 === 1 ? "fade-up" : "fade-up-left"}
                   data-aos-duration={index % 3 === 0 ? "1000" : index % 3 === 1 ? "1200" : "1000"}
                 >
-                  <Certificate ImgSertif={certificate.Img} />
+                  <Certificate ImgSertif={certificate.Img} name={t(certificate.nameKey)} />
                 </div>
               ))}
             </div>
