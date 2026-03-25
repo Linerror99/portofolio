@@ -121,7 +121,7 @@ const AboutPage = () => {
     // Nombre de projets depuis les traductions
     const projectsCount = 4; // AutoForge, Mimo Finance, Portfolio, Reetik
     // Nombre de certifications (hardcodé car les images sont statiques)
-    const certificatesCount = 5; // cert1 à cert5
+    const certificatesCount = 6; // cert1 à cert6
     
     const startDate = new Date("2022-01-01");
     const today = new Date();
