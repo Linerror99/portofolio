@@ -13,6 +13,14 @@
     "liveDemo": "Live Demo",
     "details": "Détails"
   },
+  "certNames": {
+    "cert1": "Terraform Certified Associate (003)",
+    "cert2": "Conception Responsable de Services Numériques",
+    "cert3": "ISTQB CTFL - Niveau Fondation v4.0",
+    "cert4": "ISTQB CTAL-TAE - Test Automation Engineering v2.0",
+    "cert5": "Claude Code in Action",
+    "cert6": "Google Cloud Associate Cloud Engineer"
+  },
   "projects": [
     {
       "id": 1,
