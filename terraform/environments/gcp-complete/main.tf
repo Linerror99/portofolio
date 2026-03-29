@@ -107,3 +107,53 @@ module "compute" {
   
   tags = var.tags
 }
+
+# ============================================================================
+# MODULE 4 : MONITORING
+# ============================================================================
+# Monitoring complet : uptime checks, alertes, dashboard, détection d'attaques
+# ============================================================================
+
+module "monitoring" {
+  source = "../../modules/monitoring"
+
+  gcp_project_id = var.gcp_project_id
+  gcp_region     = var.gcp_region
+  project_name   = var.project_name
+  environment    = var.environment
+
+  # Notification
+  notification_email = var.notification_email
+
+  # Cloud Run service à monitorer
+  cloud_run_service_name = module.compute.cloud_run_service_name
+
+  # URLs à monitorer (uptime checks)
+  monitored_urls = [
+    {
+      display_name = "Portfolio"
+      host         = "ldjossou.com"
+      path         = "/"
+    },
+    {
+      display_name = "Reetik"
+      host         = "reetik.ldjossou.com"
+      path         = "/"
+    },
+    {
+      display_name = "Mimo"
+      host         = "mimo.ldjossou.com"
+      path         = "/"
+    }
+  ]
+
+  # Seuils d'alerte (valeurs par défaut raisonnables, ajustables)
+  latency_threshold_ms          = 5000   # Alerte si latence p99 > 5s
+  error_rate_threshold          = 0.05   # Alerte si taux d'erreur 5xx > 5%
+  cpu_threshold                 = 0.8    # Alerte si CPU > 80%
+  memory_threshold              = 0.8    # Alerte si mémoire > 80%
+  request_count_spike_threshold = 500    # Alerte si > 500 requêtes/min
+  instance_count_threshold      = 5      # Alerte si > 5 instances
+
+  tags = var.tags
+}
