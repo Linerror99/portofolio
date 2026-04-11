@@ -42,3 +42,27 @@ output "health_check_url" {
   description = "URL du health check"
   value       = "${module.compute.app_url}/health"
 }
+
+# ============================================================================
+# Monitoring
+# ============================================================================
+
+output "monitoring_dashboard_url" {
+  description = "URL du dashboard de monitoring GCP"
+  value       = module.monitoring.dashboard_url
+}
+
+output "monitoring_urls" {
+  description = "URLs utiles de la console de monitoring"
+  value       = module.monitoring.monitoring_urls
+}
+
+output "uptime_check_ids" {
+  description = "IDs des uptime checks"
+  value       = module.monitoring.uptime_check_ids
+}
+
+output "alert_policy_ids" {
+  description = "IDs des politiques d'alerte"
+  value       = module.monitoring.alert_policy_ids
+}
