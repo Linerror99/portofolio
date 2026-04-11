@@ -36,3 +36,12 @@ variable "tags" {
     CostCenter = "Portfolio"
   }
 }
+
+# ============================================================================
+# Variables Monitoring
+# ============================================================================
+
+variable "notification_email" {
+  description = "Email pour recevoir les alertes de monitoring"
+  type        = string
+}

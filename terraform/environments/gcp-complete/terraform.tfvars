@@ -24,3 +24,8 @@ tags = {
   CostCenter = "Portfolio"
   Cloud      = "GCP"
 }
+
+# ----------------------------------------------------------------------------
+# CONFIGURATION MONITORING
+# ----------------------------------------------------------------------------
+notification_email = "laurent.djossou@groupe-esigelec.org"
