@@ -233,12 +233,13 @@ export default function FullWidthTabs() {
   }, []);
 
   const initialCertificates = [
+    { id: 6, Img: "/certificates/cert6.jpg", nameKey: "certNames.cert6" },
+    { id: 7, Img: "/certificates/cert7.jpg", nameKey: "certNames.cert7" },
     { id: 1, Img: "/certificates/cert1.jpg", nameKey: "certNames.cert1" },
     { id: 2, Img: "/certificates/cert2.jpg", nameKey: "certNames.cert2" },
     { id: 3, Img: "/certificates/cert3.jpg", nameKey: "certNames.cert3" },
     { id: 4, Img: "/certificates/cert4.jpg", nameKey: "certNames.cert4" },
-    { id: 5, Img: "/certificates/cert5.jpg", nameKey: "certNames.cert5" },
-    { id: 6, Img: "/certificates/cert6.jpg", nameKey: "certNames.cert6" }
+    { id: 5, Img: "/certificates/cert5.jpg", nameKey: "certNames.cert5" }
   ];
 
   useEffect(() => {
