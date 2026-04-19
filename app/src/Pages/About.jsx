@@ -123,7 +123,7 @@ const AboutPage = () => {
     // Nombre de certifications (hardcodé car les images sont statiques)
     const certificatesCount = 7; // cert1 à cert7
     
-    const startDate = new Date("2022-01-01");
+    const startDate = new Date("2024-01-01");
     const today = new Date();
     const experience = today.getFullYear() - startDate.getFullYear() -
       (today < new Date(today.getFullYear(), startDate.getMonth(), startDate.getDate()) ? 1 : 0);
