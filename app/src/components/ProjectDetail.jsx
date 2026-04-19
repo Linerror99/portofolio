@@ -4,36 +4,49 @@ import { useTranslation } from 'react-i18next';
 import i18n from '../i18n';
 import {
   ArrowLeft, ExternalLink, Github, Code2, Star,
-  ChevronRight, Layers, Layout, Globe, Package, Cpu, Code,
+  ChevronRight, Layers, Layout, Globe, Package, Cpu, Code, Network, ZoomIn,
+  Database, Container, Cloud, GitBranch, Brain, Monitor,
 } from "lucide-react";
 import Swal from 'sweetalert2';
+import ScreenshotCarousel from "./ScreenshotCarousel";
 
-const TECH_ICONS = {
-  React: Globe,
-  Tailwind: Layout,
-  Express: Cpu,
-  Python: Code,
-  Javascript: Code,
-  HTML: Code,
-  CSS: Code,
-  default: Package,
+const CATEGORY_STYLES = {
+  frontend:  { icon: Globe,     color: "cyan",    from: "from-cyan-600/10",    to: "to-cyan-600/10",    border: "border-cyan-500/10",    hoverBorder: "hover:border-cyan-500/30",    text: "text-cyan-300/90",    iconColor: "text-cyan-400" },
+  backend:   { icon: Cpu,       color: "violet",  from: "from-violet-600/10",  to: "to-violet-600/10",  border: "border-violet-500/10",  hoverBorder: "hover:border-violet-500/30",  text: "text-violet-300/90",  iconColor: "text-violet-400" },
+  ai:        { icon: Brain,     color: "amber",   from: "from-amber-600/10",   to: "to-amber-600/10",   border: "border-amber-500/10",   hoverBorder: "hover:border-amber-500/30",   text: "text-amber-300/90",   iconColor: "text-amber-400" },
+  database:  { icon: Database,  color: "emerald", from: "from-emerald-600/10", to: "to-emerald-600/10", border: "border-emerald-500/10", hoverBorder: "hover:border-emerald-500/30", text: "text-emerald-300/90", iconColor: "text-emerald-400" },
+  cloud:     { icon: Cloud,     color: "blue",    from: "from-blue-600/10",    to: "to-blue-600/10",    border: "border-blue-500/10",    hoverBorder: "hover:border-blue-500/30",    text: "text-blue-300/90",    iconColor: "text-blue-400" },
+  cicd:      { icon: GitBranch, color: "orange",  from: "from-orange-600/10",  to: "to-orange-600/10",  border: "border-orange-500/10",  hoverBorder: "hover:border-orange-500/30",  text: "text-orange-300/90",  iconColor: "text-orange-400" },
 };
 
-const TechBadge = ({ tech }) => {
-  const Icon = TECH_ICONS[tech] || TECH_ICONS["default"];
+const TechBadge = ({ tech, category = "cloud" }) => {
+  const style = CATEGORY_STYLES[category] || CATEGORY_STYLES.cloud;
+  const Icon = style.icon;
   
   return (
-    <div className="group relative overflow-hidden px-3 py-2 md:px-4 md:py-2.5 bg-gradient-to-r from-blue-600/10 to-purple-600/10 rounded-xl border border-blue-500/10 hover:border-blue-500/30 transition-all duration-300 cursor-default">
-      <div className="absolute inset-0 bg-gradient-to-r from-blue-500/0 to-purple-500/0 group-hover:from-blue-500/10 group-hover:to-purple-500/10 transition-all duration-500" />
+    <div className={`group relative overflow-hidden px-3 py-2 md:px-4 md:py-2.5 bg-gradient-to-r ${style.from} ${style.to} rounded-xl border ${style.border} ${style.hoverBorder} transition-all duration-300 cursor-default`}>
       <div className="relative flex items-center gap-1.5 md:gap-2">
-        <Icon className="w-3.5 h-3.5 md:w-4 md:h-4 text-blue-400 group-hover:text-blue-300 transition-colors" />
-        <span className="text-xs md:text-sm font-medium text-blue-300/90 group-hover:text-blue-200 transition-colors">
+        <Icon className={`w-3.5 h-3.5 md:w-4 md:h-4 ${style.iconColor} transition-colors`} />
+        <span className={`text-xs md:text-sm font-medium ${style.text} transition-colors`}>
           {tech}
         </span>
       </div>
     </div>
   );
 };
+
+const TechCategory = ({ label, techs, categoryKey }) => (
+  <div className="space-y-2">
+    <span className={`text-xs font-semibold uppercase tracking-wider ${(CATEGORY_STYLES[categoryKey] || CATEGORY_STYLES.cloud).iconColor} opacity-80`}>
+      {label}
+    </span>
+    <div className="flex flex-wrap gap-2 md:gap-2.5">
+      {techs.map((tech, i) => (
+        <TechBadge key={i} tech={tech} category={categoryKey} />
+      ))}
+    </div>
+  </div>
+);
 
 const FeatureItem = ({ feature }) => {
   return (
@@ -50,7 +63,9 @@ const FeatureItem = ({ feature }) => {
 };
 
 const ProjectStats = ({ project, t }) => {
-  const techStackCount = project?.TechStack?.length || 0;
+  const techStackCount = project?.TechStack
+    ? Object.values(project.TechStack).flat().length
+    : 0;
   const featuresCount = project?.Features?.length || 0;
 
   return (
@@ -102,6 +117,7 @@ const ProjectDetails = () => {
   const navigate = useNavigate();
   const [project, setProject] = useState(null);
   const [isImageLoaded, setIsImageLoaded] = useState(false);
+  const [isArchFullscreen, setIsArchFullscreen] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -110,18 +126,68 @@ const ProjectDetails = () => {
     const projectsData = t('projects', { returnObjects: true });
     const translatedProjects = projectsData.map((project, index) => ({
       id: project.id,
-      Img: ["/projects/Coming_soon.jpg", "/projects/project-mimo-finance.jpg", "/projects/project-portfolio.jpg", "/projects/project-tiktok-pipeline.jpg"][index],
+      Img: ["/projects/project-autoforge.jpg", "/projects/project-mimo-finance.jpg", "/projects/project-portfolio.jpg", "/projects/project-tiktok-pipeline.jpg", "/projects/project-job-hunter.jpg"][index],
       Title: project.title,
       Description: project.description,
-      Link: ["#", "https://mimo.ldjossou.com", "https://ldjossou.com", "https://reetik.ldjossou.com"][index],
-      Github: ["#", "https://github.com/Linerror99/Mimo-core", "https://github.com/Linerror99/portofolio", "https://github.com/Linerror99Su/pipeline-video-tiktok"][index],
-      comingSoon: index === 0,
+      Link: ["https://autoforg.com/landing", "https://mimo.ldjossou.com", "https://ldjossou.com", "https://reetik.ldjossou.com", null][index],
+      Github: ["https://github.com/Tanou-Organization/Autoforge-core", "https://github.com/Linerror99/Mimo-core", "https://github.com/Linerror99/portofolio", "https://github.com/Linerror99Su/pipeline-video-tiktok", "https://github.com/Linerror99/Job-hunter"][index],
       Features: project.features,
+      screenshots: [
+        ["/projects/project-autoforge.jpg"],
+        ["/projects/project-mimo-finance.jpg"],
+        ["/projects/project-portfolio.jpg"],
+        ["/projects/project-tiktok-pipeline.jpg"],
+        ["/projects/project-job-hunter.jpg"]
+      ][index],
+      architectureImg: [
+        "/projects/autoforge/architecture.png",
+        "/projects/mimo/architecture.png",
+        "/projects/portfolio/architecture.png",
+        "/projects/reetik/architecture.png",
+        "/projects/job-hunter/architecture.png"
+      ][index],
+      architectureDesc: project.architectureDesc || null,
       TechStack: [
-        ["Claude Sonnet 4", "TypeScript + Fastify", "GCP Cloud Run", "Firestore", "MCP SDK", "Compute Engine (Spot VMs)", "WebSocket", "OAuth 2.0", "Docker", "Terraform"],
-        ["React 18", "FastAPI + Python 3.12", "PostgreSQL 15", "Redis 7", "GCP Cloud Run", "Cloud SQL", "Artifact Registry", "Terraform", "GitHub Actions", "SonarCloud", "Docker", "Shadcn/ui"],
-        ["React + Vite", "Tailwind CSS", "Terraform", "Docker", "AWS ECS Fargate", "GCP Cloud Run", "GitHub Actions", "Nginx"],
-        ["Gemini 2.5 Pro", "Veo 3.1", "Google TTS Premium", "OpenAI Whisper", "FFmpeg", "React 18 + TypeScript", "FastAPI + Python 3.12", "GCP Cloud Run", "Cloud Functions Gen2", "Firestore", "Cloud Storage", "Terraform", "GitHub Actions", "Docker"]
+        // AutoForge
+        {
+          backend: ["TypeScript + Fastify", "WebSocket", "OAuth 2.0", "MCP SDK"],
+          ai: ["Claude Sonnet 4"],
+          database: ["Firestore"],
+          cloud: ["GCP Cloud Run", "Compute Engine (Spot VMs)"],
+          cicd: ["Docker", "Terraform"]
+        },
+        // Mimo Finance
+        {
+          frontend: ["React 18", "Shadcn/ui"],
+          backend: ["FastAPI + Python 3.12"],
+          database: ["PostgreSQL 15", "Redis 7", "Cloud SQL"],
+          cloud: ["GCP Cloud Run", "Artifact Registry"],
+          cicd: ["Terraform", "GitHub Actions", "SonarCloud", "Docker"]
+        },
+        // Portfolio
+        {
+          frontend: ["React + Vite", "Tailwind CSS", "Nginx"],
+          cloud: ["AWS ECS Fargate", "GCP Cloud Run"],
+          cicd: ["Terraform", "Docker", "GitHub Actions"]
+        },
+        // Reetik
+        {
+          frontend: ["React 18 + TypeScript"],
+          backend: ["FastAPI + Python 3.12", "FFmpeg"],
+          ai: ["Gemini 2.5 Pro", "Veo 3.1", "Google TTS Premium", "OpenAI Whisper"],
+          database: ["Firestore", "Cloud Storage"],
+          cloud: ["GCP Cloud Run", "Cloud Functions Gen2"],
+          cicd: ["Terraform", "GitHub Actions", "Docker"]
+        },
+        // Job Hunter
+        {
+          frontend: ["React 19", "Vite", "Tailwind CSS"],
+          backend: ["FastAPI", "Python 3.12", "Playwright"],
+          ai: ["OpenClaw", "Claude Sonnet 4", "Chromium Headless"],
+          database: ["PostgreSQL 16", "Cloud SQL", "Firebase Auth"],
+          cloud: ["GCP Cloud Run", "Cloud Scheduler"],
+          cicd: ["Terraform", "Docker", "GitHub Actions"]
+        }
       ][index]
     }));
     
@@ -235,10 +301,17 @@ const ProjectDetails = () => {
                   <Code2 className="w-4 h-4 md:w-5 md:h-5 text-blue-400" />
                   {t('projectDetail.technologiesUsed')}
                 </h3>
-                {project.TechStack.length > 0 ? (
-                  <div className="flex flex-wrap gap-2 md:gap-3">
-                    {project.TechStack.map((tech, index) => (
-                      <TechBadge key={index} tech={tech} />
+                {project.TechStack && typeof project.TechStack === 'object' ? (
+                  <div className="space-y-4">
+                    {Object.entries(project.TechStack).map(([catKey, techs]) => (
+                      techs && techs.length > 0 && (
+                        <TechCategory
+                          key={catKey}
+                          label={t(`projectDetail.techCategories.${catKey}`)}
+                          techs={techs}
+                          categoryKey={catKey}
+                        />
+                      )
                     ))}
                   </div>
                 ) : (
@@ -248,17 +321,7 @@ const ProjectDetails = () => {
             </div>
 
             <div className="space-y-6 md:space-y-10 animate-slideInRight">
-              <div className="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl group">
-              
-                <div className="absolute inset-0 bg-gradient-to-t from-[#030014] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <img
-                  src={project.Img}
-                  alt={project.Title}
-                  className="w-full  object-cover transform transition-transform duration-700 will-change-transform group-hover:scale-105"
-                  onLoad={() => setIsImageLoaded(true)}
-                />
-                <div className="absolute inset-0 border-2 border-white/0 group-hover:border-white/10 transition-colors duration-300 rounded-2xl" />
-              </div>
+              <ScreenshotCarousel screenshots={project.screenshots} projectTitle={project.Title} />
 
               {/* Fonctionnalités Clés */}
               <div className="bg-white/[0.02] backdrop-blur-xl rounded-2xl p-8 border border-white/10 space-y-6 hover:border-white/20 transition-colors duration-300 group">
@@ -276,8 +339,58 @@ const ProjectDetails = () => {
                   <p className="text-gray-400 opacity-50">{t('projectDetail.noFeatures')}</p>
                 )}
               </div>
+
             </div>
           </div>
+
+          {/* Architecture — Full width */}
+          {project.architectureImg && (
+            <div className="mt-10 md:mt-16 bg-white/[0.02] backdrop-blur-xl rounded-2xl p-6 md:p-8 border border-white/10 space-y-4 md:space-y-6 hover:border-white/20 transition-colors duration-300 group">
+              <h3 className="text-lg md:text-xl font-semibold text-white/90 flex items-center gap-2 md:gap-3">
+                <Network className="w-4 h-4 md:w-5 md:h-5 text-green-400 group-hover:rotate-[20deg] transition-transform duration-300" />
+                {t('projectDetail.architecture')}
+              </h3>
+              <div
+                className="relative rounded-xl overflow-hidden border border-white/10 cursor-pointer group/arch"
+                onClick={() => setIsArchFullscreen(true)}
+              >
+                <img
+                  src={project.architectureImg}
+                  alt={`${project.Title} Architecture`}
+                  className="w-full object-contain bg-slate-900/50"
+                />
+                <div className="absolute inset-0 bg-black/0 group-hover/arch:bg-black/20 transition-all duration-300 flex items-center justify-center">
+                  <ZoomIn className="w-8 h-8 text-white opacity-0 group-hover/arch:opacity-100 transition-opacity drop-shadow-lg" />
+                </div>
+              </div>
+              {project.architectureDesc && (
+                <p className="text-sm md:text-base text-gray-300/80 leading-relaxed">
+                  {project.architectureDesc}
+                </p>
+              )}
+            </div>
+          )}
+
+          {/* Architecture fullscreen modal */}
+          {isArchFullscreen && project.architectureImg && (
+            <div
+              className="fixed inset-0 z-50 bg-black/95 backdrop-blur-xl flex items-center justify-center p-4"
+              onClick={() => setIsArchFullscreen(false)}
+            >
+              <button
+                className="absolute top-4 right-4 p-3 bg-white/10 rounded-full text-white hover:bg-white/20 transition-all z-10"
+                onClick={() => setIsArchFullscreen(false)}
+              >
+                <span className="text-lg">✕</span>
+              </button>
+              <img
+                src={project.architectureImg}
+                alt={`${project.Title} Architecture`}
+                className="max-w-[95vw] max-h-[90vh] object-contain"
+                onClick={(e) => e.stopPropagation()}
+              />
+            </div>
+          )}
         </div>
       </div>
 

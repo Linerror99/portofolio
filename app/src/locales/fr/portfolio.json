@@ -36,7 +36,8 @@
         "Export complet : ZIP, GitHub push, ou déploiement Cloud Run",
         "Time-to-Market : <2h de l'idée au MVP production-ready",
         "Architecture serverless scalable (Cloud Run + Firestore)"
-      ]
+      ],
+      "architectureDesc": "Architecture serverless multi-agents sur GCP. Claude SDK orchestre 4 agents spécialisés sur Cloud Run, avec Firestore pour la persistance et des Spot VMs isolées pour l'exécution de code."
     },
     {
       "id": 2,
@@ -51,7 +52,8 @@
         "CI/CD avec GitHub Actions (tests, SonarCloud, déploiement automatique)",
         "Terraform IaC pour reproductibilité totale",
         "Tests unitaires + intégration avec 85%+ coverage"
-      ]
+      ],
+      "architectureDesc": "Mimo Finance est une application full-stack de gestion financière personnelle et couple, déployée sur Google Cloud Platform. Le frontend React (Vite) est servi via Cloud Run avec domaine personnalisé, tandis que le backend FastAPI communique avec une base PostgreSQL (Cloud SQL) et un cache Redis via un VPC privé. Le CI/CD est entièrement automatisé via GitHub Actions avec Workload Identity Federation."
     },
     {
       "id": 3,
@@ -64,7 +66,8 @@
         "Container Registry (AWS ECR + GCP Artifact Registry)",
         "Lifecycle policies pour optimisation des coûts (~$15/mois)",
         "Architecture serverless avec scale-to-zero"
-      ]
+      ],
+      "architectureDesc": "Déploiement multi-cloud avec Terraform (4 modules IaC). React SPA containerisé via Docker multi-stage et servi par Nginx sur GCP Cloud Run (primary, scale-to-zero) et AWS ECS Fargate (secondary). CI/CD GitHub Actions automatise build, push vers Artifact Registry/ECR et déploiement. Cloudflare gère DNS et SSL, Cloud Monitoring surveille la performance avec 13 alerting policies."
     },
     {
       "id": 4,
@@ -81,7 +84,24 @@
         "CI/CD avec GitHub Actions + Terraform IaC",
         "Authentification JWT + système de quotas (2 vidéos/utilisateur)",
         "WebSocket temps réel pour suivi de progression"
-      ]
+      ],
+      "architectureDesc": "Reetik V3 est une plateforme de production TikTok propulsée par l'IA, déployée sur Google Cloud Platform. L'architecture combine Cloud Run (FastAPI), trois modèles Vertex AI (Veo 3.1 pour la vidéo continue, Gemini 3.1 Pro pour le chat conversationnel, Imagen 4 pour les visuels), un pipeline événementiel de Cloud Functions avec Cloud Scheduler, et une base Firestore nommée isolée. L'infrastructure est entièrement codifiée en Terraform avec un pipeline CI/CD GitHub Actions automatisé."
+    },
+    {
+      "id": 5,
+      "title": "Job Hunter - Plateforme de Recherche d'Emploi Automatisée par IA",
+      "description": "Automatisation de la recherche d'emploi DevOps/Cloud avec scraping IA (OpenClaw + Chromium headless), analyse LLM (Claude Sonnet 4), adaptation de CV/LM et génération PDF (Playwright). Multi-utilisateurs avec authentification Firebase, déployé sur GCP Cloud Run.",
+      "features": [
+        "Scraping automatisé — OpenClaw + Chromium headless scrape WTTJ et Indeed toutes les 6h via Cloud Scheduler",
+        "Analyse LLM — Claude Sonnet 4 analyse chaque offre et calcule un score de matching",
+        "Génération PDF — Playwright génère CV et lettres de motivation personnalisés au pixel",
+        "Multi-utilisateurs avec profils, critères de recherche et gestion d'offres individuels",
+        "Ajout manuel d'offre — Coller une URL → extraction automatique + pipeline LLM",
+        "Export CSV des offres filtrées + notifications email après chaque scraping",
+        "Mode portfolio (admin/visiteur) — navigation libre, seul l'admin déclenche les opérations coûteuses",
+        "Infrastructure Terraform complète (Cloud Run, Cloud SQL, Cloud Scheduler, Artifact Registry)"
+      ],
+      "architectureDesc": "Application serverless de job hunting automatisé déployée sur GCP (europe-west1). Trois services Cloud Run (Frontend React, Backend FastAPI, Agent OpenClaw) connectés via un VPC privé à Cloud SQL PostgreSQL et Cloud Storage. Le CI/CD utilise GitHub Actions avec Workload Identity Federation pour des déploiements sans clé, et Terraform gère l'ensemble de l'infrastructure as code."
     }
   ],
   "techStack": {
@@ -101,6 +121,14 @@
     "github": "Github",
     "technologiesUsed": "Technologies Utilisées",
     "noTechnologies": "Aucune technologie ajoutée.",
+    "techCategories": {
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "ai": "Intelligence Artificielle",
+      "database": "Bases de Données & Stockage",
+      "cloud": "Cloud & Infrastructure",
+      "cicd": "CI/CD & DevOps"
+    },
     "keyFeatures": "Fonctionnalités Clés",
     "noFeatures": "Aucune fonctionnalité ajoutée.",
     "stats": {
@@ -111,6 +139,7 @@
       "title": "Code Source Privé",
       "text": "Désolé, le code source de ce projet est privé.",
       "confirmButton": "Compris"
-    }
+    },
+    "architecture": "Architecture"
   }
 }

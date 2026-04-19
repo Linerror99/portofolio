@@ -1,0 +1,419 @@
+<mxfile host="app.diagrams.net" modified="2026-04-19T18:00:00.000Z" agent="AutoForge" version="24.7.0" type="device">
+  <diagram id="autoforge-arch" name="AutoForge — Cloud Architecture">
+    <mxGraphModel dx="1920" dy="1080" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1920" pageHeight="1080" background="#030014" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <!-- ══════════════ TITLE ══════════════ -->
+        <mxCell id="title" value="&lt;font style=&quot;font-size: 26px; font-weight: bold; letter-spacing: 1px;&quot;&gt;AUTOFORGE&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size: 12px; color: #8B949E;&quot;&gt;Cloud Architecture · GCP · Production-Grade · IaC · CI/CD&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontColor=#E6EDF3;" vertex="1" parent="1">
+          <mxGeometry x="610" y="12" width="700" height="50" as="geometry"/>
+        </mxCell>
+
+        <!-- ══════════════ GROUP: FRONTEND ══════════════ -->
+        <mxCell id="grp-frontend" value="&lt;font style=&quot;font-size: 13px; color: #61DAFB;&quot;&gt;🖥 FRONTEND&lt;/font&gt;" style="rounded=1;arcSize=5;fillColor=#0D1B2A;strokeColor=#61DAFB;strokeWidth=2;fontColor=#E6EDF3;verticalAlign=top;align=left;spacingTop=5;spacingLeft=14;dashed=1;dashPattern=8 4;html=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="80" width="310" height="380" as="geometry"/>
+        </mxCell>
+
+        <!-- Browser / User -->
+        <mxCell id="user" value="&lt;b&gt;User&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size: 10px; color: #C9D1D9;&quot;&gt;Browser&lt;/font&gt;" style="shape=ellipse;fillColor=#112240;strokeColor=#61DAFB;strokeWidth=2;fontColor=#E6EDF3;fontSize=12;html=1;align=center;verticalAlign=middle;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="145" y="115" width="65" height="65" as="geometry"/>
+        </mxCell>
+
+        <!-- React App -->
+        <mxCell id="react-app" value="&lt;b&gt;React 18&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size: 10px; color: #C9D1D9;&quot;&gt;Vite 5 · TailwindCSS&lt;br&gt;TypeScript · SPA&lt;/font&gt;" style="rounded=1;arcSize=12;fillColor=#112240;strokeColor=#61DAFB;strokeWidth=2;fontColor=#E6EDF3;fontSize=12;html=1;align=center;verticalAlign=middle;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="95" y="215" width="170" height="65" as="geometry"/>
+        </mxCell>
+
+        <!-- Firebase Auth -->
+        <mxCell id="firebase-auth" value="&lt;b&gt;Firebase Auth&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size: 10px; color: #C9D1D9;&quot;&gt;Google · GitHub OAuth&lt;/font&gt;" style="rounded=1;arcSize=12;fillColor=#112240;strokeColor=#FFCA28;strokeWidth=2;fontColor=#E6EDF3;fontSize=12;html=1;align=center;verticalAlign=middle;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="95" y="315" width="170" height="55" as="geometry"/>
+        </mxCell>
+
+        <!-- Cloud CDN (GCP icon) -->
+        <mxCell id="cdn" value="Cloud CDN&lt;br&gt;&lt;font style=&quot;font-size: 9px; color: #E8F0FE;&quot;&gt;Static Assets&lt;/font&gt;" style="sketch=0;html=1;verticalLabelPosition=bottom;verticalAlign=top;align=center;aspect=fixed;shape=mxgraph.gcp2.cloud_cdn;fillColor=#4285F4;fontColor=#e2e8f0;fontSize=11;labelBackgroundColor=none;" vertex="1" parent="1">
+          <mxGeometry x="285" y="225" width="50" height="50" as="geometry"/>
+        </mxCell>
+
+        <!-- ══════════════ GROUP: BACKEND / COMPUTE ══════════════ -->
+        <mxCell id="grp-backend" value="&lt;font style=&quot;font-size: 13px; color: #34A853;&quot;&gt;⚙ BACKEND · Compute&lt;/font&gt;" style="rounded=1;arcSize=5;fillColor=#0D1B2A;strokeColor=#34A853;strokeWidth=2;fontColor=#E6EDF3;verticalAlign=top;align=left;spacingTop=5;spacingLeft=14;dashed=1;dashPattern=8 4;html=1;" vertex="1" parent="1">
+          <mxGeometry x="400" y="80" width="480" height="540" as="geometry"/>
+        </mxCell>
+
+        <!-- Cloud Run: API Backend -->
+        <mxCell id="cloud-run-api" value="Cloud Run&lt;br&gt;&lt;font style=&quot;font-size: 9px; color: #E8F0FE;&quot;&gt;API Backend&lt;br&gt;Fastify · TypeScript&lt;br&gt;Auto-scaling 0→N&lt;/font&gt;" style="sketch=0;html=1;verticalLabelPosition=bottom;verticalAlign=top;align=center;aspect=fixed;shape=mxgraph.gcp2.cloud_run;fillColor=#4285F4;fontColor=#e2e8f0;fontSize=11;labelBackgroundColor=none;" vertex="1" parent="1">
+          <mxGeometry x="470" y="120" width="55" height="55" as="geometry"/>
+        </mxCell>
+
+        <!-- Cloud Run: VM Manager -->
+        <mxCell id="cloud-run-vmm" value="Cloud Run&lt;br&gt;&lt;font style=&quot;font-size: 9px; color: #E8F0FE;&quot;&gt;VM Manager&lt;br&gt;Pool Orchestrator&lt;/font&gt;" style="sketch=0;html=1;verticalLabelPosition=bottom;verticalAlign=top;align=center;aspect=fixed;shape=mxgraph.gcp2.cloud_run;fillColor=#4285F4;fontColor=#e2e8f0;fontSize=11;labelBackgroundColor=none;" vertex="1" parent="1">
+          <mxGeometry x="680" y="120" width="55" height="55" as="geometry"/>
+        </mxCell>
+
+        <!-- Cloud Run: Frontend Serve -->
+        <mxCell id="cloud-run-front" value="Cloud Run&lt;br&gt;&lt;font style=&quot;font-size: 9px; color: #E8F0FE;&quot;&gt;Frontend Serve&lt;br&gt;Static + SSR&lt;/font&gt;" style="sketch=0;html=1;verticalLabelPosition=bottom;verticalAlign=top;align=center;aspect=fixed;shape=mxgraph.gcp2.cloud_run;fillColor=#4285F4;fontColor=#e2e8f0;fontSize=11;labelBackgroundColor=none;" vertex="1" parent="1">
+          <mxGeometry x="470" y="270" width="55" height="55" as="geometry"/>
+        </mxCell>
+
+        <!-- VPC Network -->
+        <mxCell id="vpc" value="&lt;b&gt;VPC Network&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size: 10px; color: #C9D1D9;&quot;&gt;Private Subnet&lt;br&gt;Firewall Rules&lt;/font&gt;" style="rounded=1;arcSize=12;fillColor=#0a1929;strokeColor=#4285F4;strokeWidth=2;fontColor=#E6EDF3;fontSize=12;html=1;align=center;verticalAlign=middle;dashed=1;dashPattern=6 3;" vertex="1" parent="1">
+          <mxGeometry x="640" y="270" width="150" height="65" as="geometry"/>
+        </mxCell>
+
+        <!-- GCE VM Pool (GCP icon) -->
+        <mxCell id="vm-pool" value="Compute Engine&lt;br&gt;&lt;font style=&quot;font-size: 9px; color: #E8F0FE;&quot;&gt;GCE VM Pool&lt;br&gt;MCP Servers · :3100&lt;br&gt;Packer Golden Image&lt;/font&gt;" style="sketch=0;html=1;verticalLabelPosition=bottom;verticalAlign=top;align=center;aspect=fixed;shape=mxgraph.gcp2.compute_engine;fillColor=#4285F4;fontColor=#e2e8f0;fontSize=11;labelBackgroundColor=none;" vertex="1" parent="1">
+          <mxGeometry x="590" y="390" width="55" height="55" as="geometry"/>
+        </mxCell>
+
+        <!-- AI Agents Box -->
+        <mxCell id="ai-agents" value="&lt;b&gt;AI Agents&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size: 10px; color: #E8D5F5;&quot;&gt;PO · TechLead · Executor&lt;br&gt;QA · Solver&lt;br&gt;Claude Opus 4&lt;/font&gt;" style="rounded=1;arcSize=12;fillColor=#1A0A3E;strokeColor=#BB86FC;strokeWidth=2;fontColor=#E6EDF3;fontSize=12;html=1;align=center;verticalAlign=middle;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="440" y="530" width="190" height="70" as="geometry"/>
+        </mxCell>
+
+        <!-- Cloud Scheduler (GCP icon) -->
+        <mxCell id="scheduler" value="Cloud Scheduler&lt;br&gt;&lt;font style=&quot;font-size: 9px; color: #E8F0FE;&quot;&gt;Cron Jobs&lt;/font&gt;" style="sketch=0;html=1;verticalLabelPosition=bottom;verticalAlign=top;align=center;aspect=fixed;shape=mxgraph.gcp2.cloud_scheduler;fillColor=#4285F4;fontColor=#e2e8f0;fontSize=11;labelBackgroundColor=none;" vertex="1" parent="1">
+          <mxGeometry x="770" y="400" width="50" height="50" as="geometry"/>
+        </mxCell>
+
+        <!-- ══════════════ GROUP: DATA LAYER ══════════════ -->
+        <mxCell id="grp-data" value="&lt;font style=&quot;font-size: 13px; color: #FBBC04;&quot;&gt;💾 DATA&lt;/font&gt;" style="rounded=1;arcSize=5;fillColor=#0D1B2A;strokeColor=#FBBC04;strokeWidth=2;fontColor=#E6EDF3;verticalAlign=top;align=left;spacingTop=5;spacingLeft=14;dashed=1;dashPattern=8 4;html=1;" vertex="1" parent="1">
+          <mxGeometry x="940" y="80" width="370" height="540" as="geometry"/>
+        </mxCell>
+
+        <!-- Firestore (GCP icon) -->
+        <mxCell id="firestore" value="Firestore&lt;br&gt;&lt;font style=&quot;font-size: 9px; color: #E8F0FE;&quot;&gt;NoSQL Document DB&lt;br&gt;Real-time Sync&lt;br&gt;Projects · Runs · Sessions&lt;/font&gt;" style="sketch=0;html=1;verticalLabelPosition=bottom;verticalAlign=top;align=center;aspect=fixed;shape=mxgraph.gcp2.cloud_firestore;fillColor=#FBBC04;fontColor=#e2e8f0;fontSize=11;labelBackgroundColor=none;" vertex="1" parent="1">
+          <mxGeometry x="990" y="120" width="50" height="50" as="geometry"/>
+        </mxCell>
+
+        <!-- Cloud SQL (GCP icon) -->
+        <mxCell id="cloud-sql" value="Cloud SQL&lt;br&gt;&lt;font style=&quot;font-size: 9px; color: #E8F0FE;&quot;&gt;PostgreSQL 15&lt;br&gt;HA · Auto-backup&lt;/font&gt;" style="sketch=0;html=1;verticalLabelPosition=bottom;verticalAlign=top;align=center;aspect=fixed;shape=mxgraph.gcp2.cloud_sql;fillColor=#4285F4;fontColor=#e2e8f0;fontSize=11;labelBackgroundColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1170" y="120" width="50" height="50" as="geometry"/>
+        </mxCell>
+
+        <!-- Cloud Storage (GCP icon) -->
+        <mxCell id="gcs" value="Cloud Storage&lt;br&gt;&lt;font style=&quot;font-size: 9px; color: #E8F0FE;&quot;&gt;Artifacts · Logs&lt;br&gt;Packer Images&lt;/font&gt;" style="sketch=0;html=1;verticalLabelPosition=bottom;verticalAlign=top;align=center;aspect=fixed;shape=mxgraph.gcp2.cloud_storage;fillColor=#4285F4;fontColor=#e2e8f0;fontSize=11;labelBackgroundColor=none;" vertex="1" parent="1">
+          <mxGeometry x="990" y="270" width="50" height="50" as="geometry"/>
+        </mxCell>
+
+        <!-- Redis / Memorystore -->
+        <mxCell id="redis" value="&lt;b&gt;Memorystore&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size: 10px; color: #C9D1D9;&quot;&gt;Redis 7&lt;br&gt;Session Cache&lt;/font&gt;" style="rounded=1;arcSize=12;fillColor=#112240;strokeColor=#EA4335;strokeWidth=2;fontColor=#E6EDF3;fontSize=12;html=1;align=center;verticalAlign=middle;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="1130" y="275" width="140" height="60" as="geometry"/>
+        </mxCell>
+
+        <!-- Artifact Registry (GCP icon — container_registry) -->
+        <mxCell id="artifact-reg" value="Artifact Registry&lt;br&gt;&lt;font style=&quot;font-size: 9px; color: #E8F0FE;&quot;&gt;Docker Images&lt;br&gt;Container Registry&lt;/font&gt;" style="sketch=0;html=1;verticalLabelPosition=bottom;verticalAlign=top;align=center;aspect=fixed;shape=mxgraph.gcp2.container_registry;fillColor=#4285F4;fontColor=#e2e8f0;fontSize=11;labelBackgroundColor=none;" vertex="1" parent="1">
+          <mxGeometry x="990" y="400" width="50" height="50" as="geometry"/>
+        </mxCell>
+
+        <!-- Secret Manager (GCP icon) -->
+        <mxCell id="secret-mgr" value="Secret Manager&lt;br&gt;&lt;font style=&quot;font-size: 9px; color: #FFF3D0;&quot;&gt;API Keys · Creds&lt;/font&gt;" style="sketch=0;html=1;verticalLabelPosition=bottom;verticalAlign=top;align=center;aspect=fixed;shape=mxgraph.gcp2.key_management_service;fillColor=#F9AB00;fontColor=#e2e8f0;fontSize=11;labelBackgroundColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1170" y="400" width="50" height="50" as="geometry"/>
+        </mxCell>
+
+        <!-- Cloud Monitoring -->
+        <mxCell id="monitoring" value="&lt;b&gt;Cloud Monitoring&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size: 10px; color: #C9D1D9;&quot;&gt;Logs · Alerts · Traces&lt;/font&gt;" style="rounded=1;arcSize=12;fillColor=#112240;strokeColor=#8888CC;strokeWidth=2;fontColor=#E6EDF3;fontSize=12;html=1;align=center;verticalAlign=middle;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="1040" y="530" width="170" height="55" as="geometry"/>
+        </mxCell>
+
+        <!-- ══════════════ GROUP: CI/CD · IaC ══════════════ -->
+        <mxCell id="grp-cicd" value="&lt;font style=&quot;font-size: 13px; color: #EA4335;&quot;&gt;🚀 CI/CD · IaC&lt;/font&gt;" style="rounded=1;arcSize=5;fillColor=#0D1B2A;strokeColor=#EA4335;strokeWidth=2;fontColor=#E6EDF3;verticalAlign=top;align=left;spacingTop=5;spacingLeft=14;dashed=1;dashPattern=8 4;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1370" y="80" width="510" height="540" as="geometry"/>
+        </mxCell>
+
+        <!-- GitHub -->
+        <mxCell id="github" value="&lt;b&gt;GitHub&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size: 10px; color: #C9D1D9;&quot;&gt;Mono-repo&lt;br&gt;Branch Protection&lt;br&gt;Code Review&lt;/font&gt;" style="rounded=1;arcSize=12;fillColor=#112240;strokeColor=#F0F0F0;strokeWidth=2;fontColor=#E6EDF3;fontSize=12;html=1;align=center;verticalAlign=middle;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="1410" y="120" width="150" height="80" as="geometry"/>
+        </mxCell>
+
+        <!-- GitHub Actions -->
+        <mxCell id="gh-actions" value="&lt;b&gt;GitHub Actions&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size: 10px; color: #C9D1D9;&quot;&gt;CI Pipeline&lt;br&gt;Build · Test · Lint&lt;br&gt;Docker Build &amp;amp; Push&lt;/font&gt;" style="rounded=1;arcSize=12;fillColor=#112240;strokeColor=#2088FF;strokeWidth=2;fontColor=#E6EDF3;fontSize=12;html=1;align=center;verticalAlign=middle;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="1610" y="120" width="165" height="80" as="geometry"/>
+        </mxCell>
+
+        <!-- Terraform -->
+        <mxCell id="terraform" value="&lt;b&gt;Terraform&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size: 10px; color: #E8D5F5;&quot;&gt;Infrastructure as Code&lt;br&gt;GCP Provider · State in GCS&lt;/font&gt;" style="rounded=1;arcSize=12;fillColor=#112240;strokeColor=#7B42BC;strokeWidth=2;fontColor=#E6EDF3;fontSize=12;html=1;align=center;verticalAlign=middle;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="1410" y="260" width="165" height="75" as="geometry"/>
+        </mxCell>
+
+        <!-- Docker -->
+        <mxCell id="docker" value="&lt;b&gt;Docker&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size: 10px; color: #C9D1D9;&quot;&gt;Multi-stage Builds&lt;br&gt;Distroless Images&lt;/font&gt;" style="rounded=1;arcSize=12;fillColor=#112240;strokeColor=#2496ED;strokeWidth=2;fontColor=#E6EDF3;fontSize=12;html=1;align=center;verticalAlign=middle;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="1620" y="260" width="155" height="70" as="geometry"/>
+        </mxCell>
+
+        <!-- Packer -->
+        <mxCell id="packer" value="&lt;b&gt;Packer&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size: 10px; color: #C9D1D9;&quot;&gt;Golden Images&lt;br&gt;VM Templates&lt;/font&gt;" style="rounded=1;arcSize=12;fillColor=#112240;strokeColor=#02A8EF;strokeWidth=2;fontColor=#E6EDF3;fontSize=12;html=1;align=center;verticalAlign=middle;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="1410" y="390" width="155" height="65" as="geometry"/>
+        </mxCell>
+
+        <!-- Cloud Build (GCP icon) -->
+        <mxCell id="cloud-build" value="Cloud Build&lt;br&gt;&lt;font style=&quot;font-size: 9px; color: #E8F0FE;&quot;&gt;CD Pipeline&lt;br&gt;Deploy to Cloud Run&lt;/font&gt;" style="sketch=0;html=1;verticalLabelPosition=bottom;verticalAlign=top;align=center;aspect=fixed;shape=mxgraph.gcp2.cloud_build;fillColor=#4285F4;fontColor=#e2e8f0;fontSize=11;labelBackgroundColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1670" y="385" width="50" height="50" as="geometry"/>
+        </mxCell>
+
+        <!-- IAM (GCP icon) -->
+        <mxCell id="iam" value="Cloud IAM&lt;br&gt;&lt;font style=&quot;font-size: 9px; color: #FFF3D0;&quot;&gt;Service Accounts&lt;br&gt;Least Privilege · RBAC&lt;/font&gt;" style="sketch=0;html=1;verticalLabelPosition=bottom;verticalAlign=top;align=center;aspect=fixed;shape=mxgraph.gcp2.cloud_iam;fillColor=#F9AB00;fontColor=#e2e8f0;fontSize=11;labelBackgroundColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1510" y="500" width="50" height="50" as="geometry"/>
+        </mxCell>
+
+        <!-- ══════════════ EXTERNAL SERVICES ══════════════ -->
+
+        <!-- Cloudflare -->
+        <mxCell id="cloudflare" value="&lt;b&gt;Cloudflare&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size: 10px; color: #C9D1D9;&quot;&gt;DNS · Proxy · WAF&lt;br&gt;Custom Domain&lt;/font&gt;" style="rounded=1;arcSize=12;fillColor=#112240;strokeColor=#F38020;strokeWidth=2;fontColor=#E6EDF3;fontSize=12;html=1;align=center;verticalAlign=middle;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="520" width="170" height="60" as="geometry"/>
+        </mxCell>
+
+        <!-- Anthropic API -->
+        <mxCell id="anthropic" value="&lt;b&gt;Anthropic API&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size: 10px; color: #E8D5F5;&quot;&gt;Claude Opus 4&lt;br&gt;Extended Thinking&lt;br&gt;Tool Use · MCP&lt;/font&gt;" style="rounded=1;arcSize=12;fillColor=#1A0A3E;strokeColor=#D4A574;strokeWidth=2;fontColor=#E6EDF3;fontSize=12;html=1;align=center;verticalAlign=middle;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="240" y="510" width="155" height="75" as="geometry"/>
+        </mxCell>
+
+        <!-- ══════════════ EDGES ══════════════ -->
+
+        <!-- User → React -->
+        <mxCell id="e1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#61DAFB;strokeWidth=1.5;endArrow=blockThin;endFill=1;" edge="1" source="user" target="react-app" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- React → Firebase Auth -->
+        <mxCell id="e2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;strokeColor=#FFCA28;strokeWidth=1.5;endArrow=blockThin;endFill=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" source="react-app" target="firebase-auth" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e2-label" value="OAuth 2.0" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontColor=#FFCA28;fontSize=9;labelBackgroundColor=#030014;" vertex="1" connectable="0" parent="e2">
+          <mxGeometry relative="1" as="geometry"><mxPoint as="offset"/></mxGeometry>
+        </mxCell>
+
+        <!-- React → Cloud Run API -->
+        <mxCell id="e3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;strokeColor=#34A853;strokeWidth=2;endArrow=blockThin;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" source="react-app" target="cloud-run-api" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e3-label" value="HTTPS / REST" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontColor=#34A853;fontSize=9;labelBackgroundColor=#030014;" vertex="1" connectable="0" parent="e3">
+          <mxGeometry relative="1" as="geometry"><mxPoint as="offset"/></mxGeometry>
+        </mxCell>
+
+        <!-- React → Cloud Run Frontend -->
+        <mxCell id="e3b" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;strokeColor=#61DAFB;strokeWidth=1.5;endArrow=blockThin;endFill=1;exitX=1;exitY=0.75;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" source="react-app" target="cloud-run-front" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e3b-label" value="Static" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontColor=#61DAFB;fontSize=9;labelBackgroundColor=#030014;" vertex="1" connectable="0" parent="e3b">
+          <mxGeometry relative="1" as="geometry"><mxPoint as="offset"/></mxGeometry>
+        </mxCell>
+
+        <!-- Cloud Run API → VM Manager -->
+        <mxCell id="e4" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;strokeColor=#4285F4;strokeWidth=1.5;endArrow=blockThin;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" source="cloud-run-api" target="cloud-run-vmm" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e4-label" value="HTTP · OIDC" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontColor=#4285F4;fontSize=9;labelBackgroundColor=#030014;" vertex="1" connectable="0" parent="e4">
+          <mxGeometry relative="1" as="geometry"><mxPoint as="offset"/></mxGeometry>
+        </mxCell>
+
+        <!-- VM Manager → VPC -->
+        <mxCell id="e5" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;strokeColor=#4285F4;strokeWidth=1.5;endArrow=blockThin;endFill=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" source="cloud-run-vmm" target="vpc" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e5-label" value="Private Net" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontColor=#4285F4;fontSize=9;labelBackgroundColor=#030014;" vertex="1" connectable="0" parent="e5">
+          <mxGeometry relative="1" as="geometry"><mxPoint as="offset"/></mxGeometry>
+        </mxCell>
+
+        <!-- VPC → VM Pool -->
+        <mxCell id="e6" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;strokeColor=#34A853;strokeWidth=1.5;endArrow=blockThin;endFill=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" source="vpc" target="vm-pool" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e6-label" value="MCP / gRPC :3100" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontColor=#34A853;fontSize=9;labelBackgroundColor=#030014;" vertex="1" connectable="0" parent="e6">
+          <mxGeometry relative="1" as="geometry"><mxPoint as="offset"/></mxGeometry>
+        </mxCell>
+
+        <!-- VM Pool → AI Agents -->
+        <mxCell id="e7" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;strokeColor=#BB86FC;strokeWidth=1.5;endArrow=blockThin;endFill=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" source="vm-pool" target="ai-agents" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e7-label" value="Tool Use" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontColor=#BB86FC;fontSize=9;labelBackgroundColor=#030014;" vertex="1" connectable="0" parent="e7">
+          <mxGeometry relative="1" as="geometry"><mxPoint as="offset"/></mxGeometry>
+        </mxCell>
+
+        <!-- AI Agents → Anthropic -->
+        <mxCell id="e8" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;strokeColor=#D4A574;strokeWidth=1.5;endArrow=blockThin;endFill=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" source="ai-agents" target="anthropic" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e8-label" value="Claude API" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontColor=#D4A574;fontSize=9;labelBackgroundColor=#030014;" vertex="1" connectable="0" parent="e8">
+          <mxGeometry relative="1" as="geometry"><mxPoint as="offset"/></mxGeometry>
+        </mxCell>
+
+        <!-- Cloud Run API → Firestore -->
+        <mxCell id="e9" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;strokeColor=#FBBC04;strokeWidth=2;endArrow=blockThin;endFill=1;" edge="1" source="cloud-run-api" target="firestore" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e9-label" value="gRPC" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontColor=#FBBC04;fontSize=9;labelBackgroundColor=#030014;" vertex="1" connectable="0" parent="e9">
+          <mxGeometry relative="1" as="geometry"><mxPoint as="offset"/></mxGeometry>
+        </mxCell>
+
+        <!-- Cloud Run API → Cloud SQL -->
+        <mxCell id="e10" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;strokeColor=#4285F4;strokeWidth=1.5;endArrow=blockThin;endFill=1;" edge="1" source="cloud-run-api" target="cloud-sql" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e10-label" value="SQL · pg" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontColor=#4285F4;fontSize=9;labelBackgroundColor=#030014;" vertex="1" connectable="0" parent="e10">
+          <mxGeometry relative="1" as="geometry"><mxPoint as="offset"/></mxGeometry>
+        </mxCell>
+
+        <!-- Cloud Run API → GCS -->
+        <mxCell id="e11" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;strokeColor=#4285F4;strokeWidth=1.5;endArrow=blockThin;endFill=1;" edge="1" source="cloud-run-api" target="gcs" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e11-label" value="Object I/O" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontColor=#4285F4;fontSize=9;labelBackgroundColor=#030014;" vertex="1" connectable="0" parent="e11">
+          <mxGeometry relative="1" as="geometry"><mxPoint as="offset"/></mxGeometry>
+        </mxCell>
+
+        <!-- VM Manager → Redis -->
+        <mxCell id="e12" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;strokeColor=#EA4335;strokeWidth=1.5;endArrow=blockThin;endFill=1;" edge="1" source="cloud-run-vmm" target="redis" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e12-label" value="Cache" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontColor=#EA4335;fontSize=9;labelBackgroundColor=#030014;" vertex="1" connectable="0" parent="e12">
+          <mxGeometry relative="1" as="geometry"><mxPoint as="offset"/></mxGeometry>
+        </mxCell>
+
+        <!-- Cloud Run API → Secret Manager -->
+        <mxCell id="e13" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;strokeColor=#F9AB00;strokeWidth=1;dashed=1;dashPattern=6 3;endArrow=blockThin;endFill=1;" edge="1" source="cloud-run-api" target="secret-mgr" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e13-label" value="Secrets" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontColor=#F9AB00;fontSize=9;labelBackgroundColor=#030014;" vertex="1" connectable="0" parent="e13">
+          <mxGeometry relative="1" as="geometry"><mxPoint as="offset"/></mxGeometry>
+        </mxCell>
+
+        <!-- Scheduler → VM Pool -->
+        <mxCell id="e14" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;strokeColor=#4285F4;strokeWidth=1;dashed=1;dashPattern=6 3;endArrow=blockThin;endFill=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" source="scheduler" target="vm-pool" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e14-label" value="Cron HTTP" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontColor=#4285F4;fontSize=9;labelBackgroundColor=#030014;" vertex="1" connectable="0" parent="e14">
+          <mxGeometry relative="1" as="geometry"><mxPoint as="offset"/></mxGeometry>
+        </mxCell>
+
+        <!-- GitHub → GH Actions -->
+        <mxCell id="e15" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;strokeColor=#2088FF;strokeWidth=1.5;endArrow=blockThin;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" source="github" target="gh-actions" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e15-label" value="Push / PR" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontColor=#2088FF;fontSize=9;labelBackgroundColor=#030014;" vertex="1" connectable="0" parent="e15">
+          <mxGeometry relative="1" as="geometry"><mxPoint as="offset"/></mxGeometry>
+        </mxCell>
+
+        <!-- GH Actions → Docker -->
+        <mxCell id="e16" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;strokeColor=#2496ED;strokeWidth=1.5;endArrow=blockThin;endFill=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" source="gh-actions" target="docker" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e16-label" value="Build Image" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontColor=#2496ED;fontSize=9;labelBackgroundColor=#030014;" vertex="1" connectable="0" parent="e16">
+          <mxGeometry relative="1" as="geometry"><mxPoint as="offset"/></mxGeometry>
+        </mxCell>
+
+        <!-- Docker → Artifact Registry -->
+        <mxCell id="e17" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;strokeColor=#4285F4;strokeWidth=1.5;endArrow=blockThin;endFill=1;" edge="1" source="docker" target="artifact-reg" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e17-label" value="docker push" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontColor=#4285F4;fontSize=9;labelBackgroundColor=#030014;" vertex="1" connectable="0" parent="e17">
+          <mxGeometry relative="1" as="geometry"><mxPoint as="offset"/></mxGeometry>
+        </mxCell>
+
+        <!-- Cloud Build → Cloud Run API (deploy) -->
+        <mxCell id="e18" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;strokeColor=#34A853;strokeWidth=2;endArrow=blockThin;endFill=1;dashed=1;dashPattern=8 4;" edge="1" source="cloud-build" target="cloud-run-api" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1695" y="500"/>
+              <mxPoint x="900" y="500"/>
+              <mxPoint x="900" y="148"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e18-label" value="Deploy" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontColor=#34A853;fontSize=9;labelBackgroundColor=#030014;" vertex="1" connectable="0" parent="e18">
+          <mxGeometry relative="1" as="geometry"><mxPoint as="offset"/></mxGeometry>
+        </mxCell>
+
+        <!-- Terraform → VPC (IaC) -->
+        <mxCell id="e19" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;strokeColor=#7B42BC;strokeWidth=1.5;dashed=1;dashPattern=8 4;endArrow=blockThin;endFill=1;" edge="1" source="terraform" target="vpc" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1390" y="298"/>
+              <mxPoint x="1390" y="640"/>
+              <mxPoint x="715" y="640"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e19-label" value="terraform apply" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontColor=#7B42BC;fontSize=9;labelBackgroundColor=#030014;" vertex="1" connectable="0" parent="e19">
+          <mxGeometry relative="1" as="geometry"><mxPoint as="offset"/></mxGeometry>
+        </mxCell>
+
+        <!-- Packer → GCS (images) -->
+        <mxCell id="e20" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;strokeColor=#02A8EF;strokeWidth=1;dashed=1;dashPattern=6 3;endArrow=blockThin;endFill=1;" edge="1" source="packer" target="gcs" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1395" y="423"/>
+              <mxPoint x="1395" y="660"/>
+              <mxPoint x="1015" y="660"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e20-label" value="Image Build" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontColor=#02A8EF;fontSize=9;labelBackgroundColor=#030014;" vertex="1" connectable="0" parent="e20">
+          <mxGeometry relative="1" as="geometry"><mxPoint as="offset"/></mxGeometry>
+        </mxCell>
+
+        <!-- Cloudflare → Cloud Run Frontend (proxy) -->
+        <mxCell id="e21" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;strokeColor=#F38020;strokeWidth=1.5;endArrow=blockThin;endFill=1;" edge="1" source="cloudflare" target="cloud-run-front" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="125" y="490"/>
+              <mxPoint x="420" y="490"/>
+              <mxPoint x="420" y="298"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e21-label" value="Proxy · WAF" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontColor=#F38020;fontSize=9;labelBackgroundColor=#030014;" vertex="1" connectable="0" parent="e21">
+          <mxGeometry relative="1" as="geometry"><mxPoint as="offset"/></mxGeometry>
+        </mxCell>
+
+        <!-- Cloud Run API → Monitoring (dashed) -->
+        <mxCell id="e22" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;strokeColor=#8888CC;strokeWidth=1;dashed=1;dashPattern=4 4;endArrow=blockThin;endFill=1;" edge="1" source="cloud-run-api" target="monitoring" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="498" y="630"/>
+              <mxPoint x="1125" y="630"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e22-label" value="Logs · Metrics" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontColor=#8888CC;fontSize=9;labelBackgroundColor=#030014;" vertex="1" connectable="0" parent="e22">
+          <mxGeometry relative="1" as="geometry"><mxPoint as="offset"/></mxGeometry>
+        </mxCell>
+
+        <!-- ══════════════ LEGEND ══════════════ -->
+        <mxCell id="legend-box" value="&lt;font style=&quot;font-size: 11px; color: #e2e8f0;&quot;&gt;LEGEND&lt;/font&gt;" style="rounded=1;arcSize=8;fillColor=#0D1B2A;strokeColor=#555588;strokeWidth=1;fontColor=#e2e8f0;verticalAlign=top;align=left;spacingTop=5;spacingLeft=8;html=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="640" width="370" height="110" as="geometry"/>
+        </mxCell>
+        <mxCell id="leg1" value="&lt;font color=&quot;#34A853&quot; style=&quot;font-size:9px;&quot;&gt;━━ HTTPS / REST&lt;/font&gt;" style="text;html=1;fillColor=none;strokeColor=none;align=left;" vertex="1" parent="1">
+          <mxGeometry x="55" y="665" width="130" height="18" as="geometry"/>
+        </mxCell>
+        <mxCell id="leg2" value="&lt;font color=&quot;#FBBC04&quot; style=&quot;font-size:9px;&quot;&gt;━━ gRPC / Firestore&lt;/font&gt;" style="text;html=1;fillColor=none;strokeColor=none;align=left;" vertex="1" parent="1">
+          <mxGeometry x="55" y="685" width="130" height="18" as="geometry"/>
+        </mxCell>
+        <mxCell id="leg3" value="&lt;font color=&quot;#BB86FC&quot; style=&quot;font-size:9px;&quot;&gt;━━ AI / MCP Tool Use&lt;/font&gt;" style="text;html=1;fillColor=none;strokeColor=none;align=left;" vertex="1" parent="1">
+          <mxGeometry x="55" y="705" width="130" height="18" as="geometry"/>
+        </mxCell>
+        <mxCell id="leg4" value="&lt;font color=&quot;#7B42BC&quot; style=&quot;font-size:9px;&quot;&gt;┅┅ IaC (Terraform)&lt;/font&gt;" style="text;html=1;fillColor=none;strokeColor=none;align=left;" vertex="1" parent="1">
+          <mxGeometry x="55" y="725" width="130" height="18" as="geometry"/>
+        </mxCell>
+        <mxCell id="leg5" value="&lt;font color=&quot;#2088FF&quot; style=&quot;font-size:9px;&quot;&gt;━━ CI/CD Pipeline&lt;/font&gt;" style="text;html=1;fillColor=none;strokeColor=none;align=left;" vertex="1" parent="1">
+          <mxGeometry x="225" y="665" width="130" height="18" as="geometry"/>
+        </mxCell>
+        <mxCell id="leg6" value="&lt;font color=&quot;#F38020&quot; style=&quot;font-size:9px;&quot;&gt;━━ CDN / Proxy&lt;/font&gt;" style="text;html=1;fillColor=none;strokeColor=none;align=left;" vertex="1" parent="1">
+          <mxGeometry x="225" y="685" width="130" height="18" as="geometry"/>
+        </mxCell>
+        <mxCell id="leg7" value="&lt;font color=&quot;#8888CC&quot; style=&quot;font-size:9px;&quot;&gt;┅┅ Monitoring / Logs&lt;/font&gt;" style="text;html=1;fillColor=none;strokeColor=none;align=left;" vertex="1" parent="1">
+          <mxGeometry x="225" y="705" width="140" height="18" as="geometry"/>
+        </mxCell>
+        <mxCell id="leg8" value="&lt;font color=&quot;#D4A574&quot; style=&quot;font-size:9px;&quot;&gt;━━ Anthropic API&lt;/font&gt;" style="text;html=1;fillColor=none;strokeColor=none;align=left;" vertex="1" parent="1">
+          <mxGeometry x="225" y="725" width="140" height="18" as="geometry"/>
+        </mxCell>
+
+        <!-- Tech Stack Bar -->
+        <mxCell id="stack-bar" value="&lt;font color=&quot;#8B949E&quot; style=&quot;font-size:10px;&quot;&gt;React · TypeScript · Fastify · Python · Playwright · Docker · Terraform · Packer · GCP · Firebase · Cloudflare · Claude Opus 4&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;fillColor=none;strokeColor=none;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="440" y="660" width="960" height="25" as="geometry"/>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,281 @@
+<mxfile host="app.diagrams.net" modified="2026-04-19T12:00:00.000Z" agent="Reetik V3" version="24.0.0" type="device">
+  <diagram name="Reetik V3 — Architecture Cloud GCP" id="reetik-v3-arch">
+    <mxGraphModel dx="1920" dy="1080" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1920" pageHeight="1080" background="#030014" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="10" value="&lt;font style=&quot;font-size:28px;letter-spacing:4px;&quot;&gt;REETIK V3&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size:13px;color:#888888;letter-spacing:2px;&quot;&gt;AI-Powered TikTok Production Platform — Cloud Architecture&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fontColor=#C9A96E;fontFamily=Inter;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="560" y="10" width="800" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="20" value="&lt;b&gt;Users&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px;color:#999&quot;&gt;Browser&lt;/font&gt;" style="ellipse;whiteSpace=wrap;html=1;fillColor=#C9A96E;strokeColor=#C9A96E;fontColor=#FFFFFF;fontSize=11;verticalLabelPosition=bottom;verticalAlign=top;labelBackgroundColor=none;" vertex="1" parent="1">
+          <mxGeometry x="60" y="265" width="50" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="100" value="&lt;font style=&quot;font-size:13px;letter-spacing:2px;&quot;&gt;⬡ FRONTEND&lt;/font&gt;" style="swimlane;startSize=35;fillColor=#0A0A1A;swimlaneLine=1;strokeColor=#C9A96E;strokeWidth=2;rounded=1;arcSize=6;fontColor=#C9A96E;fontSize=13;fontStyle=1;html=1;collapsible=0;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="170" y="90" width="360" height="440" as="geometry"/>
+        </mxCell>
+        <mxCell id="101" value="&lt;b&gt;React 19&lt;/b&gt; + Vite 7" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1A1A3E;strokeColor=#61DAFB;strokeWidth=1.5;fontColor=#FFFFFF;fontSize=11;arcSize=20;" vertex="1" parent="100">
+          <mxGeometry x="20" y="50" width="150" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="102" value="&lt;b&gt;Tailwind CSS 3&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1A1A3E;strokeColor=#38BDF8;strokeWidth=1.5;fontColor=#FFFFFF;fontSize=11;arcSize=20;" vertex="1" parent="100">
+          <mxGeometry x="190" y="50" width="150" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="103" value="&lt;b&gt;Framer Motion&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px;color:#AAA;&quot;&gt;Scroll reveal, hover glow&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1A1A3E;strokeColor=#FF6B9D;strokeWidth=1.5;fontColor=#FFFFFF;fontSize=11;arcSize=20;" vertex="1" parent="100">
+          <mxGeometry x="20" y="125" width="150" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="104" value="&lt;b&gt;React Router 7&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1A1A3E;strokeColor=#F44250;strokeWidth=1.5;fontColor=#FFFFFF;fontSize=11;arcSize=20;" vertex="1" parent="100">
+          <mxGeometry x="190" y="125" width="150" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="105" value="&lt;b&gt;🔥 Firebase Auth&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px;color:#FFA726;&quot;&gt;Google OAuth 2.0 Sign-In&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1C1206;strokeColor=#FFA726;strokeWidth=2;fontColor=#FFFFFF;fontSize=11;arcSize=20;" vertex="1" parent="100">
+          <mxGeometry x="20" y="210" width="320" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="106" value="&lt;b&gt;Axios&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px;color:#AAA;&quot;&gt;REST Client&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1A1A3E;strokeColor=#5A29E4;strokeWidth=1.5;fontColor=#FFFFFF;fontSize=11;arcSize=20;" vertex="1" parent="100">
+          <mxGeometry x="20" y="290" width="150" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="107" value="&lt;b&gt;WebSocket&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px;color:#AAA;&quot;&gt;Real-time vidéo&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1A1A3E;strokeColor=#00BCD4;strokeWidth=1.5;fontColor=#FFFFFF;fontSize=11;arcSize=20;" vertex="1" parent="100">
+          <mxGeometry x="190" y="290" width="150" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="108" value="&lt;font style=&quot;font-size:9px;color:#666;&quot;&gt;Lucide Icons · Firebase SDK 11 · Dark UI (#030014)&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;fontColor=#666666;fontSize=9;strokeColor=none;fillColor=none;" vertex="1" parent="100">
+          <mxGeometry x="20" y="365" width="320" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="109" value="&lt;font style=&quot;font-size:9px;color:#555;&quot;&gt;Routes: / · /login · /dashboard · /projects/:id&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;fontColor=#555555;fontSize=9;strokeColor=none;fillColor=none;" vertex="1" parent="100">
+          <mxGeometry x="20" y="395" width="320" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="200" value="&lt;font style=&quot;font-size:13px;letter-spacing:2px;&quot;&gt;⬡ BACKEND&lt;/font&gt;" style="swimlane;startSize=35;fillColor=#0A0A1A;swimlaneLine=1;strokeColor=#4285F4;strokeWidth=2;rounded=1;arcSize=6;fontColor=#4285F4;fontSize=13;fontStyle=1;html=1;collapsible=0;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="600" y="90" width="440" height="440" as="geometry"/>
+        </mxCell>
+        <mxCell id="201" value="&lt;b&gt;☁️ Cloud Run&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px;color:#7BAAF7;&quot;&gt;2 vCPU · 1 GiB · 0-5 instances&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0D2240;strokeColor=#4285F4;strokeWidth=2;fontColor=#FFFFFF;fontSize=12;arcSize=20;" vertex="1" parent="200">
+          <mxGeometry x="20" y="50" width="190" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="202" value="&lt;b&gt;FastAPI 0.115&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px;color:#009688;&quot;&gt;Python 3.12 · Uvicorn · Port 8080&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0D2240;strokeColor=#009688;strokeWidth=2;fontColor=#FFFFFF;fontSize=12;arcSize=20;" vertex="1" parent="200">
+          <mxGeometry x="230" y="50" width="190" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="203" value="&lt;div style=&quot;text-align:left;padding:8px;&quot;&gt;&lt;b style=&quot;color:#7BAAF7;&quot;&gt;7 API Routers — /api/v3/&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px;&quot;&gt;🔐 auth (Firebase → JWT V3)&lt;br&gt;📁 projects (CRUD)&lt;br&gt;🎭 characters (Chat + Imagen 4)&lt;br&gt;📝 scenarios (Chat + Upload + Validate)&lt;br&gt;🎬 videos (Generate + Status + Stream)&lt;br&gt;📱 tiktok (Profile + Hashtags + Title)&lt;br&gt;🔌 websocket (/ws/v3/video/{id})&lt;/font&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0D1825;strokeColor=#4285F4;strokeWidth=1;fontColor=#FFFFFF;fontSize=10;arcSize=10;align=left;overflow=fill;" vertex="1" parent="200">
+          <mxGeometry x="20" y="125" width="400" height="155" as="geometry"/>
+        </mxCell>
+        <mxCell id="204" value="&lt;b&gt;🔑 JWT V3&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px;color:#AAA;&quot;&gt;PyJWT · HS256 · 7d expiry&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0D2240;strokeColor=#FFC107;strokeWidth=1.5;fontColor=#FFFFFF;fontSize=11;arcSize=20;" vertex="1" parent="200">
+          <mxGeometry x="20" y="300" width="190" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="205" value="&lt;b&gt;🔌 WebSocket&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px;color:#AAA;&quot;&gt;Firestore poll 3s · Status push&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0D2240;strokeColor=#00BCD4;strokeWidth=1.5;fontColor=#FFFFFF;fontSize=11;arcSize=20;" vertex="1" parent="200">
+          <mxGeometry x="230" y="300" width="190" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="206" value="&lt;b&gt;CORS Middleware&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px;color:#AAA;&quot;&gt;Pydantic Settings · .env&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0D2240;strokeColor=#4285F4;strokeWidth=1;fontColor=#FFFFFF;fontSize=11;arcSize=20;" vertex="1" parent="200">
+          <mxGeometry x="20" y="370" width="400" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="300" value="&lt;font style=&quot;font-size:13px;letter-spacing:2px;&quot;&gt;⬡ AI / ML — VERTEX AI&lt;/font&gt;" style="swimlane;startSize=35;fillColor=#0A0A1A;swimlaneLine=1;strokeColor=#EA4335;strokeWidth=2;rounded=1;arcSize=6;fontColor=#EA4335;fontSize=13;fontStyle=1;html=1;collapsible=0;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="1110" y="90" width="400" height="440" as="geometry"/>
+        </mxCell>
+        <mxCell id="301" value="&lt;b&gt;🧠 Vertex AI Platform&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px;color:#F48FB1;&quot;&gt;google-genai SDK · us-central1&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#2D0A0A;strokeColor=#EA4335;strokeWidth=2;fontColor=#FFFFFF;fontSize=12;arcSize=15;" vertex="1" parent="300">
+          <mxGeometry x="20" y="50" width="360" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="302" value="&lt;div style=&quot;text-align:left;padding:6px;&quot;&gt;&lt;b style=&quot;color:#FF8A80;&quot;&gt;🎬 Veo 3.1 GA&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px;&quot;&gt;Model: veo-3.1-generate-001&lt;br&gt;8s initial + extensions (+7s x 7)&lt;br&gt;Max: 57s continu · 1080p&lt;/font&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1A0808;strokeColor=#FF8A80;strokeWidth=1.5;fontColor=#FFFFFF;fontSize=10;arcSize=12;align=left;overflow=fill;" vertex="1" parent="300">
+          <mxGeometry x="20" y="120" width="360" height="85" as="geometry"/>
+        </mxCell>
+        <mxCell id="303" value="&lt;div style=&quot;text-align:left;padding:6px;&quot;&gt;&lt;b style=&quot;color:#B388FF;&quot;&gt;💬 Gemini 3.1 Pro&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px;&quot;&gt;Model: gemini-3.1-pro-preview&lt;br&gt;Chat personnages · Scenarios · TikTok&lt;/font&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0D0820;strokeColor=#B388FF;strokeWidth=1.5;fontColor=#FFFFFF;fontSize=10;arcSize=12;align=left;overflow=fill;" vertex="1" parent="300">
+          <mxGeometry x="20" y="225" width="360" height="75" as="geometry"/>
+        </mxCell>
+        <mxCell id="304" value="&lt;div style=&quot;text-align:left;padding:6px;&quot;&gt;&lt;b style=&quot;color:#FFCC80;&quot;&gt;🎨 Imagen 4&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px;&quot;&gt;Model: imagen-4.0-generate-001&lt;br&gt;Personnages + Miniatures · 9:16&lt;/font&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1A1200;strokeColor=#FFCC80;strokeWidth=1.5;fontColor=#FFFFFF;fontSize=10;arcSize=12;align=left;overflow=fill;" vertex="1" parent="300">
+          <mxGeometry x="20" y="320" width="360" height="75" as="geometry"/>
+        </mxCell>
+        <mxCell id="400" value="&lt;font style=&quot;font-size:13px;letter-spacing:2px;&quot;&gt;⬡ SERVERLESS / EVENT-DRIVEN&lt;/font&gt;" style="swimlane;startSize=35;fillColor=#0A0A1A;swimlaneLine=1;strokeColor=#34A853;strokeWidth=2;rounded=1;arcSize=6;fontColor=#34A853;fontSize=13;fontStyle=1;html=1;collapsible=0;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="170" y="590" width="490" height="340" as="geometry"/>
+        </mxCell>
+        <mxCell id="401" value="&lt;b&gt;⚡ agent-video-veo31&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px;color:#81C784;&quot;&gt;Storage Trigger (Eventarc)&lt;br&gt;2 GiB · 540s timeout&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0D2818;strokeColor=#34A853;strokeWidth=1.5;fontColor=#FFFFFF;fontSize=10;arcSize=15;" vertex="1" parent="400">
+          <mxGeometry x="20" y="50" width="210" height="65" as="geometry"/>
+        </mxCell>
+        <mxCell id="402" value="&lt;b&gt;⚡ monitor-extensions-v3&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px;color:#81C784;&quot;&gt;HTTP Trigger · 1 GiB · 300s&lt;br&gt;Check → Extend → Finalize&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0D2818;strokeColor=#34A853;strokeWidth=1.5;fontColor=#FFFFFF;fontSize=10;arcSize=15;" vertex="1" parent="400">
+          <mxGeometry x="255" y="50" width="215" height="65" as="geometry"/>
+        </mxCell>
+        <mxCell id="403" value="&lt;b&gt;⚡ agent-thumbnail-v3&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px;color:#81C784;&quot;&gt;HTTP Trigger · Imagen 4&lt;br&gt;1 GiB · 300s timeout&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0D2818;strokeColor=#34A853;strokeWidth=1.5;fontColor=#FFFFFF;fontSize=10;arcSize=15;" vertex="1" parent="400">
+          <mxGeometry x="20" y="135" width="210" height="65" as="geometry"/>
+        </mxCell>
+        <mxCell id="404" value="&lt;b&gt;⏱ Cloud Scheduler&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px;color:#81C784;&quot;&gt;Cron: */1 * * * * (every 1 min)&lt;br&gt;OIDC Auth · Europe/Paris&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0D2818;strokeColor=#66BB6A;strokeWidth=2;fontColor=#FFFFFF;fontSize=10;arcSize=15;" vertex="1" parent="400">
+          <mxGeometry x="255" y="135" width="215" height="65" as="geometry"/>
+        </mxCell>
+        <mxCell id="405" value="&lt;font style=&quot;font-size:9px;color:#555;&quot;&gt;Runtime: Python 3.12 · Cloud Functions Gen2 · SA: reetik-v3-functions&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;fontColor=#555555;fontSize=9;strokeColor=none;fillColor=none;" vertex="1" parent="400">
+          <mxGeometry x="20" y="220" width="450" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="406" value="&lt;font style=&quot;font-size:9px;color:#555;&quot;&gt;Flow: script_v3.json upload → Veo 8s → Scheduler poll → Extend x7 → Thumbnail → Done&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;fontColor=#555555;fontSize=9;strokeColor=none;fillColor=none;" vertex="1" parent="400">
+          <mxGeometry x="20" y="245" width="450" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="450" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#66BB6A;strokeWidth=1.5;dashed=1;fontColor=#66BB6A;fontSize=9;endArrow=blockThin;endFill=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" source="404" target="402" parent="400">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="451" value="HTTP POST" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontColor=#66BB6A;fontSize=8;" vertex="1" connectable="0" parent="450">
+          <mxGeometry x="-0.1" relative="1" as="geometry"><mxPoint as="offset"/></mxGeometry>
+        </mxCell>
+        <mxCell id="500" value="&lt;font style=&quot;font-size:13px;letter-spacing:2px;&quot;&gt;⬡ DATA LAYER&lt;/font&gt;" style="swimlane;startSize=35;fillColor=#0A0A1A;swimlaneLine=1;strokeColor=#FBBC04;strokeWidth=2;rounded=1;arcSize=6;fontColor=#FBBC04;fontSize=13;fontStyle=1;html=1;collapsible=0;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="720" y="590" width="440" height="340" as="geometry"/>
+        </mxCell>
+        <mxCell id="501" value="&lt;b&gt;🔥 Firestore&lt;/b&gt; — DB nommee &lt;b&gt;reetik-v3&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px;color:#FFD54F;&quot;&gt;Separee de la DB (default) de V2&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#2D2200;strokeColor=#FBBC04;strokeWidth=2;fontColor=#FFFFFF;fontSize=11;arcSize=15;" vertex="1" parent="500">
+          <mxGeometry x="20" y="50" width="400" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="502" value="&lt;b&gt;📦 artifacts&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:8px;color:#AAA;&quot;&gt;Videos Veo 3.1&lt;br&gt;script_v3.json&lt;br&gt;90d lifecycle&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1A1500;strokeColor=#FFA726;strokeWidth=1.5;fontColor=#FFFFFF;fontSize=9;arcSize=15;" vertex="1" parent="500">
+          <mxGeometry x="20" y="125" width="120" height="75" as="geometry"/>
+        </mxCell>
+        <mxCell id="503" value="&lt;b&gt;📦 uploads&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:8px;color:#AAA;&quot;&gt;Fichiers user&lt;br&gt;Images persos&lt;br&gt;180d lifecycle&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1A1500;strokeColor=#FFA726;strokeWidth=1.5;fontColor=#FFFFFF;fontSize=9;arcSize=15;" vertex="1" parent="500">
+          <mxGeometry x="160" y="125" width="120" height="75" as="geometry"/>
+        </mxCell>
+        <mxCell id="504" value="&lt;b&gt;📦 thumbnails&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:8px;color:#AAA;&quot;&gt;Miniatures&lt;br&gt;Imagen 4&lt;br&gt;365d lifecycle&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1A1500;strokeColor=#FFA726;strokeWidth=1.5;fontColor=#FFFFFF;fontSize=9;arcSize=15;" vertex="1" parent="500">
+          <mxGeometry x="300" y="125" width="120" height="75" as="geometry"/>
+        </mxCell>
+        <mxCell id="505" value="&lt;font style=&quot;font-size:9px;color:#FFD54F;&quot;&gt;&lt;b&gt;Collections:&lt;/b&gt; users_v3 · projects · characters · scenarios · videos_v3 · v3_veo_operations&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;fontColor=#FFD54F;fontSize=9;strokeColor=none;fillColor=none;" vertex="1" parent="500">
+          <mxGeometry x="20" y="215" width="400" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="506" value="&lt;font style=&quot;font-size:9px;color:#555;&quot;&gt;Cloud Storage: reetik-v3-artifacts · reetik-v3-uploads · reetik-v3-thumbnails&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;fontColor=#555555;fontSize=9;strokeColor=none;fillColor=none;" vertex="1" parent="500">
+          <mxGeometry x="20" y="240" width="400" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="507" value="&lt;font style=&quot;font-size:9px;color:#555;&quot;&gt;6 Composite Indexes · CORS enabled · Versioning (artifacts)&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;fontColor=#555555;fontSize=9;strokeColor=none;fillColor=none;" vertex="1" parent="500">
+          <mxGeometry x="20" y="265" width="400" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="600" value="&lt;font style=&quot;font-size:13px;letter-spacing:2px;&quot;&gt;⬡ CI / CD&lt;/font&gt;" style="swimlane;startSize=35;fillColor=#0A0A1A;swimlaneLine=1;strokeColor=#9333EA;strokeWidth=2;rounded=1;arcSize=6;fontColor=#9333EA;fontSize=13;fontStyle=1;html=1;collapsible=0;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="1220" y="590" width="310" height="340" as="geometry"/>
+        </mxCell>
+        <mxCell id="601" value="&lt;b&gt;GitHub Actions&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px;color:#B39DDB;&quot;&gt;3 jobs: deploy-backend&lt;br&gt;deploy-functions · test&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1D0D33;strokeColor=#9333EA;strokeWidth=1.5;fontColor=#FFFFFF;fontSize=11;arcSize=15;" vertex="1" parent="600">
+          <mxGeometry x="20" y="50" width="270" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="602" value="&lt;b&gt;🐳 Docker&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px;color:#B39DDB;&quot;&gt;python:3.12-slim · multi-stage&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1D0D33;strokeColor=#2496ED;strokeWidth=1.5;fontColor=#FFFFFF;fontSize=11;arcSize=15;" vertex="1" parent="600">
+          <mxGeometry x="20" y="120" width="125" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="603" value="&lt;b&gt;Terraform&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px;color:#B39DDB;&quot;&gt;8 .tf files · IaC&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1D0D33;strokeColor=#7B42BC;strokeWidth=1.5;fontColor=#FFFFFF;fontSize=11;arcSize=15;" vertex="1" parent="600">
+          <mxGeometry x="165" y="120" width="125" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="604" value="&lt;b&gt;☁️ Cloud Build&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px;color:#7BAAF7;&quot;&gt;Container builds&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0D2240;strokeColor=#4285F4;strokeWidth=1.5;fontColor=#FFFFFF;fontSize=11;arcSize=15;" vertex="1" parent="600">
+          <mxGeometry x="20" y="195" width="270" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="605" value="&lt;b&gt;☁️ Artifact Registry&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px;color:#7BAAF7;&quot;&gt;reetik-v3 Docker repo&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0D2240;strokeColor=#4285F4;strokeWidth=1.5;fontColor=#FFFFFF;fontSize=11;arcSize=15;" vertex="1" parent="600">
+          <mxGeometry x="20" y="255" width="270" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="700" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#C9A96E;strokeWidth=2;endArrow=blockThin;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" source="20" target="101" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="701" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#FFFFFF;strokeWidth=2;endArrow=blockThin;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.3;entryDx=0;entryDy=0;" edge="1" source="106" target="203" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="701L" value="&lt;font style=&quot;font-size:9px;&quot;&gt;HTTPS · REST&lt;br&gt;/api/v3/*&lt;/font&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontColor=#AAAAAA;fontSize=9;labelBackgroundColor=none;" vertex="1" connectable="0" parent="701">
+          <mxGeometry x="-0.1" relative="1" as="geometry"><mxPoint as="offset"/></mxGeometry>
+        </mxCell>
+        <mxCell id="702" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#00BCD4;strokeWidth=2;dashed=1;dashPattern=8 4;endArrow=blockThin;endFill=1;startArrow=blockThin;startFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" source="107" target="205" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="702L" value="&lt;font style=&quot;font-size:9px;&quot;&gt;WSS&lt;br&gt;/ws/v3/video/{id}&lt;/font&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontColor=#00BCD4;fontSize=9;labelBackgroundColor=none;" vertex="1" connectable="0" parent="702">
+          <mxGeometry x="-0.1" relative="1" as="geometry"><mxPoint as="offset"/></mxGeometry>
+        </mxCell>
+        <mxCell id="703" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#FFA726;strokeWidth=1.5;dashed=1;endArrow=blockThin;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" source="105" target="204" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="703L" value="&lt;font style=&quot;font-size:9px;&quot;&gt;ID Token → JWT V3&lt;/font&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontColor=#FFA726;fontSize=9;labelBackgroundColor=none;" vertex="1" connectable="0" parent="703">
+          <mxGeometry x="-0.1" relative="1" as="geometry"><mxPoint as="offset"/></mxGeometry>
+        </mxCell>
+        <mxCell id="704" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#B388FF;strokeWidth=2;endArrow=blockThin;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" source="202" target="303" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="704L" value="&lt;font style=&quot;font-size:9px;&quot;&gt;Chat · Scripts&lt;br&gt;TikTok Suggest&lt;/font&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontColor=#B388FF;fontSize=9;labelBackgroundColor=none;" vertex="1" connectable="0" parent="704">
+          <mxGeometry x="-0.1" relative="1" as="geometry"><mxPoint as="offset"/></mxGeometry>
+        </mxCell>
+        <mxCell id="705" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#FBBC04;strokeWidth=2;endArrow=blockThin;endFill=1;startArrow=blockThin;startFill=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.3;entryY=0;entryDx=0;entryDy=0;" edge="1" source="203" target="501" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="705L" value="&lt;font style=&quot;font-size:9px;&quot;&gt;CRUD&lt;br&gt;Read / Write&lt;/font&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontColor=#FBBC04;fontSize=9;labelBackgroundColor=none;" vertex="1" connectable="0" parent="705">
+          <mxGeometry x="-0.2" relative="1" as="geometry"><mxPoint as="offset"/></mxGeometry>
+        </mxCell>
+        <mxCell id="706" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#FFA726;strokeWidth=1.5;endArrow=blockThin;endFill=1;exitX=0.8;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" source="206" target="502" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="920" y="560"/>
+              <mxPoint x="800" y="560"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="706L" value="&lt;font style=&quot;font-size:8px;&quot;&gt;Upload&lt;br&gt;script_v3.json&lt;/font&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontColor=#FFA726;fontSize=8;labelBackgroundColor=none;" vertex="1" connectable="0" parent="706">
+          <mxGeometry x="0.2" relative="1" as="geometry"><mxPoint as="offset"/></mxGeometry>
+        </mxCell>
+        <mxCell id="707" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#34A853;strokeWidth=2;dashed=1;dashPattern=8 4;endArrow=blockThin;endFill=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" source="502" target="401" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="690" y="752"/>
+              <mxPoint x="690" y="672"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="707L" value="&lt;font style=&quot;font-size:8px;&quot;&gt;Eventarc&lt;br&gt;Storage Trigger&lt;/font&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontColor=#34A853;fontSize=8;labelBackgroundColor=none;" vertex="1" connectable="0" parent="707">
+          <mxGeometry x="-0.1" relative="1" as="geometry"><mxPoint as="offset"/></mxGeometry>
+        </mxCell>
+        <mxCell id="708" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#FF8A80;strokeWidth=2;endArrow=blockThin;endFill=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=1;entryDx=0;entryDy=0;" edge="1" source="401" target="302" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="295" y="560"/>
+              <mxPoint x="1130" y="560"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="708L" value="&lt;font style=&quot;font-size:8px;&quot;&gt;Veo 3.1 Generate&lt;br&gt;8s initial + extensions&lt;/font&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontColor=#FF8A80;fontSize=8;labelBackgroundColor=none;" vertex="1" connectable="0" parent="708">
+          <mxGeometry x="0.3" relative="1" as="geometry"><mxPoint as="offset"/></mxGeometry>
+        </mxCell>
+        <mxCell id="709" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#66BB6A;strokeWidth=1.5;dashed=1;endArrow=blockThin;endFill=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" source="402" target="403" parent="400">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="245" y="82"/>
+              <mxPoint x="245" y="167"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="709L" value="&lt;font style=&quot;font-size:8px;&quot;&gt;on complete&lt;/font&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontColor=#66BB6A;fontSize=8;labelBackgroundColor=none;" vertex="1" connectable="0" parent="709">
+          <mxGeometry x="-0.1" relative="1" as="geometry"><mxPoint as="offset"/></mxGeometry>
+        </mxCell>
+        <mxCell id="710" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#FFCC80;strokeWidth=1.5;endArrow=blockThin;endFill=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" source="403" target="504" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="295" y="810"/>
+              <mxPoint x="680" y="810"/>
+              <mxPoint x="680" y="752"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="710L" value="&lt;font style=&quot;font-size:8px;&quot;&gt;Save thumbnail&lt;/font&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontColor=#FFCC80;fontSize=8;labelBackgroundColor=none;" vertex="1" connectable="0" parent="710">
+          <mxGeometry x="-0.1" relative="1" as="geometry"><mxPoint as="offset"/></mxGeometry>
+        </mxCell>
+        <mxCell id="711" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#9333EA;strokeWidth=1.5;endArrow=blockThin;endFill=1;" edge="1" source="601" target="604" parent="600">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="712" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#9333EA;strokeWidth=1.5;endArrow=blockThin;endFill=1;" edge="1" source="604" target="605" parent="600">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="713" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#9333EA;strokeWidth=2;dashed=1;dashPattern=5 5;endArrow=blockThin;endFill=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" source="605" target="201" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1190" y="868"/>
+              <mxPoint x="1190" y="950"/>
+              <mxPoint x="1570" y="950"/>
+              <mxPoint x="1570" y="400"/>
+              <mxPoint x="1080" y="400"/>
+              <mxPoint x="1080" y="208"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="713L" value="&lt;font style=&quot;font-size:9px;&quot;&gt;Deploy&lt;br&gt;Container&lt;/font&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontColor=#9333EA;fontSize=9;labelBackgroundColor=none;" vertex="1" connectable="0" parent="713">
+          <mxGeometry x="0.5" relative="1" as="geometry"><mxPoint as="offset"/></mxGeometry>
+        </mxCell>
+        <mxCell id="714" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#FBBC04;strokeWidth=1.5;dashed=1;endArrow=blockThin;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.7;entryDx=0;entryDy=0;" edge="1" source="401" target="501" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="680" y="672"/>
+              <mxPoint x="680" y="679"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="714L" value="&lt;font style=&quot;font-size:8px;&quot;&gt;Update&lt;br&gt;status&lt;/font&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontColor=#FBBC04;fontSize=8;labelBackgroundColor=none;" vertex="1" connectable="0" parent="714">
+          <mxGeometry x="-0.2" relative="1" as="geometry"><mxPoint as="offset"/></mxGeometry>
+        </mxCell>
+        <mxCell id="900" value="&lt;div style=&quot;text-align:left;padding:8px;line-height:1.6;&quot;&gt;&lt;font style=&quot;font-size:10px;color:#C9A96E;&quot;&gt;&lt;b&gt;LEGENDE&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px;color:#FFFFFF;&quot;&gt;—— &lt;font color=&quot;#FFFFFF&quot;&gt;REST / HTTPS&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#00BCD4&quot;&gt;- - WebSocket (bidirectionnel)&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#FFA726&quot;&gt;- - Auth (Firebase → JWT)&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#34A853&quot;&gt;- - Event Trigger (Eventarc)&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#9333EA&quot;&gt;- - CI/CD Deploy&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#FBBC04&quot;&gt;—— Firestore R/W&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#FF8A80&quot;&gt;—— Vertex AI Call&lt;/font&gt;&lt;/font&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0A0A1A;strokeColor=#333333;strokeWidth=1;fontColor=#FFFFFF;fontSize=9;arcSize=10;align=left;overflow=fill;" vertex="1" parent="1">
+          <mxGeometry x="1600" y="90" width="200" height="170" as="geometry"/>
+        </mxCell>
+        <mxCell id="901" value="&lt;div style=&quot;text-align:left;padding:8px;line-height:1.5;&quot;&gt;&lt;font style=&quot;font-size:10px;color:#C9A96E;&quot;&gt;&lt;b&gt;STACK&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px;&quot;&gt;&lt;font color=&quot;#4285F4&quot;&gt;●&lt;/font&gt; &lt;font color=&quot;#CCC&quot;&gt;Google Cloud Platform&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#EA4335&quot;&gt;●&lt;/font&gt; &lt;font color=&quot;#CCC&quot;&gt;Vertex AI (Veo · Gemini · Imagen)&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#FFA726&quot;&gt;●&lt;/font&gt; &lt;font color=&quot;#CCC&quot;&gt;Firebase Auth&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#009688&quot;&gt;●&lt;/font&gt; &lt;font color=&quot;#CCC&quot;&gt;FastAPI + Python 3.12&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#61DAFB&quot;&gt;●&lt;/font&gt; &lt;font color=&quot;#CCC&quot;&gt;React 19 + Vite 7&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#7B42BC&quot;&gt;●&lt;/font&gt; &lt;font color=&quot;#CCC&quot;&gt;Terraform IaC&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#2496ED&quot;&gt;●&lt;/font&gt; &lt;font color=&quot;#CCC&quot;&gt;Docker Containers&lt;/font&gt;&lt;/font&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0A0A1A;strokeColor=#333333;strokeWidth=1;fontColor=#FFFFFF;fontSize=9;arcSize=10;align=left;overflow=fill;" vertex="1" parent="1">
+          <mxGeometry x="1600" y="280" width="200" height="180" as="geometry"/>
+        </mxCell>
+        <mxCell id="902" value="&lt;font style=&quot;font-size:9px;color:#555;&quot;&gt;v3.0.0 · April 2026 · us-central1 · reetik-project&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;fontColor=#555555;fontSize=9;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="660" y="1030" width="600" height="20" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
