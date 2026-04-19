@@ -1,0 +1,314 @@
+<mxfile host="app.diagrams.net" agent="GitHub Copilot">
+  <diagram name="Mimo Finance - Architecture" id="mimo-arch-v1">
+    <mxGraphModel dx="1808" dy="1009" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="1920" pageHeight="1080" background="#030014" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=22;fontStyle=1;fontColor=#E2E8F0;" value="Mimo Finance — Cloud Architecture" vertex="1">
+          <mxGeometry height="40" width="700" x="610" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontColor=#94A3B8;" value="GCP • europe-west1 • FastAPI + React + PostgreSQL + Redis" vertex="1">
+          <mxGeometry height="22" width="700" x="610" y="56" as="geometry" />
+        </mxCell>
+        <mxCell id="grp-cicd" parent="1" style="swimlane;fontStyle=1;fontSize=13;fontColor=#F1FA8C;strokeColor=#F1FA8C;fillColor=#1A1A2E;startSize=30;rounded=12;arcSize=4;" value="CI / CD" vertex="1">
+          <mxGeometry height="280" width="320" x="30" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="github" parent="grp-cicd" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#24292F;strokeColor=#8B949E;fontColor=#E2E8F0;fontSize=10;verticalLabelPosition=bottom;verticalAlign=top;labelPosition=center;align=center;arcSize=20;fontStyle=1;" value="GitHub&#xa;Linerror99/Mimo-core&#xa;branch: develop" vertex="1">
+          <mxGeometry height="60" width="60" x="20" y="55" as="geometry" />
+        </mxCell>
+        <mxCell id="gh-actions" parent="grp-cicd" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#2088FF;strokeColor=#2088FF;fontColor=#E2E8F0;fontSize=10;verticalLabelPosition=bottom;verticalAlign=top;labelPosition=center;align=center;arcSize=20;fontStyle=1;" value="GitHub Actions&#xa;deploy-production.yml" vertex="1">
+          <mxGeometry height="60" width="60" x="130" y="55" as="geometry" />
+        </mxCell>
+        <mxCell id="docker" parent="grp-cicd" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0DB7ED;strokeColor=#0DB7ED;fontColor=#E2E8F0;fontSize=10;verticalLabelPosition=bottom;verticalAlign=top;labelPosition=center;align=center;arcSize=20;fontStyle=1;" value="Docker Build&#xa;Multi-stage" vertex="1">
+          <mxGeometry height="60" width="60" x="240" y="55" as="geometry" />
+        </mxCell>
+        <mxCell id="artifact-reg" parent="grp-cicd" style="sketch=0;html=1;aspect=fixed;shape=mxgraph.gcp2.container_registry;fillColor=#4285F4;fontColor=#E2E8F0;fontSize=10;verticalLabelPosition=bottom;verticalAlign=top;labelPosition=center;align=center;labelBackgroundColor=none;" value="Artifact Registry&#xa;europe-west1" vertex="1">
+          <mxGeometry height="60" width="60" x="130" y="175" as="geometry" />
+        </mxCell>
+        <mxCell id="wif" parent="grp-cicd" style="sketch=0;html=1;aspect=fixed;shape=mxgraph.gcp2.cloud_iam;fillColor=#EA4335;fontColor=#E2E8F0;fontSize=9;verticalLabelPosition=bottom;verticalAlign=top;labelPosition=center;align=center;labelBackgroundColor=none;" value="Workload Identity&#xa;Federation" vertex="1">
+          <mxGeometry height="60" width="60" x="20" y="175" as="geometry" />
+        </mxCell>
+        <mxCell id="alembic" parent="grp-cicd" style="sketch=0;html=1;aspect=fixed;shape=mxgraph.gcp2.cloud_run;fillColor=#34A853;fontColor=#E2E8F0;fontSize=9;verticalLabelPosition=bottom;verticalAlign=top;labelPosition=center;align=center;labelBackgroundColor=none;" value="Cloud Run Job&#xa;Alembic Migrate" vertex="1">
+          <mxGeometry height="60" width="60" x="240" y="175" as="geometry" />
+        </mxCell>
+        <mxCell id="e-gh-gha" edge="1" parent="grp-cicd" source="github" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#F1FA8C;strokeWidth=1.5;fontColor=#F1FA8C;fontSize=9;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="gh-actions">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-gha-docker" edge="1" parent="grp-cicd" source="gh-actions" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#F1FA8C;strokeWidth=1.5;fontColor=#F1FA8C;fontSize=9;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="docker">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-docker-ar" edge="1" parent="grp-cicd" source="7riORdufLOyKrPxqtvzf-5" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#F1FA8C;strokeWidth=1.5;fontColor=#F1FA8C;fontSize=9;" target="artifact-reg">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-gha-wif" edge="1" parent="grp-cicd" source="gh-actions" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#F1FA8C;strokeWidth=1.5;fontColor=#F1FA8C;fontSize=9;" target="wif">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-ar-alembic" edge="1" parent="grp-cicd" source="artifact-reg" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#F1FA8C;strokeWidth=1.5;fontColor=#F1FA8C;fontSize=9;" target="alembic">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="7riORdufLOyKrPxqtvzf-4" parent="grp-cicd" style="shape=image;html=1;verticalAlign=top;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;imageAspect=0;aspect=fixed;image=https://icons.diagrams.net/icon-cache1/Unicons_Line_vol_3-2965/docker-1335.svg" value="" vertex="1">
+          <mxGeometry height="39" width="39" x="250.5" y="65.5" as="geometry" />
+        </mxCell>
+        <mxCell id="7riORdufLOyKrPxqtvzf-6" edge="1" parent="grp-cicd" source="docker" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#F1FA8C;strokeWidth=1.5;fontColor=#F1FA8C;fontSize=9;" target="7riORdufLOyKrPxqtvzf-5" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="270" y="175" as="sourcePoint" />
+            <mxPoint x="190" y="265" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7riORdufLOyKrPxqtvzf-5" parent="grp-cicd" style="dashed=0;outlineConnect=0;html=1;align=center;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;shape=mxgraph.weblogos.github" value="" vertex="1">
+          <mxGeometry height="48" width="39.5" x="138" y="62" as="geometry" />
+        </mxCell>
+        <mxCell id="7riORdufLOyKrPxqtvzf-7" parent="grp-cicd" style="dashed=0;outlineConnect=0;html=1;align=center;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;shape=mxgraph.weblogos.github" value="" vertex="1">
+          <mxGeometry height="48" width="39.5" x="30.25" y="59" as="geometry" />
+        </mxCell>
+        <mxCell id="user" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#8B5CF6;strokeColor=#8B5CF6;fontColor=#E2E8F0;fontSize=11;verticalLabelPosition=bottom;verticalAlign=top;labelPosition=center;align=center;" value="Utilisateur" vertex="1">
+          <mxGeometry height="60" width="60" x="50" y="460" as="geometry" />
+        </mxCell>
+        <mxCell id="grp-frontend" parent="1" style="swimlane;fontStyle=1;fontSize=13;fontColor=#50FA7B;strokeColor=#50FA7B;fillColor=#0D1117;startSize=30;rounded=12;arcSize=4;" value="Frontend" vertex="1">
+          <mxGeometry height="300" width="280" x="390" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="cr-frontend" parent="grp-frontend" style="sketch=0;html=1;aspect=fixed;shape=mxgraph.gcp2.cloud_run;fillColor=#34A853;fontColor=#E2E8F0;fontSize=10;verticalLabelPosition=bottom;verticalAlign=top;labelPosition=center;align=center;labelBackgroundColor=none;" value="Cloud Run&#xa;mimo-frontend&#xa;europe-west1" vertex="1">
+          <mxGeometry height="70" width="70" x="30" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="react" parent="grp-frontend" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#61DAFB;strokeColor=#61DAFB;fontColor=#E2E8F0;fontSize=10;verticalLabelPosition=bottom;verticalAlign=top;labelPosition=center;align=center;arcSize=20;fontStyle=1;" value="React + Vite&#xa;TypeScript&#xa;mimo.ldjossou.com" vertex="1">
+          <mxGeometry height="70" width="70" x="155" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="cloud-cdn" parent="grp-frontend" style="sketch=0;html=1;aspect=fixed;shape=mxgraph.gcp2.cloud_cdn;fillColor=#4285F4;fontColor=#E2E8F0;fontSize=10;verticalLabelPosition=bottom;verticalAlign=top;labelPosition=center;align=center;labelBackgroundColor=none;" value="Cloud CDN&#xa;HTTPS / TLS" vertex="1">
+          <mxGeometry height="70" width="70" x="90" y="185" as="geometry" />
+        </mxCell>
+        <mxCell id="e-cr-react" edge="1" parent="grp-frontend" source="cr-frontend" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#50FA7B;strokeWidth=1.5;fontColor=#50FA7B;fontSize=9;" target="react">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-react-cdn" edge="1" parent="grp-frontend" source="react" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#50FA7B;strokeWidth=1.5;fontColor=#50FA7B;fontSize=9;" target="cloud-cdn">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="grp-vpc" parent="1" style="swimlane;fontStyle=1;fontSize=12;fontColor=#FF79C6;strokeColor=#FF79C6;fillColor=#0D0D1A;startSize=30;rounded=12;arcSize=4;dashed=1;dashPattern=8 4;" value="GCP VPC  —  mimo-vpc  (10.8.0.0/28)" vertex="1">
+          <mxGeometry height="680" width="1060" x="730" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="vpc-connector" parent="grp-vpc" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FF79C6;strokeColor=#FF79C6;fontColor=#E2E8F0;fontSize=9;verticalLabelPosition=bottom;verticalAlign=top;labelPosition=center;align=center;arcSize=20;fontStyle=1;dashed=1;dashPattern=5 3;" value="VPC Connector&#xa;mimo-vpc-connector" vertex="1">
+          <mxGeometry height="60" width="60" x="30" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="grp-backend" parent="grp-vpc" style="swimlane;fontStyle=1;fontSize=13;fontColor=#8BE9FD;strokeColor=#8BE9FD;fillColor=#111827;startSize=30;rounded=12;arcSize=4;" value="Backend" vertex="1">
+          <mxGeometry height="560" width="380" x="120" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="cr-backend" parent="grp-backend" style="sketch=0;html=1;aspect=fixed;shape=mxgraph.gcp2.cloud_run;fillColor=#34A853;fontColor=#E2E8F0;fontSize=10;verticalLabelPosition=bottom;verticalAlign=top;labelPosition=center;align=center;labelBackgroundColor=none;" value="Cloud Run&#xa;mimo-backend&#xa;europe-west1" vertex="1">
+          <mxGeometry height="70" width="70" x="155" y="45" as="geometry" />
+        </mxCell>
+        <mxCell id="fastapi" parent="grp-backend" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#009688;strokeColor=#009688;fontColor=#E2E8F0;fontSize=9;verticalLabelPosition=bottom;verticalAlign=top;labelPosition=center;align=center;arcSize=20;fontStyle=1;" value="FastAPI&#xa;Python 3.11&#xa;Gunicorn + Uvicorn" vertex="1">
+          <mxGeometry height="70" width="70" x="155" y="165" as="geometry" />
+        </mxCell>
+        <mxCell id="sqlalchemy" parent="grp-backend" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1F2937;strokeColor=#8BE9FD;fontColor=#E2E8F0;fontSize=9;arcSize=20;" value="SQLAlchemy&#xa;asyncpg" vertex="1">
+          <mxGeometry height="50" width="120" x="30" y="310" as="geometry" />
+        </mxCell>
+        <mxCell id="alembic-backend" parent="grp-backend" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1F2937;strokeColor=#8BE9FD;fontColor=#E2E8F0;fontSize=9;arcSize=20;" value="Alembic&#xa;Migrations" vertex="1">
+          <mxGeometry height="50" width="120" x="30" y="390" as="geometry" />
+        </mxCell>
+        <mxCell id="jwt" parent="grp-backend" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1F2937;strokeColor=#8BE9FD;fontColor=#E2E8F0;fontSize=9;arcSize=20;" value="JWT Auth&#xa;RS256 / 15min" vertex="1">
+          <mxGeometry height="50" width="120" x="230" y="310" as="geometry" />
+        </mxCell>
+        <mxCell id="rate-limit" parent="grp-backend" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1F2937;strokeColor=#8BE9FD;fontColor=#E2E8F0;fontSize=9;arcSize=20;" value="Rate Limiter&#xa;100 req/min / IP" vertex="1">
+          <mxGeometry height="50" width="120" x="230" y="390" as="geometry" />
+        </mxCell>
+        <mxCell id="secret-mgr" parent="grp-backend" style="sketch=0;html=1;aspect=fixed;shape=mxgraph.gcp2.key_management_service;fillColor=#EA4335;fontColor=#E2E8F0;fontSize=9;verticalLabelPosition=bottom;verticalAlign=top;labelPosition=center;align=center;labelBackgroundColor=none;" value="Secret Manager&#xa;DATABASE_URL&#xa;JWT_SECRET" vertex="1">
+          <mxGeometry height="70" width="70" x="155" y="460" as="geometry" />
+        </mxCell>
+        <mxCell id="e-crb-fapi" edge="1" parent="grp-backend" source="cr-backend" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#8BE9FD;strokeWidth=1.5;" target="fastapi">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-fapi-sqla" edge="1" parent="grp-backend" source="fastapi" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#8BE9FD;strokeWidth=1.5;" target="sqlalchemy">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-fapi-jwt" edge="1" parent="grp-backend" source="fastapi" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#8BE9FD;strokeWidth=1.5;" target="jwt">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-fapi-sm" edge="1" parent="grp-backend" source="fastapi" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#EA4335;strokeWidth=1.5;dashed=1;" target="secret-mgr">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="grp-data" parent="grp-vpc" style="swimlane;fontStyle=1;fontSize=13;fontColor=#FFB86C;strokeColor=#FFB86C;fillColor=#111827;startSize=30;rounded=12;arcSize=4;" value="Data Layer" vertex="1">
+          <mxGeometry height="560" width="420" x="570" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="cloud-sql" parent="grp-data" style="sketch=0;html=1;aspect=fixed;shape=mxgraph.gcp2.cloud_sql;fillColor=#4285F4;fontColor=#E2E8F0;fontSize=9;verticalLabelPosition=bottom;verticalAlign=top;labelPosition=center;align=center;labelBackgroundColor=none;" value="Cloud SQL&#xa;PostgreSQL 15&#xa;mimo-db-7100c619&#xa;10.93.0.3:5432" vertex="1">
+          <mxGeometry height="80" width="80" x="50" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="pg-logo" parent="grp-data" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#336791;strokeColor=#336791;fontColor=#E2E8F0;fontSize=9;verticalLabelPosition=bottom;verticalAlign=top;labelPosition=center;align=center;arcSize=20;fontStyle=1;" value="PostgreSQL&#xa;mimo_db / mimo_user" vertex="1">
+          <mxGeometry height="80" width="80" x="200" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="redis" parent="grp-data" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DC382D;strokeColor=#DC382D;fontColor=#E2E8F0;fontSize=9;verticalLabelPosition=bottom;verticalAlign=top;labelPosition=center;align=center;arcSize=20;fontStyle=1;" value="Redis 7&#xa;10.227.165.251&#xa;:6379/0" vertex="1">
+          <mxGeometry height="80" width="80" x="50" y="220" as="geometry" />
+        </mxCell>
+        <mxCell id="gcs" parent="grp-data" style="sketch=0;html=1;aspect=fixed;shape=mxgraph.gcp2.cloud_storage;fillColor=#FBBC05;fontColor=#E2E8F0;fontSize=9;verticalLabelPosition=bottom;verticalAlign=top;labelPosition=center;align=center;labelBackgroundColor=none;" value="Cloud Storage&#xa;mimo-uploads-prod&#xa;mimo-backups-prod" vertex="1">
+          <mxGeometry height="80" width="80" x="200" y="220" as="geometry" />
+        </mxCell>
+        <mxCell id="scheduler" parent="grp-data" style="sketch=0;html=1;aspect=fixed;shape=mxgraph.gcp2.cloud_scheduler;fillColor=#34A853;fontColor=#E2E8F0;fontSize=9;verticalLabelPosition=bottom;verticalAlign=top;labelPosition=center;align=center;labelBackgroundColor=none;" value="Cloud Scheduler&#xa;Backup / Jobs" vertex="1">
+          <mxGeometry height="80" width="80" x="120" y="390" as="geometry" />
+        </mxCell>
+        <mxCell id="grp-monitoring" parent="grp-data" style="swimlane;fontStyle=1;fontSize=10;fontColor=#BD93F9;strokeColor=#BD93F9;fillColor=#0D0D1A;startSize=24;rounded=8;arcSize=4;" value="Monitoring" vertex="1">
+          <mxGeometry height="40" width="360" x="30" y="500" as="geometry" />
+        </mxCell>
+        <mxCell id="mon-label" parent="grp-monitoring" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontColor=#BD93F9;fontSize=9;" value="Cloud Logging  •  Cloud Trace  •  Error Reporting  •  Uptime Checks" vertex="1">
+          <mxGeometry height="24" width="340" x="10" y="8" as="geometry" />
+        </mxCell>
+        <mxCell id="e-sql-pg" edge="1" parent="grp-data" source="cloud-sql" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#FFB86C;strokeWidth=1.5;" target="pg-logo">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="7riORdufLOyKrPxqtvzf-3" parent="grp-data" style="image;aspect=fixed;html=1;points=[];align=center;fontSize=12;image=img/lib/azure2/databases/Azure_Database_PostgreSQL_Server.svg;" value="" vertex="1">
+          <mxGeometry height="64" width="48" x="216" y="68" as="geometry" />
+        </mxCell>
+        <mxCell id="7riORdufLOyKrPxqtvzf-8" parent="grp-data" style="points=[];aspect=fixed;html=1;align=center;shadow=0;dashed=0;fillColor=#FF6A00;strokeColor=none;shape=mxgraph.alibaba_cloud.redis_kvstore;" value="" vertex="1">
+          <mxGeometry height="41.4" width="52.5" x="63.75" y="239.3" as="geometry" />
+        </mxCell>
+        <mxCell id="e-user-cdn" edge="1" parent="1" source="user" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#8B5CF6;strokeWidth=2;fontColor=#8B5CF6;fontSize=10;fontStyle=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" target="cloud-cdn" value="HTTPS">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="160" y="490" />
+              <mxPoint x="160" y="330" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-fe-be" edge="1" parent="1" source="7riORdufLOyKrPxqtvzf-10" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#50FA7B;strokeWidth=2;fontColor=#50FA7B;fontSize=10;fontStyle=1;" target="cr-backend" value="REST / HTTPS">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="540" y="335" />
+              <mxPoint x="540" y="175" />
+              <mxPoint x="910" y="175" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-ar-crf" edge="1" parent="1" source="artifact-reg" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#F1FA8C;strokeWidth=1.5;fontColor=#F1FA8C;fontSize=9;dashed=1;" target="cr-frontend" value="docker pull">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="200" y="310" />
+              <mxPoint x="200" y="370" />
+              <mxPoint x="455" y="370" />
+              <mxPoint x="455" y="125" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-ar-crb" edge="1" parent="1" source="artifact-reg" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#F1FA8C;strokeWidth=1.5;fontColor=#F1FA8C;fontSize=9;dashed=1;" target="cr-backend" value="docker pull">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="200" y="310" />
+              <mxPoint x="200" y="420" />
+              <mxPoint x="960" y="420" />
+              <mxPoint x="960" y="175" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-be-sql" edge="1" parent="1" source="fastapi" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#4285F4;strokeWidth=2;fontColor=#4285F4;fontSize=10;fontStyle=1;" target="cloud-sql" value="SQL / asyncpg&#xa;(private IP)">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1040" y="285" />
+              <mxPoint x="1140" y="285" />
+              <mxPoint x="1140" y="180" />
+              <mxPoint x="1340" y="180" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-be-redis" edge="1" parent="1" source="fastapi" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#DC382D;strokeWidth=2;fontColor=#DC382D;fontSize=10;fontStyle=1;" target="redis" value="RESP / TCP&#xa;(private IP)">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1040" y="310" />
+              <mxPoint x="1140" y="310" />
+              <mxPoint x="1140" y="340" />
+              <mxPoint x="1340" y="340" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-be-gcs" edge="1" parent="1" source="fastapi" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#FBBC05;strokeWidth=1.5;fontColor=#FBBC05;fontSize=9;dashed=1;" target="gcs" value="GCS API">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1040" y="330" />
+              <mxPoint x="1140" y="330" />
+              <mxPoint x="1140" y="340" />
+              <mxPoint x="1490" y="340" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-sched-be" edge="1" parent="1" source="scheduler" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#34A853;strokeWidth=1.5;fontColor=#34A853;fontSize=9;dashed=1;" target="fastapi" value="HTTP Trigger">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1370" y="510" />
+              <mxPoint x="1160" y="510" />
+              <mxPoint x="1160" y="400" />
+              <mxPoint x="1010" y="400" />
+              <mxPoint x="1010" y="285" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="legend-bg" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0D1117;strokeColor=#4A5568;arcSize=8;" value="" vertex="1">
+          <mxGeometry height="200" width="340" x="30" y="820" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontColor=#E2E8F0;fontSize=12;fontStyle=1;" value="Légende" vertex="1">
+          <mxGeometry height="20" width="120" x="50" y="830" as="geometry" />
+        </mxCell>
+        <mxCell id="leg1" edge="1" parent="1" style="endArrow=none;html=1;strokeColor=#50FA7B;strokeWidth=2;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="50" y="870" as="sourcePoint" />
+            <mxPoint x="100" y="870" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="leg1t" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontColor=#E2E8F0;fontSize=10;" value="REST / HTTPS" vertex="1">
+          <mxGeometry height="20" width="120" x="110" y="860" as="geometry" />
+        </mxCell>
+        <mxCell id="leg2" edge="1" parent="1" style="endArrow=none;html=1;strokeColor=#4285F4;strokeWidth=2;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="50" y="895" as="sourcePoint" />
+            <mxPoint x="100" y="895" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="leg2t" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontColor=#E2E8F0;fontSize=10;" value="SQL / asyncpg" vertex="1">
+          <mxGeometry height="20" width="120" x="110" y="885" as="geometry" />
+        </mxCell>
+        <mxCell id="leg3" edge="1" parent="1" style="endArrow=none;html=1;strokeColor=#DC382D;strokeWidth=2;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="50" y="920" as="sourcePoint" />
+            <mxPoint x="100" y="920" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="leg3t" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontColor=#E2E8F0;fontSize=10;" value="RESP / Redis TCP" vertex="1">
+          <mxGeometry height="20" width="120" x="110" y="910" as="geometry" />
+        </mxCell>
+        <mxCell id="leg4" edge="1" parent="1" style="endArrow=none;html=1;strokeColor=#F1FA8C;strokeWidth=1.5;dashed=1;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="50" y="945" as="sourcePoint" />
+            <mxPoint x="100" y="945" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="leg4t" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontColor=#E2E8F0;fontSize=10;" value="Docker pull / CI/CD" vertex="1">
+          <mxGeometry height="20" width="120" x="110" y="935" as="geometry" />
+        </mxCell>
+        <mxCell id="leg5" edge="1" parent="1" style="endArrow=none;html=1;strokeColor=#EA4335;strokeWidth=1.5;dashed=1;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="50" y="970" as="sourcePoint" />
+            <mxPoint x="100" y="970" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="leg5t" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontColor=#E2E8F0;fontSize=10;" value="Secret Manager" vertex="1">
+          <mxGeometry height="20" width="120" x="110" y="960" as="geometry" />
+        </mxCell>
+        <mxCell id="leg6" edge="1" parent="1" style="endArrow=none;html=1;strokeColor=#FBBC05;strokeWidth=1.5;dashed=1;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="50" y="995" as="sourcePoint" />
+            <mxPoint x="100" y="995" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="leg6t" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontColor=#E2E8F0;fontSize=10;" value="Cloud Storage API" vertex="1">
+          <mxGeometry height="20" width="140" x="110" y="985" as="geometry" />
+        </mxCell>
+        <mxCell id="7riORdufLOyKrPxqtvzf-9" parent="1" style="shape=actor;whiteSpace=wrap;html=1;" value="" vertex="1">
+          <mxGeometry height="44" width="37" x="61.5" y="468" as="geometry" />
+        </mxCell>
+        <mxCell id="7riORdufLOyKrPxqtvzf-11" edge="1" parent="1" source="cloud-cdn" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#50FA7B;strokeWidth=2;fontColor=#50FA7B;fontSize=10;fontStyle=1;" target="7riORdufLOyKrPxqtvzf-10" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+            <mxPoint x="540" y="275" as="sourcePoint" />
+            <mxPoint x="1005" y="175" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7riORdufLOyKrPxqtvzf-10" parent="1" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws3.vpc;fillColor=#F58536;gradientColor=none;" value="" vertex="1">
+          <mxGeometry height="48" width="35.75" x="770" y="146" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

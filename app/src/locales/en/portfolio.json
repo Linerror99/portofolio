@@ -53,7 +53,7 @@
         "Terraform IaC for total reproducibility",
         "Unit + integration tests with 85%+ coverage"
       ],
-      "architectureDesc": "3-tier serverless architecture on GCP. React frontend + FastAPI backend on Cloud Run, Cloud SQL PostgreSQL with VPC peering, Redis for caching, and Cloud Scheduler for automatic validations."
+      "architectureDesc": "Mimo Finance is a full-stack personal and couple finance management app deployed on Google Cloud Platform. The React/Vite frontend is served via Cloud Run with a custom domain, while the FastAPI backend communicates with a PostgreSQL (Cloud SQL) database and Redis cache over a private VPC. The CI/CD pipeline is fully automated via GitHub Actions with Workload Identity Federation."
     },
     {
       "id": 3,
@@ -67,7 +67,7 @@
         "Lifecycle policies for cost optimization (~$15/month)",
         "Serverless architecture with scale-to-zero"
       ],
-      "architectureDesc": "Multi-cloud deployment with Terraform. Containerized React SPA on AWS ECS Fargate and GCP Cloud Run, GitHub Actions CI/CD, Cloudflare DNS, and integrated GCP monitoring."
+      "architectureDesc": "Multi-cloud deployment powered by Terraform (4 IaC modules). React SPA containerized with Docker multi-stage build, served by Nginx on GCP Cloud Run (primary, scale-to-zero) and AWS ECS Fargate (secondary). GitHub Actions CI/CD automates build, push to Artifact Registry/ECR, and deployment. Cloudflare handles DNS and SSL, Cloud Monitoring watches performance with 13 alerting policies."
     },
     {
       "id": 4,
@@ -85,7 +85,7 @@
         "JWT authentication + quota system (2 videos/user)",
         "Real-time WebSocket progress tracking"
       ],
-      "architectureDesc": "Event-driven video generation pipeline on GCP. React frontend + FastAPI backend on Cloud Run, Cloud Functions Gen2 for async processing, Firestore + Cloud Storage for persistence, and Veo 3.1 for video generation."
+      "architectureDesc": "Reetik V3 is an AI-powered TikTok production platform deployed on Google Cloud Platform. The architecture combines Cloud Run (FastAPI), three Vertex AI models (Veo 3.1 for continuous video generation, Gemini 3.1 Pro for conversational AI, Imagen 4 for visual assets), an event-driven Cloud Functions pipeline with Cloud Scheduler, and an isolated named Firestore database. The entire infrastructure is codified with Terraform and deployed through an automated GitHub Actions CI/CD pipeline."
     },
     {
       "id": 5,
@@ -101,7 +101,7 @@
         "Portfolio mode (admin/visitor) — free navigation, only admin triggers costly operations",
         "Complete Terraform infrastructure (Cloud Run, Cloud SQL, Cloud Scheduler, Artifact Registry)"
       ],
-      "architectureDesc": "Microservices architecture on GCP. React frontend + FastAPI backend + OpenClaw AI agent, each on Cloud Run. Cloud SQL PostgreSQL with VPC peering, Cloud Scheduler for automated scraping every 6h, and Firebase for authentication."
+      "architectureDesc": "Serverless automated job hunting application deployed on GCP (europe-west1). Three Cloud Run services (React Frontend, FastAPI Backend, OpenClaw Scraping Agent) connected through a private VPC to Cloud SQL PostgreSQL and Cloud Storage. CI/CD uses GitHub Actions with Workload Identity Federation for keyless deployments, and Terraform manages the entire infrastructure as code."
     }
   ],
   "techStack": {

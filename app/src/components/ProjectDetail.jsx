@@ -126,15 +126,14 @@ const ProjectDetails = () => {
     const projectsData = t('projects', { returnObjects: true });
     const translatedProjects = projectsData.map((project, index) => ({
       id: project.id,
-      Img: ["/projects/Coming_soon.jpg", "/projects/project-mimo-finance.jpg", "/projects/project-portfolio.jpg", "/projects/project-tiktok-pipeline.jpg", "/projects/project-job-hunter.jpg"][index],
+      Img: ["/projects/project-autoforge.jpg", "/projects/project-mimo-finance.jpg", "/projects/project-portfolio.jpg", "/projects/project-tiktok-pipeline.jpg", "/projects/project-job-hunter.jpg"][index],
       Title: project.title,
       Description: project.description,
-      Link: ["#", "https://mimo.ldjossou.com", "https://ldjossou.com", "https://reetik.ldjossou.com", null][index],
+      Link: ["https://autoforg.com/landing", "https://mimo.ldjossou.com", "https://ldjossou.com", "https://reetik.ldjossou.com", null][index],
       Github: ["https://github.com/Tanou-Organization/Autoforge-core", "https://github.com/Linerror99/Mimo-core", "https://github.com/Linerror99/portofolio", "https://github.com/Linerror99Su/pipeline-video-tiktok", "https://github.com/Linerror99/Job-hunter"][index],
-      comingSoon: index === 0,
       Features: project.features,
       screenshots: [
-        ["/projects/Coming_soon.jpg"],
+        ["/projects/project-autoforge.jpg"],
         ["/projects/project-mimo-finance.jpg"],
         ["/projects/project-portfolio.jpg"],
         ["/projects/project-tiktok-pipeline.jpg"],
@@ -341,56 +340,57 @@ const ProjectDetails = () => {
                 )}
               </div>
 
-              {/* Architecture */}
-              {project.architectureImg && (
-                <div className="bg-white/[0.02] backdrop-blur-xl rounded-2xl p-6 md:p-8 border border-white/10 space-y-4 md:space-y-6 hover:border-white/20 transition-colors duration-300 group">
-                  <h3 className="text-lg md:text-xl font-semibold text-white/90 flex items-center gap-2 md:gap-3">
-                    <Network className="w-4 h-4 md:w-5 md:h-5 text-green-400 group-hover:rotate-[20deg] transition-transform duration-300" />
-                    {t('projectDetail.architecture')}
-                  </h3>
-                  <div
-                    className="relative rounded-xl overflow-hidden border border-white/10 cursor-pointer group/arch"
-                    onClick={() => setIsArchFullscreen(true)}
-                  >
-                    <img
-                      src={project.architectureImg}
-                      alt={`${project.Title} Architecture`}
-                      className="w-full object-contain bg-slate-900/50"
-                    />
-                    <div className="absolute inset-0 bg-black/0 group-hover/arch:bg-black/20 transition-all duration-300 flex items-center justify-center">
-                      <ZoomIn className="w-8 h-8 text-white opacity-0 group-hover/arch:opacity-100 transition-opacity drop-shadow-lg" />
-                    </div>
-                  </div>
-                  {project.architectureDesc && (
-                    <p className="text-sm md:text-base text-gray-300/80 leading-relaxed">
-                      {project.architectureDesc}
-                    </p>
-                  )}
-                </div>
-              )}
-
-              {/* Architecture fullscreen modal */}
-              {isArchFullscreen && project.architectureImg && (
-                <div
-                  className="fixed inset-0 z-50 bg-black/95 backdrop-blur-xl flex items-center justify-center p-4"
-                  onClick={() => setIsArchFullscreen(false)}
-                >
-                  <button
-                    className="absolute top-4 right-4 p-3 bg-white/10 rounded-full text-white hover:bg-white/20 transition-all z-10"
-                    onClick={() => setIsArchFullscreen(false)}
-                  >
-                    <span className="text-lg">✕</span>
-                  </button>
-                  <img
-                    src={project.architectureImg}
-                    alt={`${project.Title} Architecture`}
-                    className="max-w-[95vw] max-h-[90vh] object-contain"
-                    onClick={(e) => e.stopPropagation()}
-                  />
-                </div>
-              )}
             </div>
           </div>
+
+          {/* Architecture — Full width */}
+          {project.architectureImg && (
+            <div className="mt-10 md:mt-16 bg-white/[0.02] backdrop-blur-xl rounded-2xl p-6 md:p-8 border border-white/10 space-y-4 md:space-y-6 hover:border-white/20 transition-colors duration-300 group">
+              <h3 className="text-lg md:text-xl font-semibold text-white/90 flex items-center gap-2 md:gap-3">
+                <Network className="w-4 h-4 md:w-5 md:h-5 text-green-400 group-hover:rotate-[20deg] transition-transform duration-300" />
+                {t('projectDetail.architecture')}
+              </h3>
+              <div
+                className="relative rounded-xl overflow-hidden border border-white/10 cursor-pointer group/arch"
+                onClick={() => setIsArchFullscreen(true)}
+              >
+                <img
+                  src={project.architectureImg}
+                  alt={`${project.Title} Architecture`}
+                  className="w-full object-contain bg-slate-900/50"
+                />
+                <div className="absolute inset-0 bg-black/0 group-hover/arch:bg-black/20 transition-all duration-300 flex items-center justify-center">
+                  <ZoomIn className="w-8 h-8 text-white opacity-0 group-hover/arch:opacity-100 transition-opacity drop-shadow-lg" />
+                </div>
+              </div>
+              {project.architectureDesc && (
+                <p className="text-sm md:text-base text-gray-300/80 leading-relaxed">
+                  {project.architectureDesc}
+                </p>
+              )}
+            </div>
+          )}
+
+          {/* Architecture fullscreen modal */}
+          {isArchFullscreen && project.architectureImg && (
+            <div
+              className="fixed inset-0 z-50 bg-black/95 backdrop-blur-xl flex items-center justify-center p-4"
+              onClick={() => setIsArchFullscreen(false)}
+            >
+              <button
+                className="absolute top-4 right-4 p-3 bg-white/10 rounded-full text-white hover:bg-white/20 transition-all z-10"
+                onClick={() => setIsArchFullscreen(false)}
+              >
+                <span className="text-lg">✕</span>
+              </button>
+              <img
+                src={project.architectureImg}
+                alt={`${project.Title} Architecture`}
+                className="max-w-[95vw] max-h-[90vh] object-contain"
+                onClick={(e) => e.stopPropagation()}
+              />
+            </div>
+          )}
         </div>
       </div>
 

@@ -53,7 +53,7 @@
         "Terraform IaC pour reproductibilité totale",
         "Tests unitaires + intégration avec 85%+ coverage"
       ],
-      "architectureDesc": "Architecture 3-tiers serverless sur GCP. React frontend + FastAPI backend sur Cloud Run, Cloud SQL PostgreSQL avec VPC peering, Redis pour le cache, et Cloud Scheduler pour les validations automatiques."
+      "architectureDesc": "Mimo Finance est une application full-stack de gestion financière personnelle et couple, déployée sur Google Cloud Platform. Le frontend React (Vite) est servi via Cloud Run avec domaine personnalisé, tandis que le backend FastAPI communique avec une base PostgreSQL (Cloud SQL) et un cache Redis via un VPC privé. Le CI/CD est entièrement automatisé via GitHub Actions avec Workload Identity Federation."
     },
     {
       "id": 3,
@@ -67,7 +67,7 @@
         "Lifecycle policies pour optimisation des coûts (~$15/mois)",
         "Architecture serverless avec scale-to-zero"
       ],
-      "architectureDesc": "Déploiement multi-cloud avec Terraform. React SPA containerisé sur AWS ECS Fargate et GCP Cloud Run, CI/CD GitHub Actions, DNS Cloudflare, et monitoring GCP intégré."
+      "architectureDesc": "Déploiement multi-cloud avec Terraform (4 modules IaC). React SPA containerisé via Docker multi-stage et servi par Nginx sur GCP Cloud Run (primary, scale-to-zero) et AWS ECS Fargate (secondary). CI/CD GitHub Actions automatise build, push vers Artifact Registry/ECR et déploiement. Cloudflare gère DNS et SSL, Cloud Monitoring surveille la performance avec 13 alerting policies."
     },
     {
       "id": 4,
@@ -85,7 +85,7 @@
         "Authentification JWT + système de quotas (2 vidéos/utilisateur)",
         "WebSocket temps réel pour suivi de progression"
       ],
-      "architectureDesc": "Pipeline de génération vidéo event-driven sur GCP. Frontend React + Backend FastAPI sur Cloud Run, Cloud Functions Gen2 pour le traitement async, Firestore + Cloud Storage pour la persistance, et Veo 3.1 pour la génération vidéo."
+      "architectureDesc": "Reetik V3 est une plateforme de production TikTok propulsée par l'IA, déployée sur Google Cloud Platform. L'architecture combine Cloud Run (FastAPI), trois modèles Vertex AI (Veo 3.1 pour la vidéo continue, Gemini 3.1 Pro pour le chat conversationnel, Imagen 4 pour les visuels), un pipeline événementiel de Cloud Functions avec Cloud Scheduler, et une base Firestore nommée isolée. L'infrastructure est entièrement codifiée en Terraform avec un pipeline CI/CD GitHub Actions automatisé."
     },
     {
       "id": 5,
@@ -101,7 +101,7 @@
         "Mode portfolio (admin/visiteur) — navigation libre, seul l'admin déclenche les opérations coûteuses",
         "Infrastructure Terraform complète (Cloud Run, Cloud SQL, Cloud Scheduler, Artifact Registry)"
       ],
-      "architectureDesc": "Architecture microservices sur GCP. Frontend React + Backend FastAPI + Agent IA OpenClaw, chacun sur Cloud Run. Cloud SQL PostgreSQL avec VPC peering, Cloud Scheduler pour le scraping automatisé toutes les 6h, et Firebase pour l'authentification."
+      "architectureDesc": "Application serverless de job hunting automatisé déployée sur GCP (europe-west1). Trois services Cloud Run (Frontend React, Backend FastAPI, Agent OpenClaw) connectés via un VPC privé à Cloud SQL PostgreSQL et Cloud Storage. Le CI/CD utilise GitHub Actions avec Workload Identity Federation pour des déploiements sans clé, et Terraform gère l'ensemble de l'infrastructure as code."
     }
   ],
   "techStack": {

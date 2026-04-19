@@ -186,12 +186,11 @@ export default function FullWidthTabs() {
     const projectsData = t('projects', { returnObjects: true });
     return projectsData.map((project, index) => ({
       id: project.id,
-      Img: ["/projects/Coming_soon.jpg", "/projects/project-mimo-finance.jpg", "/projects/project-portfolio.jpg", "/projects/project-tiktok-pipeline.jpg", "/projects/project-job-hunter.jpg"][index],
+      Img: ["/projects/project-autoforge.jpg", "/projects/project-mimo-finance.jpg", "/projects/project-portfolio.jpg", "/projects/project-tiktok-pipeline.jpg", "/projects/project-job-hunter.jpg"][index],
       Title: project.title,
       Description: project.description,
-      Link: ["#", "https://mimo.ldjossou.com", "https://ldjossou.com", "https://reetik.ldjossou.com", null][index],
+      Link: ["https://autoforg.com/landing", "https://mimo.ldjossou.com", "https://ldjossou.com", "https://reetik.ldjossou.com", null][index],
       Github: ["https://github.com/Tanou-Organization/Autoforge-core", "https://github.com/Linerror99/Mimo-core", "https://github.com/Linerror99/portofolio", "https://github.com/Linerror99Su/pipeline-video-tiktok", "https://github.com/Linerror99/Job-hunter"][index],
-      comingSoon: index === 0,
       Features: project.features,
       TechStack: [
         {
