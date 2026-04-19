@@ -36,7 +36,8 @@
         "Complete export: ZIP, GitHub push, or Cloud Run deployment",
         "Time-to-Market: <2h from idea to production-ready MVP",
         "Scalable serverless architecture (Cloud Run + Firestore)"
-      ]
+      ],
+      "architectureDesc": "Serverless multi-agent architecture on GCP. Claude SDK orchestrates 4 specialized agents on Cloud Run, with Firestore for persistence and isolated Spot VMs for code execution."
     },
     {
       "id": 2,
@@ -51,7 +52,8 @@
         "CI/CD with GitHub Actions (tests, SonarCloud, automatic deployment)",
         "Terraform IaC for total reproducibility",
         "Unit + integration tests with 85%+ coverage"
-      ]
+      ],
+      "architectureDesc": "Mimo Finance is a full-stack personal and couple finance management app deployed on Google Cloud Platform. The React/Vite frontend is served via Cloud Run with a custom domain, while the FastAPI backend communicates with a PostgreSQL (Cloud SQL) database and Redis cache over a private VPC. The CI/CD pipeline is fully automated via GitHub Actions with Workload Identity Federation."
     },
     {
       "id": 3,
@@ -64,7 +66,8 @@
         "Container Registry (AWS ECR + GCP Artifact Registry)",
         "Lifecycle policies for cost optimization (~$15/month)",
         "Serverless architecture with scale-to-zero"
-      ]
+      ],
+      "architectureDesc": "Multi-cloud deployment powered by Terraform (4 IaC modules). React SPA containerized with Docker multi-stage build, served by Nginx on GCP Cloud Run (primary, scale-to-zero) and AWS ECS Fargate (secondary). GitHub Actions CI/CD automates build, push to Artifact Registry/ECR, and deployment. Cloudflare handles DNS and SSL, Cloud Monitoring watches performance with 13 alerting policies."
     },
     {
       "id": 4,
@@ -81,7 +84,24 @@
         "CI/CD with GitHub Actions + Terraform IaC",
         "JWT authentication + quota system (2 videos/user)",
         "Real-time WebSocket progress tracking"
-      ]
+      ],
+      "architectureDesc": "Reetik V3 is an AI-powered TikTok production platform deployed on Google Cloud Platform. The architecture combines Cloud Run (FastAPI), three Vertex AI models (Veo 3.1 for continuous video generation, Gemini 3.1 Pro for conversational AI, Imagen 4 for visual assets), an event-driven Cloud Functions pipeline with Cloud Scheduler, and an isolated named Firestore database. The entire infrastructure is codified with Terraform and deployed through an automated GitHub Actions CI/CD pipeline."
+    },
+    {
+      "id": 5,
+      "title": "Job Hunter - AI-Powered Automated Job Search Platform",
+      "description": "DevOps/Cloud job search automation with AI scraping (OpenClaw + headless Chromium), LLM analysis (Claude Sonnet 4), CV/cover letter adaptation and PDF generation (Playwright). Multi-user with Firebase authentication, deployed on GCP Cloud Run.",
+      "features": [
+        "Automated scraping — OpenClaw + headless Chromium scrapes WTTJ and Indeed every 6h via Cloud Scheduler",
+        "LLM analysis — Claude Sonnet 4 analyzes each offer and calculates a matching score",
+        "PDF generation — Playwright generates pixel-perfect customized CVs and cover letters",
+        "Multi-user with individual profiles, search criteria, and offer management",
+        "Manual offer addition — Paste a URL → automatic extraction + LLM pipeline",
+        "CSV export of filtered offers + email notifications after each scraping run",
+        "Portfolio mode (admin/visitor) — free navigation, only admin triggers costly operations",
+        "Complete Terraform infrastructure (Cloud Run, Cloud SQL, Cloud Scheduler, Artifact Registry)"
+      ],
+      "architectureDesc": "Serverless automated job hunting application deployed on GCP (europe-west1). Three Cloud Run services (React Frontend, FastAPI Backend, OpenClaw Scraping Agent) connected through a private VPC to Cloud SQL PostgreSQL and Cloud Storage. CI/CD uses GitHub Actions with Workload Identity Federation for keyless deployments, and Terraform manages the entire infrastructure as code."
     }
   ],
   "techStack": {
@@ -101,6 +121,14 @@
     "github": "Github",
     "technologiesUsed": "Technologies Used",
     "noTechnologies": "No technologies added.",
+    "techCategories": {
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "ai": "Artificial Intelligence",
+      "database": "Databases & Storage",
+      "cloud": "Cloud & Infrastructure",
+      "cicd": "CI/CD & DevOps"
+    },
     "keyFeatures": "Key Features",
     "noFeatures": "No features added.",
     "stats": {
@@ -111,6 +139,7 @@
       "title": "Private Source Code",
       "text": "Sorry, the source code for this project is private.",
       "confirmButton": "Understood"
-    }
+    },
+    "architecture": "Architecture"
   }
 }

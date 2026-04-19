@@ -119,7 +119,7 @@ const AboutPage = () => {
   // Memoized calculations
   const { totalProjects, totalCertificates, YearExperience } = useMemo(() => {
     // Nombre de projets depuis les traductions
-    const projectsCount = 4; // AutoForge, Mimo Finance, Portfolio, Reetik
+    const projectsCount = 5; // AutoForge, Mimo Finance, Portfolio, Reetik, Job Hunter
     // Nombre de certifications (hardcodé car les images sont statiques)
     const certificatesCount = 7; // cert1 à cert7
     
