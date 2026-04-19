@@ -186,18 +186,49 @@ export default function FullWidthTabs() {
     const projectsData = t('projects', { returnObjects: true });
     return projectsData.map((project, index) => ({
       id: project.id,
-      Img: ["/projects/Coming_soon.jpg", "/projects/project-mimo-finance.jpg", "/projects/project-portfolio.jpg", "/projects/project-tiktok-pipeline.jpg"][index],
+      Img: ["/projects/Coming_soon.jpg", "/projects/project-mimo-finance.jpg", "/projects/project-portfolio.jpg", "/projects/project-tiktok-pipeline.jpg", "/projects/project-job-hunter.jpg"][index],
       Title: project.title,
       Description: project.description,
-      Link: ["#", "https://mimo.ldjossou.com", "https://ldjossou.com", "https://reetik.ldjossou.com"][index],
-      Github: ["#", "https://github.com/Linerror99/Mimo-core", "https://github.com/Linerror99/portofolio", "https://github.com/Linerror99Su/pipeline-video-tiktok"][index],
+      Link: ["#", "https://mimo.ldjossou.com", "https://ldjossou.com", "https://reetik.ldjossou.com", null][index],
+      Github: ["https://github.com/Tanou-Organization/Autoforge-core", "https://github.com/Linerror99/Mimo-core", "https://github.com/Linerror99/portofolio", "https://github.com/Linerror99Su/pipeline-video-tiktok", "https://github.com/Linerror99/Job-hunter"][index],
       comingSoon: index === 0,
       Features: project.features,
       TechStack: [
-        ["Claude Sonnet 4", "TypeScript + Fastify", "GCP Cloud Run", "Firestore", "MCP SDK", "Compute Engine (Spot VMs)", "WebSocket", "OAuth 2.0", "Docker", "Terraform"],
-        ["React 18", "FastAPI + Python 3.12", "PostgreSQL 15", "Redis 7", "GCP Cloud Run", "Cloud SQL", "Artifact Registry", "Terraform", "GitHub Actions", "SonarCloud", "Docker", "Shadcn/ui"],
-        ["React + Vite", "Tailwind CSS", "Terraform", "Docker", "AWS ECS Fargate", "GCP Cloud Run", "GitHub Actions", "Nginx"],
-        ["Gemini 2.5 Pro", "Veo 3.1", "Google TTS Premium", "OpenAI Whisper", "FFmpeg", "React 18 + TypeScript", "FastAPI + Python 3.12", "GCP Cloud Run", "Cloud Functions Gen2", "Firestore", "Cloud Storage", "Terraform", "GitHub Actions", "Docker"]
+        {
+          backend: ["TypeScript + Fastify", "WebSocket", "OAuth 2.0", "MCP SDK"],
+          ai: ["Claude Sonnet 4"],
+          database: ["Firestore"],
+          cloud: ["GCP Cloud Run", "Compute Engine (Spot VMs)"],
+          cicd: ["Docker", "Terraform"]
+        },
+        {
+          frontend: ["React 18", "Shadcn/ui"],
+          backend: ["FastAPI + Python 3.12"],
+          database: ["PostgreSQL 15", "Redis 7", "Cloud SQL"],
+          cloud: ["GCP Cloud Run", "Artifact Registry"],
+          cicd: ["Terraform", "GitHub Actions", "SonarCloud", "Docker"]
+        },
+        {
+          frontend: ["React + Vite", "Tailwind CSS", "Nginx"],
+          cloud: ["AWS ECS Fargate", "GCP Cloud Run"],
+          cicd: ["Terraform", "Docker", "GitHub Actions"]
+        },
+        {
+          frontend: ["React 18 + TypeScript"],
+          backend: ["FastAPI + Python 3.12", "FFmpeg"],
+          ai: ["Gemini 2.5 Pro", "Veo 3.1", "Google TTS Premium", "OpenAI Whisper"],
+          database: ["Firestore", "Cloud Storage"],
+          cloud: ["GCP Cloud Run", "Cloud Functions Gen2"],
+          cicd: ["Terraform", "GitHub Actions", "Docker"]
+        },
+        {
+          frontend: ["React 19", "Vite", "Tailwind CSS"],
+          backend: ["FastAPI", "Python 3.12", "Playwright"],
+          ai: ["OpenClaw", "Claude Sonnet 4", "Chromium Headless"],
+          database: ["PostgreSQL 16", "Cloud SQL", "Firebase Auth"],
+          cloud: ["GCP Cloud Run", "Cloud Scheduler"],
+          cicd: ["Terraform", "Docker", "GitHub Actions"]
+        }
       ][index]
     }));
   }, [t, i18n.language]);

@@ -36,7 +36,8 @@
         "Complete export: ZIP, GitHub push, or Cloud Run deployment",
         "Time-to-Market: <2h from idea to production-ready MVP",
         "Scalable serverless architecture (Cloud Run + Firestore)"
-      ]
+      ],
+      "architectureDesc": "Serverless multi-agent architecture on GCP. Claude SDK orchestrates 4 specialized agents on Cloud Run, with Firestore for persistence and isolated Spot VMs for code execution."
     },
     {
       "id": 2,
@@ -51,7 +52,8 @@
         "CI/CD with GitHub Actions (tests, SonarCloud, automatic deployment)",
         "Terraform IaC for total reproducibility",
         "Unit + integration tests with 85%+ coverage"
-      ]
+      ],
+      "architectureDesc": "3-tier serverless architecture on GCP. React frontend + FastAPI backend on Cloud Run, Cloud SQL PostgreSQL with VPC peering, Redis for caching, and Cloud Scheduler for automatic validations."
     },
     {
       "id": 3,
@@ -64,7 +66,8 @@
         "Container Registry (AWS ECR + GCP Artifact Registry)",
         "Lifecycle policies for cost optimization (~$15/month)",
         "Serverless architecture with scale-to-zero"
-      ]
+      ],
+      "architectureDesc": "Multi-cloud deployment with Terraform. Containerized React SPA on AWS ECS Fargate and GCP Cloud Run, GitHub Actions CI/CD, Cloudflare DNS, and integrated GCP monitoring."
     },
     {
       "id": 4,
@@ -81,7 +84,24 @@
         "CI/CD with GitHub Actions + Terraform IaC",
         "JWT authentication + quota system (2 videos/user)",
         "Real-time WebSocket progress tracking"
-      ]
+      ],
+      "architectureDesc": "Event-driven video generation pipeline on GCP. React frontend + FastAPI backend on Cloud Run, Cloud Functions Gen2 for async processing, Firestore + Cloud Storage for persistence, and Veo 3.1 for video generation."
+    },
+    {
+      "id": 5,
+      "title": "Job Hunter - AI-Powered Automated Job Search Platform",
+      "description": "DevOps/Cloud job search automation with AI scraping (OpenClaw + headless Chromium), LLM analysis (Claude Sonnet 4), CV/cover letter adaptation and PDF generation (Playwright). Multi-user with Firebase authentication, deployed on GCP Cloud Run.",
+      "features": [
+        "Automated scraping — OpenClaw + headless Chromium scrapes WTTJ and Indeed every 6h via Cloud Scheduler",
+        "LLM analysis — Claude Sonnet 4 analyzes each offer and calculates a matching score",
+        "PDF generation — Playwright generates pixel-perfect customized CVs and cover letters",
+        "Multi-user with individual profiles, search criteria, and offer management",
+        "Manual offer addition — Paste a URL → automatic extraction + LLM pipeline",
+        "CSV export of filtered offers + email notifications after each scraping run",
+        "Portfolio mode (admin/visitor) — free navigation, only admin triggers costly operations",
+        "Complete Terraform infrastructure (Cloud Run, Cloud SQL, Cloud Scheduler, Artifact Registry)"
+      ],
+      "architectureDesc": "Microservices architecture on GCP. React frontend + FastAPI backend + OpenClaw AI agent, each on Cloud Run. Cloud SQL PostgreSQL with VPC peering, Cloud Scheduler for automated scraping every 6h, and Firebase for authentication."
     }
   ],
   "techStack": {
@@ -101,6 +121,14 @@
     "github": "Github",
     "technologiesUsed": "Technologies Used",
     "noTechnologies": "No technologies added.",
+    "techCategories": {
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "ai": "Artificial Intelligence",
+      "database": "Databases & Storage",
+      "cloud": "Cloud & Infrastructure",
+      "cicd": "CI/CD & DevOps"
+    },
     "keyFeatures": "Key Features",
     "noFeatures": "No features added.",
     "stats": {
@@ -111,6 +139,7 @@
       "title": "Private Source Code",
       "text": "Sorry, the source code for this project is private.",
       "confirmButton": "Understood"
-    }
+    },
+    "architecture": "Architecture"
   }
 }
